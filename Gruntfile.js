@@ -21,10 +21,10 @@ module.exports = function(grunt) {
             },
 
             //Збірка
-            /*trackTop: {
+            trackTop: {
                 src:        'Frontend/src/main.js',
                 dest:       'Frontend/www/assets/js/main.js'
-            }*/
+            }
         }
     };
 
@@ -55,7 +55,7 @@ module.exports = function(grunt) {
     //Список завданнь за замовчуванням
     grunt.registerTask('default',
         [
-            //'browserify:trackTop',
+            'browserify:trackTop',
             //'browserify:order',
             //Інші завдання які необхідно виконати
         ]

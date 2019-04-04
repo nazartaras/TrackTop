@@ -8,7 +8,7 @@ function configureEndpoints(app) {
     var api = require('./api');
 
     //Налаштування URL за якими буде відповідати сервер
-
+    app.post('/add-tehnic/', api.add_tehnic);
     //Сторінки
     app.get('/', pages.mainPage);
     app.get('/order.html', pages.orderPage);
