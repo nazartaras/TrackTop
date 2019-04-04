@@ -77,3 +77,4 @@ typings/
 
 .iws
 workspace.xml
+.idea/workspace.xml
