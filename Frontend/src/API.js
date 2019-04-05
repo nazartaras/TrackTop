@@ -29,5 +29,5 @@ function backendPost(url, data, callback) {
 }
 
 exports.addTehnic = function(tehnic, callback) {
-    backendPost("/add-tehnic/", tehnic, callback);
+    backendPost("/api/addtechnic/", tehnic, callback);
 };

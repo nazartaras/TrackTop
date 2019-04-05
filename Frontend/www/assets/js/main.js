@@ -30,7 +30,7 @@ function backendPost(url, data, callback) {
 }
 
 exports.addTehnic = function(tehnic, callback) {
-    backendPost("/add-tehnic/", tehnic, callback);
+    backendPost("/api/addtechnic/", tehnic, callback);
 };
 
 },{}],2:[function(require,module,exports){
@@ -45,7 +45,7 @@ $(function(){
             price:221,
             model:'AD129'
         }
-
+        console.log('22');
         require("./API").addTehnic(newT,function () {
             
         });

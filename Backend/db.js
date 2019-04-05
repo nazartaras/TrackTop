@@ -2,13 +2,13 @@ var mysql      = require('mysql');
 var connection;
 
 exports.connect = function() {
-    if(connection)
-        return;
+     if(connection===null)
+         return;
 
     connection = mysql.createConnection({
         host: 'localhost',
         user: 'root',
-        password: 'Vaao095037448182',
+        password: 'root',
     });
 
     connection.connect(function(err) {
@@ -20,13 +20,11 @@ exports.connect = function() {
 
 exports.insert_tehnic = function(tehnic,suc,error){
 
-    connect();
-    connection.connect(function(err){
-        if (err) throw err;
-        connection.query("INSERT INTO 'tracktop'.'tehnic' SET ?", tehnic, function(err, result) {
+
+        connection.query("INSERT INTO tracktop.technic SET ?", tehnic, function(err, result) {
             error(err);
             suc(result);
         });
-    })
+
 
 }

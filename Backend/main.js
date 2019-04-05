@@ -6,6 +6,9 @@ var bodyParser = require('body-parser');
 function configureEndpoints(app) {
     var pages = require('./pages');
     var api = require('./api');
+    var db = require('./db');
+
+    db.connect();
 
     //Налаштування URL за якими буде відповідати сервер
     app.post('/api/addtechnic/', api.addTehnic);
