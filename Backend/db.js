@@ -8,7 +8,7 @@ exports.connect = function() {
     connection = mysql.createConnection({
         host: 'localhost',
         user: 'root',
-        password: 'root',
+        password: 'Vaao095037448182',
     });
 
     connection.connect(function(err) {
@@ -18,13 +18,15 @@ exports.connect = function() {
 
 }
 
-exports.insert_tehnic = function(tehnic,suc,error){
-
-
-        connection.query("INSERT INTO tracktop.technic SET ?", tehnic, function(err, result) {
-            error(err);
-            suc(result);
-        });
-
-
+exports.insert_tehnic = function(tehnic,callback){
+    connection.query("INSERT INTO tracktop.technic SET ?", tehnic, callback);
 }
+
+exports.insert_equipment = function(equipment,callback){
+    connection.query("INSERT INTO tracktop.equipment SET ?", equipment, callback);
+}
+
+exports.insert_type_of_technics = function(type_of_technics,callback){
+    connection.query("INSERT INTO tracktop.types_of_technics SET ?", type_of_technics, callback);
+}
+

@@ -2,18 +2,28 @@ exports.addTehnic = function(req, res) {
     var db = require('./db');
     var info = req.body;
 
-    function suc(res){
-        console.log("Success! ", res);
+    function callback(error,data){
+        if(error) {
+            console.log("Error! ", error.sqlMessage);
+            res.send({
+                success: true,
+                error: error.sqlMessage
+            });
+        }
+        else {
+            console.log("Success! ", data);
+            res.send({
+                success: true,
+                data: data
+            });
+        }
     }
 
-    function err(err) {
-        console.log("Error! ", err);
-    }
 
-    db.insert_tehnic(info,suc,err);
+    db.insert_tehnic(info,callback);
 
-    res.send({
-        success: true
-    });
+    // res.send({
+    //     success: true
+    // });
 };
 

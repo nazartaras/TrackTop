@@ -43,11 +43,11 @@ $(function(){
             type_id:1,
             amount:32,
             price:221,
-            model:'AD129'
+            // model:'AD129'
         }
-        console.log('22');
-        require("./API").addTehnic(newT,function () {
-            
+
+        require("./API").addTehnic(newT,function (err,data) {
+            if(data.error) console.log(data.error);
         });
     });
 
