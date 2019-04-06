@@ -18,11 +18,13 @@ $(function(){
     function openNav() {
         $("#basketColumn").addClass("widthR");
         $("#main").addClass("margR");
+        $(".header").addClass("margR");
     }
 
     function closeNav() {
         $("#basketColumn").removeClass("widthR");
         $("#main").removeClass("margR");
+        $(".header").removeClass("margR");
     }
 
     $('.basketBtn').click(function () {
@@ -33,6 +35,26 @@ $(function(){
         closeNav();
     })
 
+    var l = [
+        {
+            image: 'assets/images/трактор.jpg',
+            name: 'Трактори'
+        },
+        {
+            image: 'assets/images/трактор.jpg',
+            name: 'Трактори'
+        },
+        {
+            image: 'assets/images/трактор.jpg',
+            name: 'Трактори'
+        },
+        {
+            image: 'assets/images/трактор.jpg',
+            name: 'Трактори'
+        },
+    ]
 
+
+    require('./pagesScripts/typesOfTechnics').showTypes(l);
 
 });
