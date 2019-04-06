@@ -31,3 +31,7 @@ function backendPost(url, data, callback) {
 exports.addTehnic = function(tehnic, callback) {
     backendPost("/api/addtechnic/", tehnic, callback);
 };
+
+exports.addClient = function(client, callback) {
+    backendPost("/api/addclient/", client, callback);
+};

@@ -12,6 +12,7 @@ function configureEndpoints(app) {
 
     //Налаштування URL за якими буде відповідати сервер
     app.post('/api/addtechnic/', api.addTehnic);
+    app.post('/api/addclient/', api.addClient);
 
     //Сторінки
     app.get('/', pages.mainPage);
