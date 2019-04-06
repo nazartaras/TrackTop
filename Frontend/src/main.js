@@ -51,15 +51,15 @@ $(function(){
         },
         {
             image: 'assets/images/трактор.jpg',
-            name: 'Трактори'
+            name: 'Сівалки'
         },
         {
             image: 'assets/images/трактор.jpg',
-            name: 'Трактори'
+            name: 'Комбайни'
         },
         {
             image: 'assets/images/трактор.jpg',
-            name: 'Трактори'
+            name: 'Інше'
         },
     ]
 
