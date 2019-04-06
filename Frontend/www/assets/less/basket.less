@@ -1,0 +1,208 @@
+@heightTopBot:@heightTopPanel;
+@heightBottom: @heightTopPanel*1.7;
+
+.sidenav {
+  height: 100%;
+  width: 0;
+  //width:@WidthRightPanel;
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+
+  background: white;
+  border-left:0.5px solid #c4c4c4;
+  box-shadow: rgba(0,0,0,.2) -3px 3px 10px;
+  z-index: 2;
+
+  .basketCloseBtn {
+    position: absolute;
+    top: -10px;
+    right: 10px;
+    font-size: 36px;
+    margin-left: 50px;
+    z-index: 3;
+  }
+}
+
+#main {
+  transition: margin-left .5s;
+  padding: 16px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+
+.orderLabel{
+  padding-top:@heightTopBot/3;
+  position: absolute;
+  box-sizing: content-box;
+  width:100%;
+  height:@heightTopBot;
+  top:0;
+  text-align: center;
+
+
+  .labelOrder{
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 17px;
+  }
+
+  .labelOrderDelete{
+    color:gray;
+    margin-left: 10px;
+    padding-right:30px;
+    margin-top:5px;
+    float:right;
+    font-size: 10px;
+    line-height: 11px;
+    font-weight: 400;
+  }
+
+}
+
+.endOrderLabel{
+  padding:10px;
+  position: absolute;
+  bottom:0;
+  height:@heightBottom;
+  width:100%;
+  border-top: 1px solid rgba(0,0,0,.1);
+
+  .sumLabel{
+    font-weight: 700;
+    font-size: 15px;
+  }
+
+  .amountLabel{
+    font-weight: 700;
+    font-size: 20px;
+    float:right;
+  }
+
+  .buttonOrderDiv{
+
+    padding:20px;
+
+    .orderButton{
+      width:100%;
+      left: 50px;
+      border-color: darken(@mainColor,5%);
+      background-color: lighten(@mainColor,2%);
+    }
+    .orderButton:hover{
+      background-color: darken(@mainColor,1%);
+    }
+
+  }
+
+}
+
+.buyList{
+  position: absolute;
+  text-overflow-y: scroll;
+  background: #F5F5F5;
+  width:100%;
+  top:@heightTopBot;
+  bottom:0px;
+  margin-bottom: @heightBottom;
+  padding:0;
+  overflow-y:scroll;
+  overflow-x:hidden;
+
+  .myOrder{
+    position:relative;
+    height: 120px;
+    padding: 20px 61px 10px 24px;
+    border-bottom: 1px solid rgba(0,0,0,.1);
+    position: relative;
+    overflow: hidden;
+    box-sizing: border-box;
+
+    p{
+      margin:0px;
+    }
+
+    .pizzaIconInOrder{
+      position: absolute;
+      right: -49px;
+      top: 15px;
+      border-radius: 50% 0 0 50%;
+      max-height: 98px;
+      max-width: 98px;
+    }
+
+    .order-title{
+      color:darken(@mainColor,3%);
+      font-size:20px;
+    }
+
+    .orderCharacteristics{
+      margin:6px 0 8px;
+
+      .orderWeightIcon{
+        margin-left:10px;
+      }
+    }
+
+    .price{
+      margin-right:10px;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .order-pizza-count{
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .btn-circle{
+      width: 30px;
+      height: 30px;
+      padding: 6px 0;
+      font-size: 12px;
+      line-height: 1.428571429;
+      border-radius: 15px;
+      text-align:center;
+    }
+
+    .plus{
+      background-image: linear-gradient(to bottom,#5cb85c 0,#419641 100%);
+      border-color: #398439;
+    }
+    .plus:hover{
+      background-image: linear-gradient(to bottom, #5bb65b 0, #397a39 100%);
+    }
+    .minus{
+      background-image: linear-gradient(to bottom,#d9534f 0,#c12e2a 100%);
+      border-color: #b92c28;
+    }
+    .minus:hover{
+      background-image: linear-gradient(to bottom, #cd504c 0, #b22d29 100%);
+    }
+    .btn-circle:last-child{
+      margin-left:20px;
+      color:darken(@mainColor,3%);
+      text-shadow: 0 1px 0 #fff;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.15), 0 1px 1px rgba(0,0,0,.075);
+      background-repeat: repeat-x;
+      background-image: linear-gradient(to bottom,#fff 0,#e0e0e0 100%);
+    }
+    .btn-circle:hover:last-child{
+      background-image: linear-gradient(to bottom, #d7d7d7 0, #d7d7d7 100%);
+    }
+  }
+}
+
+.margR{
+  margin-left: @WidthRightPanel;
+}
+
+.widthR{
+  width: @WidthRightPanel;
+}
