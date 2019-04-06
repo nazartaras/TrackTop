@@ -33,6 +33,15 @@ $(function(){
         closeNav();
     })
 
+    $('#login').click(function() {
+        require('./login_form').openForm();
+    })
 
+    $('.cancel').click(function() {
+        require('./login_form').closeForm();
+    })
+
+
+    require('./signup_form').initializeLogin();
 
 });

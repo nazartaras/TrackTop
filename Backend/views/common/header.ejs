@@ -1,10 +1,57 @@
+
+
 <div class="header">
-
-        <img src="assets\images\трактор.jpg" alt='This is a logo image'>
-
+    <img id= "logo" src="assets\images\logo.png" alt='This is a logo image'>
     <div class="header-right">
         <a href="#home">Покупки</a>
-        <a href="#contact">Зареєструватись</a>
-        <a href="#about">Увійти</a>
+        <a id = "signup" href="#signup">Зареєструватись</a>
+        <a  id= "login" href="#login">Увійти</a>
     </div>
+</div>
+
+
+<div class="form-popup" id="myForm">
+    <form action="/action_page.php" class="form-container">
+        <h1>Login</h1>
+
+        <label for="phone"><b>Телефон</b></label>
+        <input type="text" placeholder="Введіть ваш номер телефону" name="phone" required>
+
+        <label for="psw"><b>Пароль</b></label>
+        <input type="password" placeholder="Введіть ваш пароль" name="psw" required>
+
+        <button type="submit" class="btn">Увійти</button>
+        <button type="button" class="btn cancel">Закрити</button>
+    </form>
+</div>
+
+
+<!-- The Modal (contains the Sign Up form) -->
+<div id="id01" class="modal">
+    <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">times;</span>
+    <form class="modal-content" action="/action_page.php">
+        <div class="container">
+            <h1>Форма реєстрації</h1>
+            <p>Заповніть цю форму, щоб зареєструватись</p>
+            <hr>
+            <label for="phone"><b>Номер телефону</b></label>
+            <input type="text" placeholder="Номер телефону" name="phone" required>
+
+            <label for="psw"><b>Пароль</b></label>
+            <input type="password" placeholder="Enter Password" name="psw" required>
+
+            <label for="psw-repeat"><b>Повторіть пароль</b></label>
+            <input type="password" placeholder="Повторіть пароль" name="psw-repeat" required>
+
+            <label>
+                <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Запам'ятати
+            </label>
+
+
+            <div class="clearfix">
+                <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Скасувати</button>
+                <button type="submit" class="signup">Зареєструватись</button>
+            </div>
+        </div>
+    </form>
 </div>
