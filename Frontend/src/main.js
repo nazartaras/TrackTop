@@ -18,11 +18,13 @@ $(function(){
     function openNav() {
         $("#basketColumn").addClass("widthR");
         $("#main").addClass("margR");
+        $(".header").addClass("margR");
     }
 
     function closeNav() {
         $("#basketColumn").removeClass("widthR");
         $("#main").removeClass("margR");
+        $(".header").removeClass("margR");
     }
 
     $('.basketBtn').click(function () {
@@ -33,6 +35,7 @@ $(function(){
         closeNav();
     })
 
+
     $('#login').click(function() {
         require('./login_form').openForm();
     })
@@ -41,7 +44,27 @@ $(function(){
         require('./login_form').closeForm();
     })
 
+    var l = [
+        {
+            image: 'assets/images/трактор.jpg',
+            name: 'Трактори'
+        },
+        {
+            image: 'assets/images/трактор.jpg',
+            name: 'Трактори'
+        },
+        {
+            image: 'assets/images/трактор.jpg',
+            name: 'Трактори'
+        },
+        {
+            image: 'assets/images/трактор.jpg',
+            name: 'Трактори'
+        },
+    ]
 
     require('./signup_form').initializeLogin();
+
+    require('./pagesScripts/typesOfTechnics').showTypes(l);
 
 });
