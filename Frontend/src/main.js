@@ -35,6 +35,15 @@ $(function(){
         closeNav();
     })
 
+
+    $('#login').click(function() {
+        require('./login_form').openForm();
+    })
+
+    $('.cancel').click(function() {
+        require('./login_form').closeForm();
+    })
+
     var l = [
         {
             image: 'assets/images/трактор.jpg',
@@ -54,6 +63,7 @@ $(function(){
         },
     ]
 
+    require('./signup_form').initializeLogin();
 
     require('./pagesScripts/typesOfTechnics').showTypes(l);
 
