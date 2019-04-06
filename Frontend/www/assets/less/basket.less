@@ -3,11 +3,11 @@
 
 .sidenav {
   height: 100%;
-  width: 0;
+  width: @WidthRightPanel;
   //width:@WidthRightPanel;
   position: fixed;
   top: 0;
-  left: 0;
+  right: @WidthRightPanel*(-1);
   overflow-x: hidden;
   transition: 0.5s;
   padding-top: 60px;
@@ -200,9 +200,9 @@
 }
 
 .margR{
-  margin-left: @WidthRightPanel;
+  margin-right: @WidthRightPanel;
 }
 
 .widthR{
-  width: @WidthRightPanel;
+  right: 0;
 }
