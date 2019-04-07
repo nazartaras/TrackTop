@@ -14,6 +14,8 @@ function configureEndpoints(app) {
     app.post('/api/addtechnic/', api.addTehnic);
     app.post('/api/addclient/', api.addClient);
     app.get('/api/gettypes', api.get_types_of_technics);
+    app.get('/api/getmarks', api.get_marks_of_technics);
+
 
     // app.post('/api/signin',  api.get_Client);
 

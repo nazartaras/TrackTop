@@ -1,0 +1,64 @@
+var Templates = require('../Templates');
+
+var $technics =   $('.vertical-menu-technics');
+var $models =   $('.vertical-menu-models');
+var $equioment =   $('.vertical-menu-equioment');
+
+
+function showTechnics(list) {
+
+    $technics.html("");
+    $technics.append('<a href="#" class="active">Техніка</a>');
+
+    function showOne(t) {
+        var html_code = Templates.technicInMenu({item: t});
+
+        var $node = $(html_code);
+
+        $technics.append($node);
+    }
+
+    list.forEach(showOne);
+}
+
+function showMarks(list) {
+
+    $models.html("");
+    $models.append('<a href="#" class="active">Моделі</a>');
+
+    function showOne(t) {
+        var html_code = Templates.technicInMenu({item: t});
+
+        var $node = $(html_code);
+
+        $models.append($node);
+    }
+
+    list.forEach(showOne);
+}
+
+exports.initialize = function(){
+
+    var tp = localStorage.getItem('currentTypeOfTechnics');
+
+    function callback(err,data) {
+        if(data.error) console.log(data.error);
+        var l=[];
+        data.data.forEach(function(item){
+            l.push(item)
+        });
+        showTechnics(l);
+    }
+    function callback2(err,data) {
+        if(data.error) console.log(data.error);
+        var l=[];
+        data.data.forEach(function(item){
+            l.push(item)
+        });
+        showMarks(l);
+    }
+
+    require("../API").getTypes(callback);
+    require("../API").getMarks(callback2);
+
+}

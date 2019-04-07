@@ -43,6 +43,10 @@ exports.sign_in = function(phone, callback) {
 exports.getTypes = function(callback) {
     backendGet("/api/gettypes/", callback);
 };
+exports.getMarks = function(callback) {
+    backendGet("/api/getmarks/", callback);
+
+};
 
 exports.getTechnics = function(callback) {
     backendGet("/api/gettechnics/", callback);
