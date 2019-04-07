@@ -14,7 +14,7 @@
   height: @heightTopPanel;
 }
 
-.header a {
+.header a, #contact_phone {
   float: left;
   color: black;
   text-align: center;
@@ -45,6 +45,12 @@
   float: right;
 }
 
+#contact_phone {
+  float: left;
+margin-left: 200px;
+  cursor:default;
+}
+
 @media screen and (max-width: 500px) {
   .header a {
     float: none;
@@ -55,4 +61,26 @@
   .header-right {
     float: none;
   }
+}
+
+#user_photo {
+ display: none;
+  margin: 0 5px 5px 5px ;
+  height: @heightTopPanel - 20;
+  cursor:pointer
+}
+
+.btn-group {
+  z-index: 100000;
+}
+
+
+.menu_item:hover{
+  background-color: #deeced;
+  cursor :pointer;
+}
+
+#exit_btn {
+  padding: -5px;
+  background-color: #d9534f;
 }
