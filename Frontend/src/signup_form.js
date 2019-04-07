@@ -1,6 +1,7 @@
 var modal = document.getElementById('id01');
 var passwordHash = require('password-hash');
 
+exports.passwordHash = passwordHash;
 function openSignUpForm() {
     modal.style.display='block';
 }
