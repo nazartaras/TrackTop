@@ -24,33 +24,7 @@ $(function(){
         require('./login_form').closeForm();
     })
 
-    var l = [
-        {
-            image: 'assets/images/трактор.jpg',
-            name: 'Трактори'
-        },
-        {
-            image: 'assets/images/трактор.jpg',
-            name: 'Сівалки'
-        },
-        {
-            image: 'assets/images/трактор.jpg',
-            name: 'Комбайни'
-        },
-        {
-            image: 'assets/images/трактор.jpg',
-            name: 'Інше'
-        },
-        {
-            image: 'assets/images/трактор.jpg',//'http://localhost:5050/images/photo1.jpg'
-            name: 'Запчастини'
-        },
-    ]
-
     require('./signup_form').initializeLogin();
-
-
-
-    require('./pagesScripts/typesOfTechnics').showTypes(l);
+    require('./pagesScripts/typesOfTechnics').initializeTypes();
 
 });

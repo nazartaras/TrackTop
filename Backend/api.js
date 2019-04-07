@@ -52,10 +52,16 @@ exports.addClient = function(req, res) {
 
 };
 
+
 /*
 exports.sign_in = function(req, res) {
     var db = require('./db');
     var info = req.body;
+
+
+exports.get_types_of_technics = function (req,res) {
+    var db = require('./db');
+
 
     function callback(error,data){
         if(error) {
@@ -73,6 +79,7 @@ exports.sign_in = function(req, res) {
             });
         }
     }
+
     var pass = info.password;
     var client = db.get_client_by_phone(info.phone,callback);
         var cl1 = client[1];
@@ -86,4 +93,9 @@ exports.sign_in = function(req, res) {
 
 
 };
+
+
+    db.get_types_of_technics(callback);
+}
+
 */

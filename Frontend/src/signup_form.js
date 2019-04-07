@@ -21,12 +21,18 @@ exports.initializeLogin = function(){
     }
 }
 
+var $name = $('#id01 input[name=name]')[0];
+var $surname = $('#id01 input[name=surname]')[0];
+var $phone = $('#id01 input[name=phone]')[0];
+var $password = $('#id01 input[name=psw]')[0];
+var $address = $('#id01 input[name=location]')[0];
+
 checkValidation = function(){
-    var name = document.forms["modal-content"]["name"];
-    var surname = document.forms["modal-content"]["surname"];
-    var phone = document.forms["modal-content"]["phone"];
-    var password = document.forms["modal-content"]["password"];
-    var address = document.forms["modal-content"]["location"];
+    var name = $name.value;
+    var surname = $surname.value;
+    var phone = $phone.value;
+    var password = $password.value;
+    var address = $address.value;
 
     if (name.value == "")
     {
@@ -74,30 +80,26 @@ checkValidation = function(){
 
 function addClient(){
     $('#signup_btn').click(function() {
-        console.log('121212121212121223323232312');
        // var checked = checkValidation();
        // if (checked) {
-            var name = document.forms["modal-content"]["name"];
-            var surname = document.forms["modal-content"]["surname"];
-            var phone = document.forms["modal-content"]["phone"];
-            var password = document.forms["modal-content"]["password"];
-            var address = document.forms["modal-content"]["location"];
+        var name = $name.value;
+        var surname = $surname.value;
+        var phone = $phone.value;
+        var password = $password.value;
+        var address = $address.value;
 
-            var hashedPassword = passwordHash.generate(password);
-
-            var newT = {
-                surname: surname,
-                name: name,
-                phone_number: phone,
-                settlement: address,
-                hash: hashedPassword
-            }
-
-            console.log(newT);
-
-            require("./API").addClient(newT, function (err, data) {
-                if (data.error) console.log(data.error);
-            });
+        var hashedPassword = passwordHash.generate(password);
+        var newT = {
+            surname: surname,
+            name: name,
+            phone_number: phone,
+            settelment: address,
+            hash: hashedPassword
+        }
+        console.log(newT);
+        require("./API").addClient(newT, function (err, data) {
+            if (data.error) console.log(data.error);
+        });
        // }
 
     });
