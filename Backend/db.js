@@ -127,6 +127,10 @@ exports.get_technics_by_country = function(country,callback){
     connection.query("SELECT * FROM tracktop.technics WHERE tracktop.technics.country_producer =" + country,callback);
 }
 
+exports.get_client_by_phone = function(phone,callback){
+    connection.query("SELECT * FROM tracktop.clients WHERE tracktop.clients.phone_number =" + phone,callback);
+}
+
 
 // delete operations
 

@@ -35,3 +35,7 @@ exports.addTehnic = function(tehnic, callback) {
 exports.addClient = function(client, callback) {
     backendPost("/api/addclient/", client, callback);
 };
+
+exports.sign_in = function(phone, callback) {
+    backendPost("/api/sign_in/", phone, callback);
+};
