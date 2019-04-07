@@ -8,6 +8,7 @@ function openSignUpForm() {
 exports.initializeLogin = function(){
     $('#signup').click(function() {
         openSignUpForm();
+        addClient();
     });
 
     // When the user clicks anywhere outside of the modal, close it
@@ -70,27 +71,33 @@ checkValidation = function(){
         return true;
 }
 
-exports.addClient = function(){
-    if(checkValidation()) {
-        var name = document.forms["modal-content"]["name"];
-        var surname = document.forms["modal-content"]["surname"];
-        var phone = document.forms["modal-content"]["phone"];
-        var password = document.forms["modal-content"]["password"];
-        var address = document.forms["modal-content"]["location"];
+function addClient(){
+    $('#signup_btn').click(function() {
+        console.log('121212121212121223323232312');
+       // var checked = checkValidation();
+       // if (checked) {
+            var name = document.forms["modal-content"]["name"];
+            var surname = document.forms["modal-content"]["surname"];
+            var phone = document.forms["modal-content"]["phone"];
+            var password = document.forms["modal-content"]["password"];
+            var address = document.forms["modal-content"]["location"];
 
-        var hashedPassword = passwordHash.generate(password);
+            var hashedPassword = passwordHash.generate(password);
 
-        var newT = {
-                    surname:surname,
-                    name:name,
-                    phone_number:phone,
-                    settlement:address,
-                    hash:hashedPassword
-                }
+            var newT = {
+                surname: surname,
+                name: name,
+                phone_number: phone,
+                settlement: address,
+                hash: hashedPassword
+            }
 
-                require("./API").addClient(newT,function (err,data) {
-                    if(data.error) console.log(data.error);
-                });
-    }
+            console.log(newT);
 
+            require("./API").addClient(newT, function (err, data) {
+                if (data.error) console.log(data.error);
+            });
+       // }
+
+    });
 }

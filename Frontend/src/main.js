@@ -65,6 +65,8 @@ $(function(){
 
     require('./signup_form').initializeLogin();
 
+
+
     require('./pagesScripts/typesOfTechnics').showTypes(l);
 
 });

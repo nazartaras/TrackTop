@@ -11,7 +11,7 @@
 
 
 <div class="form-popup" id="myForm">
-    <form action="/action_page.php" class="form-container">
+    <form  class="form-container">
         <h1>Login</h1>
 
         <label for="phone"><b>Телефон</b></label>
@@ -29,7 +29,7 @@
 <!-- The Modal (contains the Sign Up form) -->
 <div id="id01" class="modal">
     <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">X</span>
-    <form class="modal-content" action="/action_page.php">
+    <form class="modal-content" >
         <div class="container">
             <h1>Форма реєстрації</h1>
             <p>Заповніть цю форму, щоб зареєструватись</p>
@@ -47,7 +47,7 @@
             <input type="password" placeholder="Enter Password" name="psw" required>
 
             <label for="location"><b>Населений пункт</b></label>
-            <input type="password" placeholder="Введіть населений пункт,в якому ви проживаєте" name="location" required>
+            <input type="text" placeholder="Введіть населений пункт,в якому ви проживаєте" name="location" required>
 
             <label>
                 <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Запам'ятати
@@ -56,7 +56,7 @@
 
             <div class="clearfix">
                 <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Скасувати</button>
-                <button type="submit" class="signup">Зареєструватись</button>
+                <button id ="signup_btn" class="signup">Зареєструватись</button>
             </div>
         </div>
     </form>
