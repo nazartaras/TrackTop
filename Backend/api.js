@@ -52,12 +52,11 @@ exports.addClient = function(req, res) {
 
 };
 
-
 /*
 exports.sign_in = function(req, res) {
     var db = require('./db');
     var info = req.body;
-
+*/
 
 exports.get_types_of_technics = function (req,res) {
     var db = require('./db');
@@ -80,22 +79,6 @@ exports.get_types_of_technics = function (req,res) {
         }
     }
 
-    var pass = info.password;
-    var client = db.get_client_by_phone(info.phone,callback);
-        var cl1 = client[1];
-        var hashedPassword = cl1.hash;
-        if((.verify(pass, hashedPassword))) {
-            // log in
-        }
-        else {
-            // show an alert
-        }
-
-
-};
-
-
     db.get_types_of_technics(callback);
 }
 
-*/
