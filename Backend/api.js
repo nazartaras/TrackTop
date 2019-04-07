@@ -52,9 +52,15 @@ exports.addClient = function(req, res) {
 
 };
 
+/*
+exports.sign_in = function(req, res) {
+    var db = require('./db');
+    var info = req.body;
+*/
 
 exports.get_types_of_technics = function (req,res) {
     var db = require('./db');
+
 
     function callback(error,data){
         if(error) {
@@ -72,8 +78,10 @@ exports.get_types_of_technics = function (req,res) {
             });
         }
     }
+
     db.get_types_of_technics(callback);
 }
+
 
 exports.get_technics = function (req,res) {
     var db = require('./db');
@@ -118,3 +126,4 @@ exports.get_technics_by_tp = function (req,res) {
     }
     db.get_technics_by_type_name(req.body.type, callback);
 }
+

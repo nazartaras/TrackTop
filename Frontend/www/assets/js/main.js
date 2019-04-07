@@ -37,8 +37,13 @@ exports.addClient = function(client, callback) {
     backendPost("/api/addclient/", client, callback);
 };
 
+
+exports.sign_in = function(phone, callback) {
+    backendPost("/api/sign_in/", phone, callback);}
+
 exports.getTypes = function(callback) {
     backendGet("/api/gettypes/", callback);
+
 };
 
 exports.getTechnics = function(callback) {
@@ -90,10 +95,7 @@ exports.closeForm = function() {
     document.getElementById("myForm").style.display = "none";
 }
 
-checkUser = function(login, password){
 
-    return true;
-}
 },{}],5:[function(require,module,exports){
 $(function(){
     //This code will execute when the page is ready
@@ -176,6 +178,7 @@ exports.initializeTypes = function(){
 var modal = document.getElementById('id01');
 var passwordHash = require('password-hash');
 
+exports.passwordHash = passwordHash;
 function openSignUpForm() {
     modal.style.display='block';
 }
@@ -12121,7 +12124,7 @@ module.exports={
   "_args": [
     [
       "ejs@2.5.7",
-      "D:\\Education\\js\\JavaScript projects\\gitProjects\\TrackTop"
+      "D:\\Project\\TrackTop"
     ]
   ],
   "_from": "ejs@2.5.7",
@@ -12145,7 +12148,7 @@ module.exports={
   ],
   "_resolved": "https://registry.npmjs.org/ejs/-/ejs-2.5.7.tgz",
   "_spec": "2.5.7",
-  "_where": "D:\\Education\\js\\JavaScript projects\\gitProjects\\TrackTop",
+  "_where": "D:\\Project\\TrackTop",
   "author": {
     "name": "Matthew Eernisse",
     "email": "mde@fleegix.org",
@@ -16061,7 +16064,7 @@ module.exports={
   "_args": [
     [
       "elliptic@6.4.0",
-      "D:\\Education\\js\\JavaScript projects\\gitProjects\\TrackTop"
+      "D:\\Project\\TrackTop"
     ]
   ],
   "_from": "elliptic@6.4.0",
@@ -16086,7 +16089,7 @@ module.exports={
   ],
   "_resolved": "https://registry.npmjs.org/elliptic/-/elliptic-6.4.0.tgz",
   "_spec": "6.4.0",
-  "_where": "D:\\Education\\js\\JavaScript projects\\gitProjects\\TrackTop",
+  "_where": "D:\\Project\\TrackTop",
   "author": {
     "name": "Fedor Indutny",
     "email": "fedor@indutny.com"

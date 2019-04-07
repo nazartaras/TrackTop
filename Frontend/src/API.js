@@ -36,8 +36,13 @@ exports.addClient = function(client, callback) {
     backendPost("/api/addclient/", client, callback);
 };
 
+
+exports.sign_in = function(phone, callback) {
+    backendPost("/api/sign_in/", phone, callback);}
+
 exports.getTypes = function(callback) {
     backendGet("/api/gettypes/", callback);
+
 };
 
 exports.getTechnics = function(callback) {
