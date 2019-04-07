@@ -14,27 +14,7 @@ $(function(){
     //         if(data.error) console.log(data.error);
     //     });
     // });
-
-    function openNav() {
-        $("#basketColumn").addClass("widthR");
-        $("#main").addClass("margR");
-        $(".header").addClass("margR");
-    }
-
-    function closeNav() {
-        $("#basketColumn").removeClass("widthR");
-        $("#main").removeClass("margR");
-        $(".header").removeClass("margR");
-    }
-
-    $('.basketBtn').click(function () {
-        openNav();
-    })
-
-    $('.basketCloseBtn').click(function () {
-        closeNav();
-    })
-
+    require('./basket').initialiseBasket();
 
     $('#login').click(function() {
         require('./login_form').openForm();
@@ -51,15 +31,19 @@ $(function(){
         },
         {
             image: 'assets/images/трактор.jpg',
-            name: 'Трактори'
+            name: 'Сівалки'
         },
         {
             image: 'assets/images/трактор.jpg',
-            name: 'Трактори'
+            name: 'Комбайни'
         },
         {
             image: 'assets/images/трактор.jpg',
-            name: 'Трактори'
+            name: 'Інше'
+        },
+        {
+            image: 'assets/images/трактор.jpg',//'http://localhost:5050/images/photo1.jpg'
+            name: 'Запчастини'
         },
     ]
 
