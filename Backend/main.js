@@ -20,6 +20,7 @@ function configureEndpoints(app) {
 
     //Якщо не підійшов жоден url, тоді повертаємо файли з папки www
     app.use(express.static(path.join(__dirname, '../Frontend/www')));
+    app.use('/images',express.static(path.join(__dirname, '../Backend/res/images')));
 }
 
 function startServer(port) {
