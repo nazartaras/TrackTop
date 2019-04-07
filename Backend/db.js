@@ -101,8 +101,8 @@ exports.get_technics_by_mark_name = function(mark_of_technics,callback){
 }
 
 exports.get_technics_by_type_name = function(type_of_technics,callback){
-    connection.query("SELECT * FROM tracktop.technics INNER JOIN (SELECT * FROM tracktop.types_of_technics as R1 WHERE R1.name = "+type_of_technics+
-        "ON tracktop.types_of_technics.type_id = R1.type_id",callback);
+    connection.query("SELECT * FROM tracktop.technics INNER JOIN (SELECT * FROM tracktop.types_of_technics WHERE name = '"+type_of_technics+
+        "') T ON technics.type_id = T.id",callback);
 }
 
 exports.get_technics_by_type_and_mark = function(type_of_technics, mark_of_technics, callback){
@@ -127,6 +127,10 @@ exports.get_technics_by_country = function(country,callback){
     connection.query("SELECT * FROM tracktop.technics WHERE tracktop.technics.country_producer =" + country,callback);
 }
 
+
+exports.get_technics = function(callback){
+    connection.query("SELECT * FROM (tracktop.technics INNER JOIN tracktop.types_of_technics on technics.type_id = types_of_technics.id) INNER JOIN tracktop.marks_of_technics on technics.mark_id = marks_of_technics.id",callback);
+}
 exports.get_client_by_phone = function(phone,callback){
     connection.query("SELECT * FROM tracktop.clients WHERE tracktop.clients.phone_number =" + phone,callback);
 }
