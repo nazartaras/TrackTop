@@ -82,6 +82,30 @@ exports.get_types_of_technics = function (req,res) {
     db.get_types_of_technics(callback);
 }
 
+exports.get_marks_of_technics = function (req,res) {
+    var db = require('./db');
+
+
+    function callback(error,data){
+        if(error) {
+            console.log("Error! ", error.sqlMessage);
+            res.send({
+                success: true,
+                error: error.sqlMessage
+            });
+        }
+        else {
+            console.log("Success! ", data);
+            res.send({
+                success: true,
+                data: data
+            });
+        }
+    }
+
+    db.get_marks_of_technics(callback);
+}
+
 
 exports.get_technics = function (req,res) {
     var db = require('./db');

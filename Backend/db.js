@@ -101,8 +101,8 @@ exports.get_technics_by_mark_name = function(mark_of_technics,callback){
 }
 
 exports.get_technics_by_type_name = function(type_of_technics,callback){
-    connection.query("SELECT * FROM tracktop.technics INNER JOIN (SELECT * FROM tracktop.types_of_technics WHERE name = '"+type_of_technics+
-        "') T ON technics.type_id = T.id",callback);
+    connection.query("SELECT * FROM (tracktop.technics NATURAL JOIN tracktop.marks_of_technics)  INNER JOIN (SELECT id,name type_name,photo_location FROM tracktop.types_of_technics WHERE name = '"+type_of_technics+
+        "') T ON technics.type_id = T.id ",callback);
 }
 
 exports.get_technics_by_type_and_mark = function(type_of_technics, mark_of_technics, callback){

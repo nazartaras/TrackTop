@@ -30,5 +30,6 @@ $(function(){
 
     require('./signup_form').initializeLogin();
     require('./pagesScripts/typesOfTechnics').initializeTypes();
+    require('./pagesScripts/leftPanel').initialize();
 
 });
