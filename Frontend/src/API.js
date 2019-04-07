@@ -35,3 +35,7 @@ exports.addTehnic = function(tehnic, callback) {
 exports.addClient = function(client, callback) {
     backendPost("/api/addclient/", client, callback);
 };
+
+exports.getTypes = function(callback) {
+    backendGet("/api/gettypes/", callback);
+};

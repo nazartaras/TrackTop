@@ -3,7 +3,7 @@ var Templates = require('../Templates');
 var $types =   $('.typesOfTechnic');
 
 
-exports.showTypes = function(list) {
+function showTypes(list) {
 
     $types.html("");
 
@@ -16,4 +16,42 @@ exports.showTypes = function(list) {
     }
 
     list.forEach(showOne);
+}
+
+exports.initializeTypes = function(){
+    // var l = [
+    //     {
+    //         image: 'http://localhost:5050/images/technics_placeholders/tracktor.jpg',
+    //         name: 'Трактори'
+    //     },
+    //     {
+    //         image: 'http://localhost:5050/images/technics_placeholders/sivalka.jpg',
+    //         name: 'Сівалки'
+    //     },
+    //     {
+    //         image: 'http://localhost:5050/images/technics_placeholders/combine.jpg',
+    //         name: 'Комбайни'
+    //     },
+    //     {
+    //         image: 'http://localhost:5050/images/technics_placeholders/dyskova.jpg',
+    //         name: 'Дискова'
+    //     },
+    //     {
+    //         image: 'http://localhost:5050/images/technics_placeholders/equipment.jpg',//'http://localhost:5050/images/photo1.jpg'
+    //         name: 'Запчастини'
+    //     },
+    // ]
+    var l=[];
+
+    require("../API").getTypes(function (err,data) {
+        if(data.error) console.log(data.error);
+        data.data.forEach(function(item){
+            l.push(item)
+        });
+        l.push( {
+            photo_location: 'equipment.jpg',//'http://localhost:5050/images/photo1.jpg'
+            name: 'Запчастини'
+        });
+        showTypes(l);
+    });
 }
