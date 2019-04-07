@@ -1,7 +1,5 @@
 var modal = document.getElementById('id01');
-var passwordHash = require('password-hash');
 
-exports.passwordHash = passwordHash;
 function openSignUpForm() {
     modal.style.display='block';
 }
@@ -88,13 +86,12 @@ function addClient(){
         var password = $password.value;
         var address = $address.value;
 
-        var hashedPassword = passwordHash.generate(password);
         var newT = {
             surname: surname,
             name: name,
             phone_number: phone,
             settelment: address,
-            hash: hashedPassword
+            hash: password
         }
         console.log(newT);
         require("./API").addClient(newT, function (err, data) {

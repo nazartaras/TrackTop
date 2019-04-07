@@ -2,14 +2,43 @@
 
 <div class="header">
     <img id= "logo" src="assets\images\logo.png" alt='This is a logo image'>
+
+
+    <span id = "contact_phone">+380 93 493 14 81</span>
+
     <div class="header-right">
         <a id="basketBtn" class='basketBtn'>Покупки</a>
         <a id = "signup" href="#signup">Зареєструватись</a>
         <a  id= "login" href="#login">Увійти</a>
+        <img id= "user_photo" src="assets\images\user.png" alt='This is a user image'>
+
     </div>
 </div>
 
 
+<!--(contains the Pop up user info) -->
+<div class="form-popup" id="user_info">
+    <form  class="form-container">
+
+        <div class = "menu_item">
+        <label  class = "menu_item" id = "full_name">Name<b></b></label>
+        </div>
+
+        <div class = "menu_item">
+        <label for="phone" id = "user_phone"><b>Телефон</b></label><br>
+        </div>
+
+        <div class = "menu_item edit-profile">
+        <label ><b>Редагувати профіль</b></label><br>
+        </div>
+        <div class = "menu_item purchase_history">
+        <label >Історія покупок</label>
+        </div>
+        <button type="button" class="btn" id = "exit_btn">Вийти</button>
+    </form>
+</div>
+
+<!--(contains the Log in  form) -->
 <div class="form-popup" id="myForm">
     <form  class="form-container">
         <h1>Login</h1>
@@ -20,7 +49,7 @@
         <label for="psw"><b>Пароль</b></label>
         <input type="password" placeholder="Введіть ваш пароль" name="psw" required>
 
-        <button type="submit" class="btn">Увійти</button>
+        <button id = "log_in_btn" type="submit" class="btn">Увійти</button>
         <button type="button" class="btn cancel">Закрити</button>
     </form>
 </div>

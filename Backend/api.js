@@ -150,4 +150,3 @@ exports.get_technics_by_tp = function (req,res) {
     }
     db.get_technics_by_type_name(req.body.type, callback);
 }
-
