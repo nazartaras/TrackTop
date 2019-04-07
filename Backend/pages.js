@@ -4,8 +4,9 @@ exports.mainPage = function(req, res) {
     });
 };
 
-exports.orderPage = function(req, res) {
-    res.render('orders', {
-        pageTitle: 'Замовлення'
+exports.technics = function(req, res) {
+    res.render('technicsPage', {
+        pageTitle: 'Техніка',
+        types: req.query.type
     });
 };

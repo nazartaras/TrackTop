@@ -14,10 +14,12 @@ function configureEndpoints(app) {
     app.post('/api/addtechnic/', api.addTehnic);
     app.post('/api/addclient/', api.addClient);
     app.get('/api/gettypes', api.get_types_of_technics);
+    app.get('/api/gettechnics', api.get_technics);
+    app.post('/api/gettechnics', api.get_technics_by_tp);
 
     //Сторінки
     app.get('/', pages.mainPage);
-    app.get('/order.html', pages.orderPage);
+    app.get('/technics', pages.technics);
 
     //Якщо не підійшов жоден url, тоді повертаємо файли з папки www
     app.use(express.static(path.join(__dirname, '../Frontend/www')));

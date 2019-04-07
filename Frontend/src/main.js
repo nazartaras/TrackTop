@@ -14,6 +14,10 @@ $(function(){
     //         if(data.error) console.log(data.error);
     //     });
     // });
+    $('#logo').click(function () {
+        document.location.href = "http://localhost:5050/";
+    })
+
     require('./basket').initialiseBasket();
 
     $('#login').click(function() {

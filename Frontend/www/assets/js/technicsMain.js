@@ -95,84 +95,46 @@ checkUser = function(login, password){
     return true;
 }
 },{}],5:[function(require,module,exports){
-$(function(){
-    //This code will execute when the page is ready
-    // $('.testSql').click(function(){
-    //
-    //     var newT = {
-    //         mark_id:1,
-    //         type_id:1,
-    //         amount:32,
-    //         price:221,
-    //         // model:'AD129'
-    //     }
-    //
-    //     require("./API").addTehnic(newT,function (err,data) {
-    //         if(data.error) console.log(data.error);
-    //     });
-    // });
-    $('#logo').click(function () {
-        document.location.href = "http://localhost:5050/";
-    })
-
-    require('./basket').initialiseBasket();
-
-    $('#login').click(function() {
-        require('./login_form').openForm();
-    })
-
-    $('.cancel').click(function() {
-        require('./login_form').closeForm();
-    })
-
-    require('./signup_form').initializeLogin();
-    require('./pagesScripts/typesOfTechnics').initializeTypes();
-
-});
-},{"./basket":3,"./login_form":4,"./pagesScripts/typesOfTechnics":6,"./signup_form":7}],6:[function(require,module,exports){
 var Templates = require('../Templates');
 
-var $types =   $('.typesOfTechnic');
+var $technics =   $('.technics');
 
 
-function showTypes(list) {
+function showTechnics(list) {
 
-    $types.html("");
+    $technics.html("");
 
     function showOne(type) {
-        var html_code = Templates.typeOfTechnic({type: type});
+        var html_code = Templates.technicInList({technic: type});
 
         var $node = $(html_code);
-        var typ = $node.find('.type_h2').html();
 
-        $node.click(function () {
-            localStorage.setItem('currentTypeOfTechnics', typ);
-            document.location.href = "http://localhost:5050/technics?type="+typ;
-        });
-
-        $types.append($node);
+        $technics.append($node);
     }
 
     list.forEach(showOne);
 }
 
-exports.initializeTypes = function(){
+exports.initializeTechnics = function(){
 
     var l=[];
 
-    require("../API").getTypes(function (err,data) {
+    var tp = localStorage.getItem('currentTypeOfTechnics');
+
+    function callback(err,data) {
         if(data.error) console.log(data.error);
         data.data.forEach(function(item){
             l.push(item)
         });
-        l.push( {
-            photo_location: 'equipment.jpg',//'http://localhost:5050/images/photo1.jpg'
-            name: 'Запчастини'
-        });
-        showTypes(l);
-    });
+        showTechnics(l);
+    }
+
+    if(tp==null)
+        require("../API").getTechnics(callback);
+    else
+        require("../API").getTechnicsByType({type: tp},callback);
 }
-},{"../API":1,"../Templates":2}],7:[function(require,module,exports){
+},{"../API":1,"../Templates":2}],6:[function(require,module,exports){
 var modal = document.getElementById('id01');
 var passwordHash = require('password-hash');
 
@@ -278,7 +240,32 @@ function addClient(){
 
     });
 }
-},{"./API":1,"password-hash":126}],8:[function(require,module,exports){
+},{"./API":1,"password-hash":126}],7:[function(require,module,exports){
+function  initialize() {
+    require('../pagesScripts/addTechnics').initializeTechnics();
+}
+
+$(function(){
+    $('#logo').click(function () {
+        document.location.href = "http://localhost:5050/";
+    })
+
+    require('../basket').initialiseBasket();
+
+    $('#login').click(function() {
+        require('../login_form').openForm();
+    })
+
+    $('.cancel').click(function() {
+        require('../login_form').closeForm();
+    })
+
+    require('../signup_form').initializeLogin();
+
+
+    initialize();
+});
+},{"../basket":3,"../login_form":4,"../pagesScripts/addTechnics":5,"../signup_form":6}],8:[function(require,module,exports){
 var asn1 = exports;
 
 asn1.bignum = require('bn.js');
@@ -24075,4 +24062,4 @@ exports.createContext = Script.createContext = function (context) {
     return copy;
 };
 
-},{"indexof":112}]},{},[5]);
+},{"indexof":112}]},{},[7]);

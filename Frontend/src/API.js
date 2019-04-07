@@ -39,3 +39,11 @@ exports.addClient = function(client, callback) {
 exports.getTypes = function(callback) {
     backendGet("/api/gettypes/", callback);
 };
+
+exports.getTechnics = function(callback) {
+    backendGet("/api/gettechnics/", callback);
+};
+
+exports.getTechnicsByType = function(tp,callback) {
+    backendPost("/api/gettechnics/", tp, callback);
+};

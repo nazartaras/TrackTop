@@ -24,6 +24,10 @@ module.exports = function(grunt) {
             trackTop: {
                 src:        'Frontend/src/main.js',
                 dest:       'Frontend/www/assets/js/main.js'
+            },
+            technics: {
+                src:        'Frontend/src/technics/technicsMain.js',
+                dest:       'Frontend/www/assets/js/technicsMain.js'
             }
         }
     };
@@ -56,7 +60,7 @@ module.exports = function(grunt) {
     grunt.registerTask('default',
         [
             'browserify:trackTop',
-            //'browserify:order',
+            'browserify:technics',
             //Інші завдання які необхідно виконати
         ]
     );
