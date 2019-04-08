@@ -18,6 +18,15 @@ function showTechnics(list) {
 
         $node.click(function () {
             // localStorage.setItem('', typ);
+            localStorage.setItem('currTechnic',JSON.stringify({
+                model:type.model,
+                mark: type.name,
+                main_photo_location: type.main_photo_location,
+                price: type.price,
+                currency: type.currency,
+                amount: type.amount,
+                description: type.description
+            }));
             document.location.href = "http://localhost:5050/technic?model="+model+"&mark="+mark+'&type='+typ;
         });
 
