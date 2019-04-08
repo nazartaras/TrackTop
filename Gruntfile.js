@@ -28,6 +28,10 @@ module.exports = function(grunt) {
             technics: {
                 src:        'Frontend/src/technics/technicsMain.js',
                 dest:       'Frontend/www/assets/js/technicsMain.js'
+            },
+            oneTechnic: {
+                src:        'Frontend/src/technics/technicMain.js',
+                dest:       'Frontend/www/assets/js/oneTechnicMain.js'
             }
         }
     };
@@ -61,6 +65,7 @@ module.exports = function(grunt) {
         [
             'browserify:trackTop',
             'browserify:technics',
+            'browserify:oneTechnic',
             //Інші завдання які необхідно виконати
         ]
     );

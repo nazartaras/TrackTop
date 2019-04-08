@@ -123,6 +123,13 @@ exports.get_technics_by_model = function(model,callback){
     connection.query("SELECT * FROM tracktop.technics WHERE tracktop.technics.model =" + model,callback);
 }
 
+exports.get_technic_by_type_model_mark = function(type_of_technics, mark_of_technics,model, callback){
+    connection.query("SELECT * FROM (tracktop.technics inner join (select id id_mark,name mark_name from tracktop.marks_of_technics) D on technics.mark_id = D.id_mark) \n" +
+        "INNER JOIN (SELECT id,name type_name,photo_location from tracktop.types_of_technics WHERE name= '" + type_of_technics+"') L\n" +
+        "on type_id = L.id\n" +
+        "WHERE model = " + model+" AND mark_name= '"+mark_of_technics+"'" , callback);
+}
+
 exports.get_technics_by_country = function(country,callback){
     connection.query("SELECT * FROM tracktop.technics WHERE tracktop.technics.country_producer =" + country,callback);
 }

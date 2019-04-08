@@ -164,50 +164,6 @@ exports.login = function(){
 }
 
 },{"./API":1,"./user_form":9}],5:[function(require,module,exports){
-$(function(){
-    //This code will execute when the page is ready
-    // $('.testSql').click(function(){
-    //
-    //     var newT = {
-    //         mark_id:1,
-    //         type_id:1,
-    //         amount:32,
-    //         price:221,
-    //         // model:'AD129'
-    //     }
-    //
-    //     require("./API").addTehnic(newT,function (err,data) {
-    //         if(data.error) console.log(data.error);
-    //     });
-    // });
-    $('#logo').click(function () {
-        document.location.href = "http://localhost:5050/";
-    })
-
-    require('./basket').initialiseBasket();
-
-    $('#login').click(function() {
-        require('./login_form').openForm();
-    })
-
-    $('.cancel').click(function() {
-        require('./login_form').closeForm();
-    })
-
-    $('#user_photo').click(function() {
-        require('./login_form').userInfo();
-    })
-
-
-    require('./signup_form').initializeLogin();
-    require('./pagesScripts/typesOfTechnics').initializeTypes();
-    require('./pagesScripts/leftPanel').initialize();
-
-    require('./login_form').login();
-
-    require('./user_form').isLogged();
-});
-},{"./basket":3,"./login_form":4,"./pagesScripts/leftPanel":6,"./pagesScripts/typesOfTechnics":7,"./signup_form":8,"./user_form":9}],6:[function(require,module,exports){
 var Templates = require('../Templates');
 
 var $technics =   $('.vertical-menu-technics');
@@ -279,50 +235,94 @@ exports.initialize = function(){
     require("../API").getMarks(callback2);
 
 }
-},{"../API":1,"../Templates":2}],7:[function(require,module,exports){
-var Templates = require('../Templates');
+},{"../API":1,"../Templates":2}],6:[function(require,module,exports){
 
-var $types =   $('.typesOfTechnic');
+exports.multiItemSlider = function (selector, config) {
+    var
+        _mainElement = document.querySelector(selector), // основный элемент блока
+        _sliderWrapper = _mainElement.querySelector('.slider__wrapper'), // обертка для .slider-item
+        _sliderItems = _mainElement.querySelectorAll('.slider__item'), // элементы (.slider-item)
+        _sliderControls = _mainElement.querySelectorAll('.slider__control'), // элементы управления
+        _sliderControlLeft = _mainElement.querySelector('.slider__control_left'), // кнопка "LEFT"
+        _sliderControlRight = _mainElement.querySelector('.slider__control_right'), // кнопка "RIGHT"
+        _wrapperWidth = parseFloat(getComputedStyle(_sliderWrapper).width), // ширина обёртки
+        _itemWidth = parseFloat(getComputedStyle(_sliderItems[0]).width), // ширина одного элемента
+        _positionLeftItem = 0, // позиция левого активного элемента
+        _transform = 0, // значение транфсофрмации .slider_wrapper
+        _step = _itemWidth / _wrapperWidth * 100, // величина шага (для трансформации)
+        _items = []; // массив элементов
+    // наполнение массива _items
+    _sliderItems.forEach(function (item, index) {
+        _items.push({ item: item, position: index, transform: 0 });
+    });
 
-
-function showTypes(list) {
-
-    $types.html("");
-
-    function showOne(type) {
-        var html_code = Templates.typeOfTechnic({type: type});
-
-        var $node = $(html_code);
-        var typ = $node.find('.type_h2').html();
-
-        $node.click(function () {
-            localStorage.setItem('currentTypeOfTechnics', typ);
-            document.location.href = "http://localhost:5050/technics?type="+typ;
-        });
-
-        $types.append($node);
+    var position = {
+        getMin: 0,
+        getMax: _items.length - 1,
     }
 
-    list.forEach(showOne);
+    var _transformItem = function (direction) {
+        if (direction === 'right') {
+            if ((_positionLeftItem + _wrapperWidth / _itemWidth - 1) >= position.getMax) {
+                return;
+            }
+            if (!_sliderControlLeft.classList.contains('slider__control_show')) {
+                _sliderControlLeft.classList.add('slider__control_show');
+            }
+            if (_sliderControlRight.classList.contains('slider__control_show') && (_positionLeftItem + _wrapperWidth / _itemWidth) >= position.getMax) {
+                _sliderControlRight.classList.remove('slider__control_show');
+            }
+            _positionLeftItem++;
+            _transform -= _step;
+        }
+        if (direction === 'left') {
+            if (_positionLeftItem <= position.getMin) {
+                return;
+            }
+            if (!_sliderControlRight.classList.contains('slider__control_show')) {
+                _sliderControlRight.classList.add('slider__control_show');
+            }
+            if (_sliderControlLeft.classList.contains('slider__control_show') && _positionLeftItem - 1 <= position.getMin) {
+                _sliderControlLeft.classList.remove('slider__control_show');
+            }
+            _positionLeftItem--;
+            _transform += _step;
+        }
+        _sliderWrapper.style.transform = 'translateX(' + _transform + '%)';
+    }
+
+    // обработчик события click для кнопок "назад" и "вперед"
+    var _controlClick = function (e) {
+        var direction = this.classList.contains('slider__control_right') ? 'right' : 'left';
+        e.preventDefault();
+        _transformItem(direction);
+    };
+
+    var _setUpListeners = function () {
+        // добавление к кнопкам "назад" и "вперед" обрботчика _controlClick для событя click
+        _sliderControls.forEach(function (item) {
+            item.addEventListener('click', _controlClick);
+        });
+    }
+
+    // инициализация
+    _setUpListeners();
+
+    return {
+        right: function () { // метод right
+            _transformItem('right');
+        },
+        left: function () { // метод left
+            _transformItem('left');
+        }
+    }
+
 }
 
-exports.initializeTypes = function(){
+    // var a = multiItemSlider('.slider');
 
-    var l=[];
 
-    require("../API").getTypes(function (err,data) {
-        if(data.error) console.log(data.error);
-        data.data.forEach(function(item){
-            l.push(item)
-        });
-        l.push( {
-            photo_location: 'equipment.jpg',//'http://localhost:5050/images/photo1.jpg'
-            name: 'Запчастини'
-        });
-        showTypes(l);
-    });
-}
-},{"../API":1,"../Templates":2}],8:[function(require,module,exports){
+},{}],7:[function(require,module,exports){
 var modal = document.getElementById('id01');
 
 function openSignUpForm() {
@@ -426,7 +426,32 @@ function addClient(){
 
     });
 }
-},{"./API":1}],9:[function(require,module,exports){
+},{"./API":1}],8:[function(require,module,exports){
+function  initialize() {
+    var slider = require('../pagesScripts/slider').multiItemSlider('.slider');
+}
+
+$(function(){
+    $('#logo').click(function () {
+        document.location.href = "http://localhost:5050/";
+    })
+
+    require('../basket').initialiseBasket();
+
+    $('#login').click(function() {
+        require('../login_form').openForm();
+    })
+
+    $('.cancel').click(function() {
+        require('../login_form').closeForm();
+    })
+
+    require('../signup_form').initializeLogin();
+    require('../pagesScripts/leftPanel').initialize();
+
+    initialize();
+});
+},{"../basket":3,"../login_form":4,"../pagesScripts/leftPanel":5,"../pagesScripts/slider":6,"../signup_form":7}],9:[function(require,module,exports){
 exports.isLogged = function () {
     var info = require('./login_form').getInfo();
     if(info.status) {
@@ -1978,4 +2003,4 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-},{}]},{},[5]);
+},{}]},{},[8]);

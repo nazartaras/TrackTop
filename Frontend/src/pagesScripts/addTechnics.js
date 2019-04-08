@@ -12,6 +12,15 @@ function showTechnics(list) {
 
         var $node = $(html_code);
 
+        var model = $node.find('.model_').html();
+        var mark = $node.find('.mark_').html();
+        var typ = localStorage.getItem('currentTypeOfTechnics');
+
+        $node.click(function () {
+            // localStorage.setItem('', typ);
+            document.location.href = "http://localhost:5050/technic?model="+model+"&mark="+mark+'&type='+typ;
+        });
+
         $technics.append($node);
     }
 

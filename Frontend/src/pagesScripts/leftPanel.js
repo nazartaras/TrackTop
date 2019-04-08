@@ -15,6 +15,13 @@ function showTechnics(list) {
 
         var $node = $(html_code);
 
+        var typ = $node.html();
+
+        $node.click(function () {
+            localStorage.setItem('currentTypeOfTechnics', typ);
+            document.location.href = "http://localhost:5050/technics?type="+typ;
+        })
+
         $technics.append($node);
     }
 
