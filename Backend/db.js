@@ -101,7 +101,7 @@ exports.get_technics_by_mark_name = function(mark_of_technics,callback){
 }
 
 exports.get_technics_by_type_name = function(type_of_technics,callback){
-    connection.query("SELECT * FROM (tracktop.technics inner JOIN tracktop.types_of_technics ON technics.type_id = types_of_technics.id)  INNER JOIN (SELECT id,name type_name,photo_location FROM tracktop.types_of_technics WHERE name = '"+type_of_technics+
+    connection.query("SELECT * FROM (tracktop.technics inner JOIN tracktop.marks_of_technics ON technics.mark_id = marks_of_technics.id)  INNER JOIN (SELECT id,name type_name,photo_location FROM tracktop.types_of_technics WHERE name = '"+type_of_technics+
         "') T ON technics.type_id = T.id ",callback);
 }
 
@@ -115,7 +115,7 @@ exports.get_technic_by_type_model_mark = function(type_of_technics, mark_of_tech
     connection.query("SELECT * FROM (tracktop.technics inner join (select id id_mark,name mark_name from tracktop.marks_of_technics) D on technics.mark_id = D.id_mark) \n" +
         "INNER JOIN (SELECT id,name type_name,photo_location from tracktop.types_of_technics WHERE name= " + type_of_technics+") L\n" +
         "on type_id = L.id\n" +
-        "WHERE model = " + model , callback);
+        "WHERE model = " + model + " AND mark_name= '"+mark_of_technics+"'" , callback);
 }
 
 exports.get_technics_price_more = function(price,callback){
@@ -134,7 +134,7 @@ exports.get_technic_by_type_model_mark = function(type_of_technics, mark_of_tech
     connection.query("SELECT * FROM (tracktop.technics inner join (select id id_mark,name mark_name from tracktop.marks_of_technics) D on technics.mark_id = D.id_mark) \n" +
         "INNER JOIN (SELECT id,name type_name,photo_location from tracktop.types_of_technics WHERE name= '" + type_of_technics+"') L\n" +
         "on type_id = L.id\n" +
-        "WHERE model = " + model+" AND mark_name= '"+mark_of_technics+"'" , callback);
+        "WHERE model = '" + model+"' AND mark_name= '"+mark_of_technics+"'" , callback);
 }
 
 exports.get_technics_by_country = function(country,callback){

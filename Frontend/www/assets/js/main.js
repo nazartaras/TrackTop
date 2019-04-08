@@ -97,12 +97,12 @@ exports.get_marks_of_technics = function(callback){
 ////
 // select for technics
 exports.get_technics_by_mark_name = function(mark_of_technics,callback){
-    connection.query("SELECT * FROM (tracktop.technics inner JOIN tracktop.marks_of_technics on technics.mark_id = marks_of_technics.id)  INNER JOIN (SELECT * FROM tracktop.marks_of_technics WHERE name = " + mark_of_technics +
+    connection.query("SELECT * FROM (tracktop.technics inner JOIN tracktop.marks_of_technics on technics.mark_id = marks_of_technics.id)  INNER JOIN (SELECT id, name mark_name FROM tracktop.marks_of_technics WHERE name = " + mark_of_technics +
    " ) T ON technics.mark_id = T.id",callback);
 }
 
 exports.get_technics_by_type_name = function(type_of_technics,callback){
-    connection.query("SELECT * FROM (tracktop.technics NATURAL JOIN tracktop.marks_of_technics)  INNER JOIN (SELECT id,name type_name,photo_location FROM tracktop.types_of_technics WHERE name = '"+type_of_technics+
+    connection.query("SELECT * FROM (tracktop.technics inner JOIN tracktop.types_of_technics ON technics.type_id = types_of_technics.id)  INNER JOIN (SELECT id,name type_name,photo_location FROM tracktop.types_of_technics WHERE name = '"+type_of_technics+
         "') T ON technics.type_id = T.id ",callback);
 }
 
@@ -129,6 +129,13 @@ exports.get_technics_price_less = function(price,callback){
 
 exports.get_technics_by_model = function(model,callback){
     connection.query("SELECT * FROM tracktop.technics WHERE tracktop.technics.model =" + model,callback);
+}
+
+exports.get_technic_by_type_model_mark = function(type_of_technics, mark_of_technics,model, callback){
+    connection.query("SELECT * FROM (tracktop.technics inner join (select id id_mark,name mark_name from tracktop.marks_of_technics) D on technics.mark_id = D.id_mark) \n" +
+        "INNER JOIN (SELECT id,name type_name,photo_location from tracktop.types_of_technics WHERE name= '" + type_of_technics+"') L\n" +
+        "on type_id = L.id\n" +
+        "WHERE model = " + model+" AND mark_name= '"+mark_of_technics+"'" , callback);
 }
 
 exports.get_technics_by_country = function(country,callback){
@@ -269,7 +276,7 @@ var ejs = require('ejs');
 
 
 exports.typeOfTechnic = ejs.compile("<div class='typeDiv col-md-6 col-lg-4'>\r\n    <img src='http://localhost:5050/images/technics_placeholders/<%= type.photo_location %>' >\r\n    <div class='nameType'>\r\n        <h2 class=\"type_h2\"><%= type.name %></h2>\r\n    </div>\r\n</div>");
-exports.technicInList = ejs.compile("<div class=\"oneTechnic col-md-6 col-lg-4\">\r\n    <div class=\"thumbnail technic-card\">\r\n        <img class=\"\" src=\"http://localhost:5050/images/<%= technic.main_photo_location %>\">\r\n\r\n        <div class=\"caption\">\r\n            <div class=\"model\"><b><%= technic.name %> <%= technic.model %></b></div>\r\n            <div class=\"price\"><i>Ціна:</i> <%= technic.price %></div>\r\n            <div class=\"amount\"><i>Кількість:</i> <%= technic.amount %></div>\r\n            <div class=\"description\"><i>Опис:</i> <%= technic.description %></div>\r\n\r\n        </div>\r\n    </div>\r\n\r\n</div>");
+exports.technicInList = ejs.compile("<div class=\"oneTechnic col-md-6 col-lg-4\">\r\n    <div class=\"thumbnail technic-card\">\r\n        <img class=\"\" src=\"http://localhost:5050/images/<%= technic.main_photo_location %>\">\r\n\r\n        <div class=\"caption\">\r\n            <div class=\"model\"><b><span class=\"mark_\"><%= technic.name %></span> <span class=\"model_\"><%= technic.model %></span></b></div>\r\n            <div class=\"price\"><i>Ціна:</i> <%= technic.price %> <%= technic.currency %></div>\r\n            <div class=\"amount\"><i>Кількість:</i> <%= technic.amount %></div>\r\n            <div class=\"description\"><i>Опис:</i> <%= technic.description %></div>\r\n\r\n        </div>\r\n    </div>\r\n\r\n</div>");
 exports.technicInMenu = ejs.compile("<a href=\"#\"><%= item.name %></a>");
 },{"ejs":81}],4:[function(require,module,exports){
 
@@ -426,6 +433,13 @@ function showTechnics(list) {
 
         var $node = $(html_code);
 
+        var typ = $node.html();
+
+        $node.click(function () {
+            localStorage.setItem('currentTypeOfTechnics', typ);
+            document.location.href = "http://localhost:5050/technics?type="+typ;
+        })
+
         $technics.append($node);
     }
 
@@ -570,7 +584,7 @@ exports.updateClient = function () {
             nova_poshta_number :post_office_number_value,
             hash: pas
         }
-        console.log(cl);
+       // var db = require("./");
     });
 }
 },{"../../Backend/db":1,"./user_form":11}],10:[function(require,module,exports){
@@ -15293,7 +15307,7 @@ module.exports={
   "_args": [
     [
       "ejs@2.5.7",
-      "D:\\Project\\TrackTop"
+      "D:\\Education\\js\\JavaScript projects\\gitProjects\\TrackTop"
     ]
   ],
   "_from": "ejs@2.5.7",
@@ -15317,7 +15331,7 @@ module.exports={
   ],
   "_resolved": "https://registry.npmjs.org/ejs/-/ejs-2.5.7.tgz",
   "_spec": "2.5.7",
-  "_where": "D:\\Project\\TrackTop",
+  "_where": "D:\\Education\\js\\JavaScript projects\\gitProjects\\TrackTop",
   "author": {
     "name": "Matthew Eernisse",
     "email": "mde@fleegix.org",
@@ -19233,7 +19247,7 @@ module.exports={
   "_args": [
     [
       "elliptic@6.4.0",
-      "D:\\Project\\TrackTop"
+      "D:\\Education\\js\\JavaScript projects\\gitProjects\\TrackTop"
     ]
   ],
   "_from": "elliptic@6.4.0",
@@ -19258,7 +19272,7 @@ module.exports={
   ],
   "_resolved": "https://registry.npmjs.org/elliptic/-/elliptic-6.4.0.tgz",
   "_spec": "6.4.0",
-  "_where": "D:\\Project\\TrackTop",
+  "_where": "D:\\Education\\js\\JavaScript projects\\gitProjects\\TrackTop",
   "author": {
     "name": "Fedor Indutny",
     "email": "fedor@indutny.com"
@@ -40195,4 +40209,3 @@ exports.createContext = Script.createContext = function (context) {
 };
 
 },{"indexof":117}]},{},[6]);
-

@@ -115,15 +115,6 @@ exports.userInfo = function() {
 var $phone = $('#myForm input[name=phone]')[0];
 var $password = $('#myForm input[name=psw]')[0];
 
-var status = false;
-var info;
-
-exports.getInfo = function(){
-    return {
-        status:status,
-        info: info
-    }
-}
 
 exports.login = function(){
     $('#log_in_btn').click(function() {
@@ -139,31 +130,27 @@ exports.login = function(){
                         console.log(data.error);
                         alert( "Не вірний пароль" );
                     }
-                    else if(!(data[0]==null)){
-                        status = true;
-                        info = {
-                            name: data.data[0].name,
-                            surname: data.data[0].surname,
-                            phone: data.data[0].phone
-
-                        }
+                    else if(!(data.data[0]==null)){
+                        localStorage.setItem('status',true);
+                        localStorage.setItem('name',data.data[0].name);
+                        localStorage.setItem('surname',data.data[0].surname);
+                        localStorage.setItem('phone',data.data[0].phone_number);
+                        require('./login_form').closeForm();
                         require('./user_form').isLogged();
                     }
                     else if(!(data==null)){
-                        status = true;
-                        info = {
-                            name: data.data.name,
-                            surname: data.data.surname,
-                            phone: data.data.phone_number
-
-                        }
+                        localStorage.setItem('status',true);
+                        localStorage.setItem('name',data.data.name);
+                        localStorage.setItem('surname',data.data.surname);
+                        localStorage.setItem('phone',data.data.phone_number);
+                        require('./login_form').closeForm();
                         require('./user_form').isLogged();
                     }
         });
     });
 }
 
-},{"./API":1,"./user_form":9}],5:[function(require,module,exports){
+},{"./API":1,"./login_form":4,"./user_form":9}],5:[function(require,module,exports){
 var Templates = require('../Templates');
 
 var $technics =   $('.vertical-menu-technics');
@@ -421,12 +408,19 @@ function addClient(){
         console.log(newT);
         require("./API").addClient(newT, function (err, data) {
             if (data.error) console.log(data.error);
+            else {
+                localStorage.setItem('status',true);
+                localStorage.setItem('name',name);
+                localStorage.setItem('surname',surname);
+                localStorage.setItem('phone',phone);
+                require('./user_form').isLogged();
+            }
         });
        // }
 
     });
 }
-},{"./API":1}],8:[function(require,module,exports){
+},{"./API":1,"./user_form":9}],8:[function(require,module,exports){
 function  initialize() {
     var slider = require('../pagesScripts/slider').multiItemSlider('.slider');
 }
@@ -453,11 +447,14 @@ $(function(){
 });
 },{"../basket":3,"../login_form":4,"../pagesScripts/leftPanel":5,"../pagesScripts/slider":6,"../signup_form":7}],9:[function(require,module,exports){
 exports.isLogged = function () {
-    var info = require('./login_form').getInfo();
-    if(info.status) {
+    var name = localStorage.getItem('name');
+    var surname = localStorage.getItem('surname');
+    var status = localStorage.getItem('status');
+    var phone = localStorage.getItem('phone');
+    if(status) {
         // add info to panel
-        $('#full_name').html('<b>' +info.info.surname + " " + info.info.name + '</b>');
-        $('#user_phone').html('<b>' +info.info.phone + '</b>');
+        $('#full_name').html('<b>' +surname + " " + name + '</b>');
+        $('#user_phone').html('<b>' + phone + '</b>');
         $('#user_photo').css("display","block")
         $('#login').css("display", "none");
         $('#signup').css("display", "none");
@@ -469,7 +466,16 @@ exports.isLogged = function () {
     }
 }
 
-},{"./login_form":4}],10:[function(require,module,exports){
+exports.deleteInfoFromLocalStorage = function() {
+    localStorage.clear();
+    require("./user_form").isLogged();
+}
+
+exports.openUserEditPage = function () {
+    
+}
+
+},{"./user_form":9}],10:[function(require,module,exports){
 
 },{}],11:[function(require,module,exports){
 /*

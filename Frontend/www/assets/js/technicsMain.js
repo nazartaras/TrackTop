@@ -63,7 +63,7 @@ var ejs = require('ejs');
 
 
 exports.typeOfTechnic = ejs.compile("<div class='typeDiv col-md-6 col-lg-4'>\r\n    <img src='http://localhost:5050/images/technics_placeholders/<%= type.photo_location %>' >\r\n    <div class='nameType'>\r\n        <h2 class=\"type_h2\"><%= type.name %></h2>\r\n    </div>\r\n</div>");
-exports.technicInList = ejs.compile("<div class=\"oneTechnic col-md-6 col-lg-4\">\r\n    <div class=\"thumbnail technic-card\">\r\n        <img class=\"\" src=\"http://localhost:5050/images/<%= technic.main_photo_location %>\">\r\n\r\n        <div class=\"caption\">\r\n            <div class=\"model\"><b><%= technic.name %> <%= technic.model %></b></div>\r\n            <div class=\"price\"><i>Ціна:</i> <%= technic.price %></div>\r\n            <div class=\"amount\"><i>Кількість:</i> <%= technic.amount %></div>\r\n            <div class=\"description\"><i>Опис:</i> <%= technic.description %></div>\r\n\r\n        </div>\r\n    </div>\r\n\r\n</div>");
+exports.technicInList = ejs.compile("<div class=\"oneTechnic col-md-6 col-lg-4\">\r\n    <div class=\"thumbnail technic-card\">\r\n        <img class=\"\" src=\"http://localhost:5050/images/<%= technic.main_photo_location %>\">\r\n\r\n        <div class=\"caption\">\r\n            <div class=\"model\"><b><span class=\"mark_\"><%= technic.name %></span> <span class=\"model_\"><%= technic.model %></span></b></div>\r\n            <div class=\"price\"><i>Ціна:</i> <%= technic.price %> <%= technic.currency %></div>\r\n            <div class=\"amount\"><i>Кількість:</i> <%= technic.amount %></div>\r\n            <div class=\"description\"><i>Опис:</i> <%= technic.description %></div>\r\n\r\n        </div>\r\n    </div>\r\n\r\n</div>");
 exports.technicInMenu = ejs.compile("<a href=\"#\"><%= item.name %></a>");
 },{"ejs":11}],3:[function(require,module,exports){
 
@@ -165,6 +165,15 @@ function showTechnics(list) {
 
         var $node = $(html_code);
 
+        var model = $node.find('.model_').html();
+        var mark = $node.find('.mark_').html();
+        var typ = localStorage.getItem('currentTypeOfTechnics');
+
+        $node.click(function () {
+            // localStorage.setItem('', typ);
+            document.location.href = "http://localhost:5050/technic?model="+model+"&mark="+mark+'&type='+typ;
+        });
+
         $technics.append($node);
     }
 
@@ -207,6 +216,13 @@ function showTechnics(list) {
         var html_code = Templates.technicInMenu({item: t});
 
         var $node = $(html_code);
+
+        var typ = $node.html();
+
+        $node.click(function () {
+            localStorage.setItem('currentTypeOfTechnics', typ);
+            document.location.href = "http://localhost:5050/technics?type="+typ;
+        })
 
         $technics.append($node);
     }
@@ -1476,7 +1492,7 @@ module.exports={
   "_args": [
     [
       "ejs@2.5.7",
-      "D:\\Project\\TrackTop"
+      "D:\\Education\\js\\JavaScript projects\\gitProjects\\TrackTop"
     ]
   ],
   "_from": "ejs@2.5.7",
@@ -1500,7 +1516,7 @@ module.exports={
   ],
   "_resolved": "https://registry.npmjs.org/ejs/-/ejs-2.5.7.tgz",
   "_spec": "2.5.7",
-  "_where": "D:\\Project\\TrackTop",
+  "_where": "D:\\Education\\js\\JavaScript projects\\gitProjects\\TrackTop",
   "author": {
     "name": "Matthew Eernisse",
     "email": "mde@fleegix.org",
