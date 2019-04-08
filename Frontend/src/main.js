@@ -46,4 +46,6 @@ $(function(){
     require('./login_form').login();
 
     require('./user_form').isLogged();
+
+    require('./profile').updateClient();
 });

@@ -1,7 +1,7 @@
 exports.initializeUser = function () {
     var phone = localStorage.getItem('phone');
 
-    var db = require('./db');
+    var db = require('../../Backend/db');
 
     function callback(error,data){
         if(data.error) {
@@ -32,14 +32,14 @@ exports.initializeUser = function () {
 
 exports.updateClient = function () {
     $('#update_user_info').click(function() {
-        var surname = $('#surname_value').value;
-        var name = $('#name_value').value;
-        var phone_number = $('#phone_value').value;
-        var location = $('#location_value').value;
-        var location_post_office_value = $('#location_post_office_value').value;
-        var post_office_number_value = $('#post_office_number_value').value;
-        var pas =  $('#password_value').value;
-        var conf_pas =  $('#password_confirm_value').value;
+        var surname = $('#surname_value').val();
+        var name = $('#name_value').val();
+        var phone_number = $('#phone_value').val();
+        var location = $('#location_value').val();
+        var location_post_office_value = $('#location_post_office_value').val();
+        var post_office_number_value = $('#post_office_number_value').val();
+        var pas =  $('#password_value').val();
+        var conf_pas =  $('#password_confirm_value').val();
 
         if(pas!== conf_pas) alert("Паролі не збігаються");
         var cl = {
@@ -49,8 +49,8 @@ exports.updateClient = function () {
             settelment: location,
             nova_poshta_settlement:location_post_office_value,
             nova_poshta_number :post_office_number_value,
-            hash: password
+            hash: pas
         }
-        console.log(cl);
+       // var db = require("./");
     });
 }

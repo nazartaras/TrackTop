@@ -16,12 +16,16 @@
 
 </head>
 <body>
+<% include common/header.ejs %>
+<% include common/basket.ejs %>
 
-<div class="container" style="padding-top: 60px;" id ="kkk">
+<div class="container"  id ="kkk">
     <h1 class="page-header">Edit Profile</h1>
     <div class="row">
+
         <!-- left column -->
         <div class="col-md-4 col-sm-6 col-xs-12">
+
             <div class="text-center">
                 <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail" alt="avatar">
                 <h6>Завантажити фото</h6>
@@ -30,11 +34,8 @@
         </div>
         <!-- edit form column -->
         <div class="col-md-8 col-sm-6 col-xs-12 personal-info">
-            <div class="alert alert-info alert-dismissable">
-                <a class="panel-close close" data-dismiss="alert">×</a>
-                <i class="fa fa-coffee"></i>
 
-            </div>
+            <a class="panel-close close" data-dismiss="alert">×</a>
             <h3>Ваші дані</h3>
             <form class="form-horizontal" role="form" id="form_user_info">
                 <div class="form-group">
