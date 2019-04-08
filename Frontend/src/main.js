@@ -32,6 +32,12 @@ $(function(){
         require('./login_form').userInfo();
     })
 
+    // added
+    $('#exit_btn').click(function() {
+        require('./user_form').deleteInfoFromLocalStorage();
+        require('./user_form').isLogged();
+        $('#user_info').css("display", "none");
+    })
 
     require('./signup_form').initializeLogin();
     require('./pagesScripts/typesOfTechnics').initializeTypes();

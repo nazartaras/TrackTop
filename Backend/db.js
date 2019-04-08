@@ -132,7 +132,7 @@ exports.get_technics = function(callback){
     connection.query("SELECT * FROM (tracktop.technics INNER JOIN tracktop.types_of_technics on technics.type_id = types_of_technics.id) INNER JOIN tracktop.marks_of_technics on technics.mark_id = marks_of_technics.id",callback);
 }
 exports.get_client_by_phone = function(phone,callback){
-    connection.query("SELECT * FROM tracktop.clients WHERE tracktop.clients.phone_number =" + phone,callback);
+    connection.query("SELECT * FROM tracktop.clients WHERE phone_number ='" + phone + "'",callback);
 }
 
 

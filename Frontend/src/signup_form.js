@@ -96,6 +96,13 @@ function addClient(){
         console.log(newT);
         require("./API").addClient(newT, function (err, data) {
             if (data.error) console.log(data.error);
+            else {
+                localStorage.setItem('status',true);
+                localStorage.setItem('name',name);
+                localStorage.setItem('surname',surname);
+                localStorage.setItem('phone',phone);
+                require('./user_form').isLogged();
+            }
         });
        // }
 

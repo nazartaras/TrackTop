@@ -22,15 +22,6 @@ exports.userInfo = function() {
 var $phone = $('#myForm input[name=phone]')[0];
 var $password = $('#myForm input[name=psw]')[0];
 
-var status = false;
-var info;
-
-exports.getInfo = function(){
-    return {
-        status:status,
-        info: info
-    }
-}
 
 exports.login = function(){
     $('#log_in_btn').click(function() {
@@ -46,24 +37,20 @@ exports.login = function(){
                         console.log(data.error);
                         alert( "Не вірний пароль" );
                     }
-                    else if(!(data[0]==null)){
-                        status = true;
-                        info = {
-                            name: data.data[0].name,
-                            surname: data.data[0].surname,
-                            phone: data.data[0].phone
-
-                        }
+                    else if(!(data.data[0]==null)){
+                        localStorage.setItem('status',true);
+                        localStorage.setItem('name',data.data[0].name);
+                        localStorage.setItem('surname',data.data[0].surname);
+                        localStorage.setItem('phone',data.data[0].phone_number);
+                        require('./login_form').closeForm();
                         require('./user_form').isLogged();
                     }
                     else if(!(data==null)){
-                        status = true;
-                        info = {
-                            name: data.data.name,
-                            surname: data.data.surname,
-                            phone: data.data.phone_number
-
-                        }
+                        localStorage.setItem('status',true);
+                        localStorage.setItem('name',data.data.name);
+                        localStorage.setItem('surname',data.data.surname);
+                        localStorage.setItem('phone',data.data.phone_number);
+                        require('./login_form').closeForm();
                         require('./user_form').isLogged();
                     }
         });
