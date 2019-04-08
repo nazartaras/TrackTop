@@ -4,6 +4,12 @@ exports.mainPage = function(req, res) {
     });
 };
 
+exports.profile = function(req, res) {
+    res.render('profile', {
+        pageTitle: ''
+    });
+};
+
 exports.technics = function(req, res) {
     res.render('technicsPage', {
         pageTitle: 'Техніка',

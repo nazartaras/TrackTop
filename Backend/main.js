@@ -17,7 +17,7 @@ function configureEndpoints(app) {
     app.get('/api/getmarks', api.get_marks_of_technics);
 
 
-    // app.post('/api/signin',  api.get_Client);
+    app.post('/api/signin',  api.sign_in);
 
     app.get('/api/gettechnics', api.get_technics);
     app.post('/api/gettechnics', api.get_technics_by_tp);
@@ -25,6 +25,7 @@ function configureEndpoints(app) {
 
     //Сторінки
     app.get('/', pages.mainPage);
+    app.get('/profile', pages.profile);
     app.get('/technics', pages.technics);
     app.get('/technic', pages.technic);
 
