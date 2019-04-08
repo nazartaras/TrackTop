@@ -1,5 +1,16 @@
 function  initialize() {
     var slider = require('../pagesScripts/slider').multiItemSlider('.slider');
+
+    $('.order_technic').click(function(){
+        var tech = JSON.parse(localStorage.getItem('currTechnic'));
+        require('../basket').addToCart({
+            title: tech.mark+' '+tech.model,
+            price: tech.price,
+            currency: tech.currency,
+            icon: tech.main_photo_location,
+            quantity: 1
+        });
+    })
 }
 
 $(function(){

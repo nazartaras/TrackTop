@@ -116,14 +116,14 @@
   top:@heightTopBot;
   bottom:0px;
   margin-bottom: @heightBottom;
-  padding:0;
+  padding:0!important;
   overflow-y:scroll;
   overflow-x:hidden;
 
   .myOrder{
     position:relative;
     height: 120px;
-    padding: 20px 61px 10px 24px;
+    padding: 10px 61px 10px 24px;
     border-bottom: 1px solid rgba(0,0,0,.1);
     position: relative;
     overflow: hidden;
@@ -133,13 +133,17 @@
       margin:0px;
     }
 
-    .pizzaIconInOrder{
+    .centerAlign{
+      text-align: center;
+    }
+
+    .imgInOrder{
       position: absolute;
-      right: -49px;
-      top: 15px;
-      border-radius: 50% 0 0 50%;
-      max-height: 98px;
-      max-width: 98px;
+      right: 75px;
+      top: 45px;
+      width:120px;
+      height:68px;
+      max-width: 120px;
     }
 
     .order-title{
@@ -161,7 +165,7 @@
       font-weight: 700;
     }
 
-    .order-pizza-count{
+    .order-count{
       font-size: 14px;
       font-weight: 700;
     }
