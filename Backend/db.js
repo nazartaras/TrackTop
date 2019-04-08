@@ -96,12 +96,12 @@ exports.get_marks_of_technics = function(callback){
 ////
 // select for technics
 exports.get_technics_by_mark_name = function(mark_of_technics,callback){
-    connection.query("SELECT * FROM tracktop.technics INNER JOIN (SELECT * FROM tracktop.marks_of_technics as R1 WHERE R1.name = "+mark_of_technics +
-        "ON tracktop.technics.mark_id = R1.mark_id",callback);
+    connection.query("SELECT * FROM (tracktop.technics inner JOIN tracktop.marks_of_technics on technics.mark_id = marks_of_technics.id)  INNER JOIN (SELECT id, name mark_name FROM tracktop.marks_of_technics WHERE name = " + mark_of_technics +
+   " ) T ON technics.mark_id = T.id",callback);
 }
 
 exports.get_technics_by_type_name = function(type_of_technics,callback){
-    connection.query("SELECT * FROM (tracktop.technics NATURAL JOIN tracktop.marks_of_technics)  INNER JOIN (SELECT id,name type_name,photo_location FROM tracktop.types_of_technics WHERE name = '"+type_of_technics+
+    connection.query("SELECT * FROM (tracktop.technics inner JOIN tracktop.types_of_technics ON technics.type_id = types_of_technics.id)  INNER JOIN (SELECT id,name type_name,photo_location FROM tracktop.types_of_technics WHERE name = '"+type_of_technics+
         "') T ON technics.type_id = T.id ",callback);
 }
 
@@ -109,6 +109,13 @@ exports.get_technics_by_type_and_mark = function(type_of_technics, mark_of_techn
     connection.query("SELECT * FROM tracktop.technics INNER JOIN (SELECT * FROM tracktop.types_of_technics as R1 WHERE R1.name = "+type_of_technics+
         "ON tracktop.types_of_technics.type_id = R1.type_id INNER JOIN (SELECT * FROM tracktop.marks_of_technics as R2 WHERE R1.name = "+mark_of_technics +
         +"ON tracktop.technics.mark_id = R2.mark_id",callback);
+}
+
+exports.get_technic_by_type_model_mark = function(type_of_technics, mark_of_technics,model, callback){
+    connection.query("SELECT * FROM (tracktop.technics inner join (select id id_mark,name mark_name from tracktop.marks_of_technics) D on technics.mark_id = D.id_mark) \n" +
+        "INNER JOIN (SELECT id,name type_name,photo_location from tracktop.types_of_technics WHERE name= " + type_of_technics+") L\n" +
+        "on type_id = L.id\n" +
+        "WHERE model = " + model , callback);
 }
 
 exports.get_technics_price_more = function(price,callback){

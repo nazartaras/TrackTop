@@ -431,6 +431,10 @@ exports.deleteInfoFromLocalStorage = function() {
     require("./user_form").isLogged();
 }
 
+exports.openUserEditPage = function () {
+    
+}
+
 },{"./user_form":9}],10:[function(require,module,exports){
 
 },{}],11:[function(require,module,exports){
