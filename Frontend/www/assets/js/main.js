@@ -97,12 +97,13 @@ exports.get_marks_of_technics = function(callback){
 ////
 // select for technics
 exports.get_technics_by_mark_name = function(mark_of_technics,callback){
-    connection.query("SELECT * FROM (tracktop.technics inner JOIN tracktop.marks_of_technics on technics.mark_id = marks_of_technics.id)  INNER JOIN (SELECT id, name mark_name FROM tracktop.marks_of_technics WHERE name = " + mark_of_technics +
-   " ) T ON technics.mark_id = T.id",callback);
+    connection.query("SELECT * FROM (tracktop.technics INNER JOIN (SELECT id,name type_name,photo_location FROM tracktop.types_of_technics) T " +
+    "ON technics.type_id = T.id ) inner JOIN (select id, name mark_name From tracktop.marks_of_technics Where name = '" +
+        mark_of_technics  +"') R1 ON technics.mark_id = R1.id",callback);
 }
 
 exports.get_technics_by_type_name = function(type_of_technics,callback){
-    connection.query("SELECT * FROM (tracktop.technics inner JOIN tracktop.types_of_technics ON technics.type_id = types_of_technics.id)  INNER JOIN (SELECT id,name type_name,photo_location FROM tracktop.types_of_technics WHERE name = '"+type_of_technics+
+    connection.query("SELECT * FROM (tracktop.technics inner JOIN tracktop.marks_of_technics ON technics.mark_id = marks_of_technics.id)  INNER JOIN (SELECT id,name type_name,photo_location FROM tracktop.types_of_technics WHERE name = '"+type_of_technics+
         "') T ON technics.type_id = T.id ",callback);
 }
 
@@ -116,7 +117,7 @@ exports.get_technic_by_type_model_mark = function(type_of_technics, mark_of_tech
     connection.query("SELECT * FROM (tracktop.technics inner join (select id id_mark,name mark_name from tracktop.marks_of_technics) D on technics.mark_id = D.id_mark) \n" +
         "INNER JOIN (SELECT id,name type_name,photo_location from tracktop.types_of_technics WHERE name= " + type_of_technics+") L\n" +
         "on type_id = L.id\n" +
-        "WHERE model = " + model , callback);
+        "WHERE model = " + model + " AND mark_name= '"+mark_of_technics+"'" , callback);
 }
 
 exports.get_technics_price_more = function(price,callback){
@@ -135,7 +136,7 @@ exports.get_technic_by_type_model_mark = function(type_of_technics, mark_of_tech
     connection.query("SELECT * FROM (tracktop.technics inner join (select id id_mark,name mark_name from tracktop.marks_of_technics) D on technics.mark_id = D.id_mark) \n" +
         "INNER JOIN (SELECT id,name type_name,photo_location from tracktop.types_of_technics WHERE name= '" + type_of_technics+"') L\n" +
         "on type_id = L.id\n" +
-        "WHERE model = " + model+" AND mark_name= '"+mark_of_technics+"'" , callback);
+        "WHERE model = '" + model+"' AND mark_name= '"+mark_of_technics+"'" , callback);
 }
 
 exports.get_technics_by_country = function(country,callback){
@@ -196,6 +197,10 @@ exports.update_client = function(id,client,callback){
     connection.query("UPDATE tracktop.clients SET ?"+ client + "WHERE id = "+ id,callback);
 }
 
+exports.update_client_by_phone = function(phone,client,callback){
+    connection.query("UPDATE tracktop.clients SET ?"+ client + "WHERE phone_number = "+ phone,callback);
+}
+
 exports.update_equipments = function(id,equipment,callback){
     connection.query("UPDATE tracktop.equipments SET ?"+ equipment + "WHERE id = "+ id,callback);
 }
@@ -252,7 +257,9 @@ exports.addClient = function(client, callback) {
 
 
 exports.sign_in = function(phone, callback) {
-    backendPost("/api/signin/", phone, callback);}
+    backendPost("/api/signin/", phone, callback);
+}
+
 
 exports.getTypes = function(callback) {
     backendGet("/api/gettypes/", callback);
@@ -261,6 +268,13 @@ exports.getMarks = function(callback) {
     backendGet("/api/getmarks/", callback);
 
 };
+
+/////// adedd
+exports.getClientbyPhone = function(callback) {
+    backendGet("/api/getclient/", callback);
+
+};
+/////
 
 exports.getTechnics = function(callback) {
     backendGet("/api/gettechnics/", callback);
@@ -396,6 +410,12 @@ $(function(){
 
     $('#user_photo').click(function() {
         require('./login_form').userInfo();
+    })
+
+    $('.edit-profile').click(function(){
+        document.location.href = "http://localhost:5050/profile";
+        /////////////////////////////
+        require('./profile').initializeUser();
     })
 
     // added
@@ -543,6 +563,18 @@ exports.initializeUser = function () {
         }
         else if(!(data.data[0]==null)){
             localStorage.setItem('status',true);
+
+
+            //
+            $('#surname_value').set(data.data[0].surname);
+            $('#name_value').set(data.data[0].name);
+            $('#phone_value').set(data.data[0].phone_number);
+            $('#location_value').set(data.data[0].settelment);
+            $('#location_post_office_value').set(data.data[0].nova_poshta_settlement);
+            $('#post_office_number_value').set(data.data[0].nova_poshta_number);
+           // $('#password_value').set(data.data[0].password);
+           // $('#password_confirm_value').set(data.data[0].password);
+
             localStorage.setItem('name',data.data[0].name);
             localStorage.setItem('surname',data.data[0].surname);
             localStorage.setItem('phone',data.data[0].phone_number);
@@ -554,6 +586,13 @@ exports.initializeUser = function () {
             localStorage.setItem('name',data.data.name);
             localStorage.setItem('surname',data.data.surname);
             localStorage.setItem('phone',data.data.phone_number);
+
+            $('#surname_value').set(data.data.surname);
+            $('#name_value').set(data.data.name);
+            $('#phone_value').set(data.data.phone_number);
+            $('#location_value').set(data.data.settelment);
+            $('#location_post_office_value').set(data.data.nova_poshta_settlement);
+            $('#post_office_number_value').set(data.data.nova_poshta_number);
            // closeForm();
             require('./user_form').isLogged();
         }
@@ -717,6 +756,14 @@ exports.isLogged = function () {
         $('#login').css("display","block")
         $('#signup').css("display","block")
     }
+}
+
+exports.openLogin = function(){
+    $('#full_name').html('<b>' +surname + " " + name + '</b>');
+    $('#user_phone').html('<b>' + phone + '</b>');
+    $('#user_photo').css("display","block")
+    $('#login').css("display", "none");
+    $('#signup').css("display", "none");
 }
 
 exports.deleteInfoFromLocalStorage = function() {
@@ -15307,7 +15354,7 @@ module.exports={
   "_args": [
     [
       "ejs@2.5.7",
-      "D:\\Education\\js\\JavaScript projects\\gitProjects\\TrackTop"
+      "D:\\Project\\TrackTop"
     ]
   ],
   "_from": "ejs@2.5.7",
@@ -15331,7 +15378,7 @@ module.exports={
   ],
   "_resolved": "https://registry.npmjs.org/ejs/-/ejs-2.5.7.tgz",
   "_spec": "2.5.7",
-  "_where": "D:\\Education\\js\\JavaScript projects\\gitProjects\\TrackTop",
+  "_where": "D:\\Project\\TrackTop",
   "author": {
     "name": "Matthew Eernisse",
     "email": "mde@fleegix.org",
@@ -19247,7 +19294,7 @@ module.exports={
   "_args": [
     [
       "elliptic@6.4.0",
-      "D:\\Education\\js\\JavaScript projects\\gitProjects\\TrackTop"
+      "D:\\Project\\TrackTop"
     ]
   ],
   "_from": "elliptic@6.4.0",
@@ -19272,7 +19319,7 @@ module.exports={
   ],
   "_resolved": "https://registry.npmjs.org/elliptic/-/elliptic-6.4.0.tgz",
   "_spec": "6.4.0",
-  "_where": "D:\\Education\\js\\JavaScript projects\\gitProjects\\TrackTop",
+  "_where": "D:\\Project\\TrackTop",
   "author": {
     "name": "Fedor Indutny",
     "email": "fedor@indutny.com"

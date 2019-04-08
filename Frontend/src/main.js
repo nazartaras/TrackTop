@@ -32,6 +32,12 @@ $(function(){
         require('./login_form').userInfo();
     })
 
+    $('.edit-profile').click(function(){
+        document.location.href = "http://localhost:5050/profile";
+        /////////////////////////////
+        require('./profile').initializeUser();
+    })
+
     // added
     $('#exit_btn').click(function() {
         require('./user_form').deleteInfoFromLocalStorage();

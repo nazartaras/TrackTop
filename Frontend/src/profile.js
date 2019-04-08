@@ -10,6 +10,18 @@ exports.initializeUser = function () {
         }
         else if(!(data.data[0]==null)){
             localStorage.setItem('status',true);
+
+
+            //
+            $('#surname_value').set(data.data[0].surname);
+            $('#name_value').set(data.data[0].name);
+            $('#phone_value').set(data.data[0].phone_number);
+            $('#location_value').set(data.data[0].settelment);
+            $('#location_post_office_value').set(data.data[0].nova_poshta_settlement);
+            $('#post_office_number_value').set(data.data[0].nova_poshta_number);
+           // $('#password_value').set(data.data[0].password);
+           // $('#password_confirm_value').set(data.data[0].password);
+
             localStorage.setItem('name',data.data[0].name);
             localStorage.setItem('surname',data.data[0].surname);
             localStorage.setItem('phone',data.data[0].phone_number);
@@ -21,6 +33,13 @@ exports.initializeUser = function () {
             localStorage.setItem('name',data.data.name);
             localStorage.setItem('surname',data.data.surname);
             localStorage.setItem('phone',data.data.phone_number);
+
+            $('#surname_value').set(data.data.surname);
+            $('#name_value').set(data.data.name);
+            $('#phone_value').set(data.data.phone_number);
+            $('#location_value').set(data.data.settelment);
+            $('#location_post_office_value').set(data.data.nova_poshta_settlement);
+            $('#post_office_number_value').set(data.data.nova_poshta_number);
            // closeForm();
             require('./user_form').isLogged();
         }

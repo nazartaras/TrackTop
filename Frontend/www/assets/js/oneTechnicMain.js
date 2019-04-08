@@ -39,7 +39,9 @@ exports.addClient = function(client, callback) {
 
 
 exports.sign_in = function(phone, callback) {
-    backendPost("/api/signin/", phone, callback);}
+    backendPost("/api/signin/", phone, callback);
+}
+
 
 exports.getTypes = function(callback) {
     backendGet("/api/gettypes/", callback);
@@ -48,6 +50,13 @@ exports.getMarks = function(callback) {
     backendGet("/api/getmarks/", callback);
 
 };
+
+/////// adedd
+exports.getClientbyPhone = function(callback) {
+    backendGet("/api/getclient/", callback);
+
+};
+/////
 
 exports.getTechnics = function(callback) {
     backendGet("/api/gettechnics/", callback);
@@ -440,12 +449,30 @@ $(function(){
         require('../login_form').closeForm();
     })
 
+    $('#user_photo').click(function() {
+        require('../login_form').userInfo();
+    })
+
+    $('#exit_btn').click(function() {
+        require('../user_form').deleteInfoFromLocalStorage();
+        require('../user_form').isLogged();
+        $('#user_info').css("display", "none");
+    })
+
+
     require('../signup_form').initializeLogin();
     require('../pagesScripts/leftPanel').initialize();
 
-    initialize();
+
+    require('../login_form').login();
+
+    require('../user_form').isLogged();
+
+    $('.edit-profile').click(function(){
+        document.location.href = "http://localhost:5050/profile";
+    })
 });
-},{"../basket":3,"../login_form":4,"../pagesScripts/leftPanel":5,"../pagesScripts/slider":6,"../signup_form":7}],9:[function(require,module,exports){
+},{"../basket":3,"../login_form":4,"../pagesScripts/leftPanel":5,"../pagesScripts/slider":6,"../signup_form":7,"../user_form":9}],9:[function(require,module,exports){
 exports.isLogged = function () {
     var name = localStorage.getItem('name');
     var surname = localStorage.getItem('surname');
@@ -464,6 +491,14 @@ exports.isLogged = function () {
         $('#login').css("display","block")
         $('#signup').css("display","block")
     }
+}
+
+exports.openLogin = function(){
+    $('#full_name').html('<b>' +surname + " " + name + '</b>');
+    $('#user_phone').html('<b>' + phone + '</b>');
+    $('#user_photo').css("display","block")
+    $('#login').css("display", "none");
+    $('#signup').css("display", "none");
 }
 
 exports.deleteInfoFromLocalStorage = function() {
@@ -1516,7 +1551,7 @@ module.exports={
   "_args": [
     [
       "ejs@2.5.7",
-      "D:\\Education\\js\\JavaScript projects\\gitProjects\\TrackTop"
+      "D:\\Project\\TrackTop"
     ]
   ],
   "_from": "ejs@2.5.7",
@@ -1540,7 +1575,7 @@ module.exports={
   ],
   "_resolved": "https://registry.npmjs.org/ejs/-/ejs-2.5.7.tgz",
   "_spec": "2.5.7",
-  "_where": "D:\\Education\\js\\JavaScript projects\\gitProjects\\TrackTop",
+  "_where": "D:\\Project\\TrackTop",
   "author": {
     "name": "Matthew Eernisse",
     "email": "mde@fleegix.org",

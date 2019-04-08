@@ -30,9 +30,14 @@ $(function(){
     require('../signup_form').initializeLogin();
     require('../pagesScripts/leftPanel').initialize();
 
+    initialize();
     require('../login_form').login();
 
     require('../user_form').isLogged();
+
+    $('.edit-profile').click(function(){
+        document.location.href = "http://localhost:5050/profile";
+    })
 
     initialize();
 });

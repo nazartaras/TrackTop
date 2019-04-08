@@ -96,8 +96,9 @@ exports.get_marks_of_technics = function(callback){
 ////
 // select for technics
 exports.get_technics_by_mark_name = function(mark_of_technics,callback){
-    connection.query("SELECT * FROM (tracktop.technics inner JOIN tracktop.marks_of_technics on technics.mark_id = marks_of_technics.id)  INNER JOIN (SELECT id, name mark_name FROM tracktop.marks_of_technics WHERE name = " + mark_of_technics +
-   " ) T ON technics.mark_id = T.id",callback);
+    connection.query("SELECT * FROM (tracktop.technics INNER JOIN (SELECT id,name type_name,photo_location FROM tracktop.types_of_technics) T " +
+    "ON technics.type_id = T.id ) inner JOIN (select id, name mark_name From tracktop.marks_of_technics Where name = '" +
+        mark_of_technics  +"') R1 ON technics.mark_id = R1.id",callback);
 }
 
 exports.get_technics_by_type_name = function(type_of_technics,callback){
@@ -193,6 +194,10 @@ exports.update_check = function(id,check,callback){
 
 exports.update_client = function(id,client,callback){
     connection.query("UPDATE tracktop.clients SET ?"+ client + "WHERE id = "+ id,callback);
+}
+
+exports.update_client_by_phone = function(phone,client,callback){
+    connection.query("UPDATE tracktop.clients SET ?"+ client + "WHERE phone_number = "+ phone,callback);
 }
 
 exports.update_equipments = function(id,equipment,callback){

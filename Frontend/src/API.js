@@ -38,7 +38,9 @@ exports.addClient = function(client, callback) {
 
 
 exports.sign_in = function(phone, callback) {
-    backendPost("/api/signin/", phone, callback);}
+    backendPost("/api/signin/", phone, callback);
+}
+
 
 exports.getTypes = function(callback) {
     backendGet("/api/gettypes/", callback);
@@ -47,6 +49,13 @@ exports.getMarks = function(callback) {
     backendGet("/api/getmarks/", callback);
 
 };
+
+/////// adedd
+exports.getClientbyPhone = function(callback) {
+    backendGet("/api/getclient/", callback);
+
+};
+/////
 
 exports.getTechnics = function(callback) {
     backendGet("/api/gettechnics/", callback);
