@@ -1,5 +1,50 @@
+var Templates = require('../Templates');
 
-exports.multiItemSlider = function (selector, config) {
+var $technics =   $('.slider__wrapper');
+
+
+function showTechnics(list) {
+
+    $technics.html("");
+
+    function showOne(type) {
+        var html_code = Templates.oneImage({image: type});
+
+        var $node = $(html_code);
+
+
+        $technics.append($node);
+    }
+
+    list.forEach(showOne);
+    multiItemSlider('.slider');
+}
+
+exports.initialize = function(){
+
+    var l=[];
+
+    var tp = JSON.parse(localStorage.getItem('currTechnic'));
+    var tp1 = localStorage.getItem('currentTypeOfTechnics');
+
+    function callback(err,data) {
+        if(data.error) console.log(data.error);
+        data.data.forEach(function(item){
+            l.push(item.file_name)
+        });
+        showTechnics(l);
+    }
+
+
+    require("../API").getTechnicsImagesByTypeMarkModel({type: tp1,model: tp.model, mark: tp.mark},callback);
+}
+
+
+
+
+
+
+function multiItemSlider (selector, config) {
     var
         _mainElement = document.querySelector(selector), // основный элемент блока
         _sliderWrapper = _mainElement.querySelector('.slider__wrapper'), // обертка для .slider-item
@@ -81,5 +126,6 @@ exports.multiItemSlider = function (selector, config) {
 
 }
 
+exports.multiItemSlider = multiItemSlider;
     // var a = multiItemSlider('.slider');
 

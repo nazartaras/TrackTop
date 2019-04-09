@@ -1,5 +1,6 @@
 function  initialize() {
-    var slider = require('../pagesScripts/slider').multiItemSlider('.slider');
+
+    require('../pagesScripts/slider').initialize();
 
     $('.order_technic').click(function(){
         var tech = JSON.parse(localStorage.getItem('currTechnic'));
@@ -46,6 +47,7 @@ $(function(){
     require('../login_form').login();
 
     require('../user_form').isLogged();
+    initialize();
 
     $('.edit-profile').click(function(){
         document.location.href = "http://localhost:5050/profile";

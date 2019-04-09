@@ -64,3 +64,7 @@ exports.getTechnics = function(callback) {
 exports.getTechnicsByType = function(tp,callback) {
     backendPost("/api/gettechnics/", tp, callback);
 };
+
+exports.getTechnicsImagesByTypeMarkModel = function(tp,callback) {
+    backendPost("/api/gettechnicsmodelim/", tp, callback);
+};

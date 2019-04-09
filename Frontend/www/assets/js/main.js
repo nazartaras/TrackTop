@@ -120,6 +120,18 @@ exports.get_technic_by_type_model_mark = function(type_of_technics, mark_of_tech
         "WHERE model = " + model + " AND mark_name= '"+mark_of_technics+"'" , callback);
 }
 
+exports.get_technic_im_by_type_model_mark = function(type_of_technics, mark_of_technics,model, callback){
+    console.log("SELECT file_name from (SELECT id FROM (tracktop.technics inner join (select id id_mark,name mark_name from tracktop.marks_of_technics) D on technics.mark_id = D.id_mark) "+
+         "INNER JOIN (SELECT id id_type,name type_name,photo_location from tracktop.types_of_technics WHERE name='"+type_of_technics+"') L " +
+         "on type_id = L.id_type WHERE model ='" + model+ "' AND mark_name='" +mark_of_technics+
+        "' ) Q inner join tracktop.images_technics on images_technics.id_technic=Q.id");
+    connection.query("SELECT file_name from (SELECT id FROM (tracktop.technics inner join (select id id_mark,name mark_name from tracktop.marks_of_technics) D on technics.mark_id = D.id_mark) "+
+     "INNER JOIN (SELECT id id_type,name type_name,photo_location from tracktop.types_of_technics WHERE name='"+type_of_technics+"') L " +
+     "on type_id = L.id_type WHERE model ='" + model+ "' AND mark_name='" +mark_of_technics+
+        "' ) Q inner join tracktop.images_technics on images_technics.id_technic=Q.id"
+        , callback);
+}
+
 exports.get_technics_price_more = function(price,callback){
     connection.query("SELECT * FROM tracktop.technics WHERE tracktop.technics.price >" + price,callback);
 }
@@ -284,6 +296,10 @@ exports.getTechnicsByType = function(tp,callback) {
     backendPost("/api/gettechnics/", tp, callback);
 };
 
+exports.getTechnicsImagesByTypeMarkModel = function(tp,callback) {
+    backendPost("/api/gettechnicsmodelim/", tp, callback);
+};
+
 },{}],3:[function(require,module,exports){
 
 var ejs = require('ejs');
@@ -293,6 +309,7 @@ exports.typeOfTechnic = ejs.compile("<div class='typeDiv col-md-6 col-lg-4'>\r\n
 exports.technicInList = ejs.compile("<div class=\"oneTechnic col-md-6 col-lg-4\">\r\n    <div class=\"thumbnail technic-card\">\r\n        <img class=\"\" src=\"http://localhost:5050/images/<%= technic.main_photo_location %>\">\r\n\r\n        <div class=\"caption\">\r\n            <div class=\"model\"><b><span class=\"mark_\"><%= technic.name %></span> <span class=\"model_\"><%= technic.model %></span></b></div>\r\n            <div class=\"price\"><i>Ціна:</i> <%= technic.price %> <%= technic.currency %></div>\r\n            <div class=\"amount\"><i>Кількість:</i> <%= technic.amount %></div>\r\n            <div class=\"description\"><i>Опис:</i> <%= technic.description %></div>\r\n\r\n        </div>\r\n    </div>\r\n\r\n</div>");
 exports.technicInMenu = ejs.compile("<a href=\"#\"><%= item.name %></a>");
 exports.technicInOrder = ejs.compile("<div class=\"myOrder\">\r\n    <img class=\"imgInOrder\" src=\"http://localhost:5050/images/<%=technic.icon%>\">\r\n    <p class=\"centerAlign\">\r\n        <span class=\"order-title\"><%= technic.title%> </span>\r\n    </p>\r\n    <div class=\"orderCharacteristics\">\r\n        <span class=\"price\"><%=technic.price %> <%= technic.currency %></span>\r\n    </div>\r\n    <div class=\"price-box\">\r\n        <div class=\"minus btn btn-xs btn-danger btn-circle\" >\r\n            <i class=\"glyphicon glyphicon-minus\"></i>\r\n        </div>\r\n        <span class=\"label order-count\" style=\"color:black;\"><span class=\"\" style=\"display:none\">x</span><%= technic.quantity %></span>\r\n        <div class=\"plus btn btn-xs btn-success btn-circle\" >\r\n            <i class=\"glyphicon glyphicon-plus \"></i>\r\n        </div>\r\n        <div class=\"removeButton count-clear btn btn-xs btn-default btn-circle\" >\r\n            <i class=\"glyphicon glyphicon-remove\"></i>\r\n        </div>\r\n    </div>\r\n</div>");
+exports.oneImage = ejs.compile("<div class=\"slider__item\">\r\n    <div style=\"height: 250px;\"><img src=\"http://localhost:5050/images/<%= image %>\"></div>\r\n</div>");
 },{"ejs":82}],4:[function(require,module,exports){
 var Templates = require('./Templates');
 

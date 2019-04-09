@@ -21,6 +21,7 @@ function configureEndpoints(app) {
 
     app.get('/api/gettechnics', api.get_technics);
     app.post('/api/gettechnics', api.get_technics_by_tp);
+    app.post('/api/gettechnicsmodelim', api.get_technics_im_by_tp_model);
 
 
     //Сторінки

@@ -119,6 +119,18 @@ exports.get_technic_by_type_model_mark = function(type_of_technics, mark_of_tech
         "WHERE model = " + model + " AND mark_name= '"+mark_of_technics+"'" , callback);
 }
 
+exports.get_technic_im_by_type_model_mark = function(type_of_technics, mark_of_technics,model, callback){
+    console.log("SELECT file_name from (SELECT id FROM (tracktop.technics inner join (select id id_mark,name mark_name from tracktop.marks_of_technics) D on technics.mark_id = D.id_mark) "+
+         "INNER JOIN (SELECT id id_type,name type_name,photo_location from tracktop.types_of_technics WHERE name='"+type_of_technics+"') L " +
+         "on type_id = L.id_type WHERE model ='" + model+ "' AND mark_name='" +mark_of_technics+
+        "' ) Q inner join tracktop.images_technics on images_technics.id_technic=Q.id");
+    connection.query("SELECT file_name from (SELECT id FROM (tracktop.technics inner join (select id id_mark,name mark_name from tracktop.marks_of_technics) D on technics.mark_id = D.id_mark) "+
+     "INNER JOIN (SELECT id id_type,name type_name,photo_location from tracktop.types_of_technics WHERE name='"+type_of_technics+"') L " +
+     "on type_id = L.id_type WHERE model ='" + model+ "' AND mark_name='" +mark_of_technics+
+        "' ) Q inner join tracktop.images_technics on images_technics.id_technic=Q.id"
+        , callback);
+}
+
 exports.get_technics_price_more = function(price,callback){
     connection.query("SELECT * FROM tracktop.technics WHERE tracktop.technics.price >" + price,callback);
 }

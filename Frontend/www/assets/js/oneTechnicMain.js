@@ -66,6 +66,10 @@ exports.getTechnicsByType = function(tp,callback) {
     backendPost("/api/gettechnics/", tp, callback);
 };
 
+exports.getTechnicsImagesByTypeMarkModel = function(tp,callback) {
+    backendPost("/api/gettechnicsmodelim/", tp, callback);
+};
+
 },{}],2:[function(require,module,exports){
 
 var ejs = require('ejs');
@@ -75,6 +79,7 @@ exports.typeOfTechnic = ejs.compile("<div class='typeDiv col-md-6 col-lg-4'>\r\n
 exports.technicInList = ejs.compile("<div class=\"oneTechnic col-md-6 col-lg-4\">\r\n    <div class=\"thumbnail technic-card\">\r\n        <img class=\"\" src=\"http://localhost:5050/images/<%= technic.main_photo_location %>\">\r\n\r\n        <div class=\"caption\">\r\n            <div class=\"model\"><b><span class=\"mark_\"><%= technic.name %></span> <span class=\"model_\"><%= technic.model %></span></b></div>\r\n            <div class=\"price\"><i>Ціна:</i> <%= technic.price %> <%= technic.currency %></div>\r\n            <div class=\"amount\"><i>Кількість:</i> <%= technic.amount %></div>\r\n            <div class=\"description\"><i>Опис:</i> <%= technic.description %></div>\r\n\r\n        </div>\r\n    </div>\r\n\r\n</div>");
 exports.technicInMenu = ejs.compile("<a href=\"#\"><%= item.name %></a>");
 exports.technicInOrder = ejs.compile("<div class=\"myOrder\">\r\n    <img class=\"imgInOrder\" src=\"http://localhost:5050/images/<%=technic.icon%>\">\r\n    <p class=\"centerAlign\">\r\n        <span class=\"order-title\"><%= technic.title%> </span>\r\n    </p>\r\n    <div class=\"orderCharacteristics\">\r\n        <span class=\"price\"><%=technic.price %> <%= technic.currency %></span>\r\n    </div>\r\n    <div class=\"price-box\">\r\n        <div class=\"minus btn btn-xs btn-danger btn-circle\" >\r\n            <i class=\"glyphicon glyphicon-minus\"></i>\r\n        </div>\r\n        <span class=\"label order-count\" style=\"color:black;\"><span class=\"\" style=\"display:none\">x</span><%= technic.quantity %></span>\r\n        <div class=\"plus btn btn-xs btn-success btn-circle\" >\r\n            <i class=\"glyphicon glyphicon-plus \"></i>\r\n        </div>\r\n        <div class=\"removeButton count-clear btn btn-xs btn-default btn-circle\" >\r\n            <i class=\"glyphicon glyphicon-remove\"></i>\r\n        </div>\r\n    </div>\r\n</div>");
+exports.oneImage = ejs.compile("<div class=\"slider__item\">\r\n    <div style=\"height: 250px;\"><img src=\"http://localhost:5050/images/<%= image %>\"></div>\r\n</div>");
 },{"ejs":12}],3:[function(require,module,exports){
 var Templates = require('./Templates');
 
@@ -394,8 +399,53 @@ exports.initialize = function(){
 
 }
 },{"../API":1,"../Templates":2}],6:[function(require,module,exports){
+var Templates = require('../Templates');
 
-exports.multiItemSlider = function (selector, config) {
+var $technics =   $('.slider__wrapper');
+
+
+function showTechnics(list) {
+
+    $technics.html("");
+
+    function showOne(type) {
+        var html_code = Templates.oneImage({image: type});
+
+        var $node = $(html_code);
+
+
+        $technics.append($node);
+    }
+
+    list.forEach(showOne);
+    multiItemSlider('.slider');
+}
+
+exports.initialize = function(){
+
+    var l=[];
+
+    var tp = JSON.parse(localStorage.getItem('currTechnic'));
+    var tp1 = localStorage.getItem('currentTypeOfTechnics');
+
+    function callback(err,data) {
+        if(data.error) console.log(data.error);
+        data.data.forEach(function(item){
+            l.push(item.file_name)
+        });
+        showTechnics(l);
+    }
+
+
+    require("../API").getTechnicsImagesByTypeMarkModel({type: tp1,model: tp.model, mark: tp.mark},callback);
+}
+
+
+
+
+
+
+function multiItemSlider (selector, config) {
     var
         _mainElement = document.querySelector(selector), // основный элемент блока
         _sliderWrapper = _mainElement.querySelector('.slider__wrapper'), // обертка для .slider-item
@@ -477,10 +527,11 @@ exports.multiItemSlider = function (selector, config) {
 
 }
 
+exports.multiItemSlider = multiItemSlider;
     // var a = multiItemSlider('.slider');
 
 
-},{}],7:[function(require,module,exports){
+},{"../API":1,"../Templates":2}],7:[function(require,module,exports){
 var modal = document.getElementById('id01');
 
 function openSignUpForm() {
@@ -593,7 +644,8 @@ function addClient(){
 }
 },{"./API":1,"./user_form":9}],8:[function(require,module,exports){
 function  initialize() {
-    var slider = require('../pagesScripts/slider').multiItemSlider('.slider');
+
+    require('../pagesScripts/slider').initialize();
 
     $('.order_technic').click(function(){
         var tech = JSON.parse(localStorage.getItem('currTechnic'));
@@ -640,6 +692,7 @@ $(function(){
     require('../login_form').login();
 
     require('../user_form').isLogged();
+    initialize();
 
     $('.edit-profile').click(function(){
         document.location.href = "http://localhost:5050/profile";
