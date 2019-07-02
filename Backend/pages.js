@@ -13,7 +13,8 @@ exports.profile = function(req, res) {
 exports.technics = function(req, res) {
     res.render('technicsPage', {
         pageTitle: 'Техніка',
-        types: req.query.type
+        types: req.query.type,
+        mark: req.query.mark
     });
 };
 

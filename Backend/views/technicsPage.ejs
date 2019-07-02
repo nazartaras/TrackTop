@@ -24,7 +24,12 @@
 
 <div id="main" class="container-fluid">
     <div class='type_header'>
+        <% if(types){ %>
         <%= types %>
+        <% } else{ %>
+        Вся техніка марки <%= mark %>
+        <% } %>
+
     </div>
     <% include common/searchBar.ejs %>
     <div class="technics">

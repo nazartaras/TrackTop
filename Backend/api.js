@@ -180,7 +180,8 @@ exports.get_technics_by_tp = function (req,res) {
             });
         }
     }
-    db.get_technics_by_type_name(req.body.type, callback);
+    if(req.body.type) db.get_technics_by_type_name(req.body.type, callback);
+    else if(req.body.mark) db.get_technics_by_mark_name(req.body.mark, callback);
 }
 
 
@@ -208,7 +209,8 @@ exports.get_technics_im_by_tp_model = function (req,res) {
 
 exports.get_user_information = function (req,res) {
     var db = require('./db');
-    var info = req.body;
+    var info = req.query;
+
     function callback(error,data){
         if(error) {
             console.log("Error! ", error.sqlMessage);

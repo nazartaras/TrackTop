@@ -1,31 +1,27 @@
 exports.initializeUser = function () {
     var phone = localStorage.getItem('phone');
 
-    var db = require('../../Backend/db');
-
     function callback(error,data){
+        console.log(data);
         if(data.error) {
             console.log(data.error);
             alert( "Не вірний пароль" );
         }
-
         else if(!(data.data[0]==null)){
             localStorage.setItem('status',true);
-            console.log("1");
-
             //
-            $('#surname_value').value(data.data[0].surname);
-            $('#name_value').set(data.data[0].name);
-            $('#phone_value').set(data.data[0].phone_number);
-            $('#location_value').set(data.data[0].settelment);
-            $('#location_post_office_value').set(data.data[0].nova_poshta_settlement);
-            $('#post_office_number_value').set(data.data[0].nova_poshta_number);
+            $('#surname_value').val(data.data[0].surname);
+            $('#name_value').val(data.data[0].name);
+            $('#phone_value').val(data.data[0].phone_number);
+            $('#location_value').val(data.data[0].settelment);
+            $('#location_post_office_value').val(data.data[0].nova_poshta_settlement);
+            $('#post_office_number_value').val(data.data[0].nova_poshta_number);
            // $('#password_value').set(data.data[0].password);
            // $('#password_confirm_value').set(data.data[0].password);
 
             localStorage.setItem('name',data.data[0].name);
             localStorage.setItem('surname',data.data[0].surname);
-            localStorage.setItem('phone',data.data[0].phone_number);
+
             //closeForm();
             require('./user_form').isLogged();
         }
@@ -33,20 +29,21 @@ exports.initializeUser = function () {
             localStorage.setItem('status',true);
             localStorage.setItem('name',data.data.name);
             localStorage.setItem('surname',data.data.surname);
-            localStorage.setItem('phone',data.data.phone_number);
 
-            $('#surname_value').set(data.data.surname);
-            $('#name_value').set(data.data.name);
-            $('#phone_value').set(data.data.phone_number);
-            $('#location_value').set(data.data.settelment);
-            $('#location_post_office_value').set(data.data.nova_poshta_settlement);
-            $('#post_office_number_value').set(data.data.nova_poshta_number);
+            console.log(data.data);
+            console.log(data.name);
+            $('#surname_value').val(data.data.surname);
+            $('#name_value').val(data.data.name);
+            $('#phone_value').val(data.data.phone_number);
+            $('#location_value').val(data.data.settelment);
+            $('#location_post_office_value').val(data.data.nova_poshta_settlement);
+            $('#post_office_number_value').val(data.data.nova_poshta_number);
            // closeForm();
             require('./user_form').isLogged();
         }
     }
 
-    db.get_client_by_phone(phone,callback);
+    require("../API").getClientbyPhone(phone,callback);
 
 }
 
