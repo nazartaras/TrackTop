@@ -34,7 +34,6 @@ $(function(){
 
     $('.edit-profile').click(function(){
         document.location.href = "http://localhost:5050/profile";
-        /////////////////////////////
         require('./profile').initializeUser();
     })
 
