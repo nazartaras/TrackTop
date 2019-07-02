@@ -1,7 +1,7 @@
 exports.initializeUser = function () {
     var phone = localStorage.getItem('phone');
 
-    var db = require('../../Backend/db');
+    var db = require('../../../Backend/db');
 
     function callback(error,data){
         if(data.error) {

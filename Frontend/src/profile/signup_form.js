@@ -94,7 +94,7 @@ function addClient(){
             hash: password
         }
         console.log(newT);
-        require("./API").addClient(newT, function (err, data) {
+        require("../API").addClient(newT, function (err, data) {
             if (data.error) console.log(data.error);
             else {
                 localStorage.setItem('status',true);

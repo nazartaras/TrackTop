@@ -29,7 +29,7 @@ exports.login = function(){
         var password = $password.value;
 
         console.log(password);
-        require("./API").sign_in({
+        require("../API").sign_in({
             phone_number: phone,
             password: password
         }, function (err,data) {
