@@ -180,7 +180,8 @@ exports.get_technics_by_tp = function (req,res) {
             });
         }
     }
-    db.get_technics_by_type_name(req.body.type, callback);
+    if(req.body.type) db.get_technics_by_type_name(req.body.type, callback);
+    else if(req.body.mark) db.get_technics_by_mark_name(req.body.mark, callback);
 }
 
 

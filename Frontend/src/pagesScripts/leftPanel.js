@@ -38,6 +38,12 @@ function showMarks(list) {
 
         var $node = $(html_code);
 
+        var mark = $node.html();
+        $node.click(function () {
+            localStorage.setItem('currentMarkOfTechnics', mark);
+            document.location.href = "http://localhost:5050/technics?mark="+mark;
+        })
+
         $models.append($node);
     }
 

@@ -41,6 +41,7 @@ exports.initializeTechnics = function(){
     var l=[];
 
     var tp = localStorage.getItem('currentTypeOfTechnics');
+    var mrk = localStorage.getItem('currentMarkOfTechnics');
 
     function callback(err,data) {
         if(data.error) console.log(data.error);
@@ -53,5 +54,6 @@ exports.initializeTechnics = function(){
     if(tp==null)
         require("../API").getTechnics(callback);
     else
-        require("../API").getTechnicsByType({type: tp},callback);
+        if(/type=([^&]+)/.exec(document.location.href)) require("../API").getTechnicsByType({type: tp},callback);
+        else  require("../API").getTechnicsByType({mark: mrk},callback);
 }
