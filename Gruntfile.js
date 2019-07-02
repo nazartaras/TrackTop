@@ -32,7 +32,12 @@ module.exports = function(grunt) {
             oneTechnic: {
                 src:        'Frontend/src/technics/technicMain.js',
                 dest:       'Frontend/www/assets/js/oneTechnicMain.js'
+            },
+            profile: {
+                src:        'Frontend/src/profile/main_profile.js',
+                dest:       'Frontend/www/assets/js/profile_main.js'
             }
+
         }
     };
 
@@ -66,6 +71,7 @@ module.exports = function(grunt) {
             'browserify:trackTop',
             'browserify:technics',
             'browserify:oneTechnic',
+            'browserify:profile',
             //Інші завдання які необхідно виконати
         ]
     );

@@ -1,9 +1,10 @@
 var API_URL = "http://localhost:5050";
 
-function backendGet(url, callback) {
+function backendGet(url, callback, data) {
     $.ajax({
         url: API_URL + url,
         type: 'GET',
+        data: data,
         success: function(data){
             callback(null, data);
         },
@@ -51,8 +52,8 @@ exports.getMarks = function(callback) {
 };
 
 /////// adedd
-exports.getClientbyPhone = function(callback) {
-    backendGet("/api/getclient/", callback);
+exports.getClientbyPhone = function(phone,callback) {
+    backendGet("/api/getclient/", callback, {phone_number: phone});
 };
 /////
 

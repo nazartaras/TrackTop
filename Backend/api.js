@@ -208,7 +208,8 @@ exports.get_technics_im_by_tp_model = function (req,res) {
 
 exports.get_user_information = function (req,res) {
     var db = require('./db');
-    var info = req.body;
+    var info = req.query;
+
     function callback(error,data){
         if(error) {
             console.log("Error! ", error.sqlMessage);
