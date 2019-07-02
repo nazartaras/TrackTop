@@ -27,9 +27,15 @@
         <div class="col-md-4 col-sm-6 col-xs-12">
 
             <div class="text-center">
-                <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail" alt="avatar">
+                <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail" alt="avatar" id="my_avatar">
                 <h6>Завантажити фото</h6>
-                <input type="file" class="text-center center-block well well-sm">
+                <input type="file" accept="image/*" class="text-center center-block well well-sm" onchange="loadFile(event)">
+                <script>
+                    var loadFile = function(event) {
+                        var image = document.getElementById('my_avatar');
+                        image.src = URL.createObjectURL(event.target.files[0]);
+                    };
+                </script>
             </div>
         </div>
         <!-- edit form column -->

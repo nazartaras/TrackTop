@@ -7,21 +7,21 @@ exports.isLogged = function () {
         // add info to panel
         $('#full_name').html('<b>' +surname + " " + name + '</b>');
         $('#user_phone').html('<b>' + phone + '</b>');
-        $('#user_photo').css("display","block")
+        $('#user_photo').css("display","block");
         $('#login').css("display", "none");
         $('#signup').css("display", "none");
     }
     else {
-        $('#user_photo').css("display","none")
-        $('#login').css("display","block")
-        $('#signup').css("display","block")
+        $('#user_photo').css("display","none");
+        $('#login').css("display","block");
+        $('#signup').css("display","block");
     }
 }
 
 exports.openLogin = function(){
     $('#full_name').html('<b>' +surname + " " + name + '</b>');
     $('#user_phone').html('<b>' + phone + '</b>');
-    $('#user_photo').css("display","block")
+    $('#user_photo').css("display","block");
     $('#login').css("display", "none");
     $('#signup').css("display", "none");
 }

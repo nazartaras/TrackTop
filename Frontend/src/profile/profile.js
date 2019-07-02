@@ -8,12 +8,13 @@ exports.initializeUser = function () {
             console.log(data.error);
             alert( "Не вірний пароль" );
         }
+
         else if(!(data.data[0]==null)){
             localStorage.setItem('status',true);
-
+            console.log("1");
 
             //
-            $('#surname_value').set(data.data[0].surname);
+            $('#surname_value').value(data.data[0].surname);
             $('#name_value').set(data.data[0].name);
             $('#phone_value').set(data.data[0].phone_number);
             $('#location_value').set(data.data[0].settelment);
