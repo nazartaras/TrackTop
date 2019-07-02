@@ -205,3 +205,25 @@ exports.get_technics_im_by_tp_model = function (req,res) {
     }
     db.get_technic_im_by_type_model_mark(req.body.type, req.body.mark, req.body.model, callback);
 }
+
+exports.get_user_information = function (req,res) {
+    var db = require('./db');
+    var info = req.body;
+    function callback(error,data){
+        if(error) {
+            console.log("Error! ", error.sqlMessage);
+            res.send({
+                success: true,
+                error: error.sqlMessage
+            });
+        }
+        else {
+            console.log("Success! ", data);
+            res.send({
+                success: true,
+                data: data
+            });
+        }
+    }
+    db.get_client_by_phone(info.phone_number,callback);
+}

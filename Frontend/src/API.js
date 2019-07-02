@@ -53,7 +53,6 @@ exports.getMarks = function(callback) {
 /////// adedd
 exports.getClientbyPhone = function(callback) {
     backendGet("/api/getclient/", callback);
-
 };
 /////
 
