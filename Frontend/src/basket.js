@@ -3,6 +3,17 @@ var Templates = require('./Templates');
 var basil = require('basil.js');
 basil = new basil();
 
+const { TelegramClient } = require('messaging-api-telegram');
+
+// get accessToken from telegram [@BotFather](https://telegram.me/BotFather)
+const client = TelegramClient.connect('884221604:AAEVBWl5ETesASuZ0XjXZs3DBMG0YwovKZM');
+
+
+var phone = "380345452323"
+var text = "Покупець: Горбач Михайло\n" +
+    "телефон:"+phone+"\n Замовлення\n";
+
+
 function openNav() {
     $("#basketColumn").addClass("widthR");
     $("#main").addClass("margR");
@@ -96,8 +107,36 @@ function initialiseCart() {
 
     $(".orderButton").click(function () {
         if(Cart.length!=0){
-            removeAll();
 
+            var status = localStorage.getItem("status");
+            if(status) {
+                var name = localStorage.getItem("name");
+                var surname = localStorage.getItem("surname");
+                var phone = localStorage.getItem("phone");
+                var settlement = localStorage.getItem("settlement");
+
+                var user_info = "Покупець:" + surname + " " + name + "\nТелефон : " + phone + "нас. пункт : " + settlement;
+
+                var order = "Замовлення\n";
+                for (let i = 0; i < Cart.length; i++) {
+                    order += "назва: " + Cart[i].title + "\n";
+                    order += "ціна: " + Cart[i].price + "\n";
+                    order += "кількість: " + Cart[i].quantity + " шт.\n";
+                    //order+=Cart[i].currency+")\n";
+                }
+                //console.log(order);
+                var message = user_info + "\n" + order;
+                client.sendMessage("-327577485", message, {
+                    disable_web_page_preview: true,
+                    disable_notification: false,
+                });
+                removeAll();
+                alert("Дякуємо за замовлення! Найближчим часом ми з вами зв'яжемось.");
+                var today = getCurrentDate();
+            }
+            else {
+                alert("Покупки можуть здійснювати лише зареєстровані користувачі");
+            }
         }
     });
 
@@ -166,6 +205,16 @@ function removeAll(){
     Cart.forEach(function(el){
         removeFromCart(el);
     });
+}
+
+function getCurrentDate() {
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = today.getFullYear();
+
+    today = mm + '/' + dd + '/' + yyyy;
+    return today;
 }
 
 exports.initialiseCart = initialiseCart;

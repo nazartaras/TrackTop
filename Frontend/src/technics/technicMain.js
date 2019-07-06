@@ -9,7 +9,7 @@ function  initialize() {
             price: tech.price,
             currency: tech.currency,
             icon: tech.main_photo_location,
-            quantity: 1
+            quantity: tech.amount
         });
     })
 }
