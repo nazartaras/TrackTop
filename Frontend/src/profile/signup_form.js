@@ -103,6 +103,7 @@ function addClient(){
                 localStorage.setItem('name',name);
                 localStorage.setItem('surname',surname);
                 localStorage.setItem('phone',phone);
+                localStorage.setItem('settlement',address);
                 require('./user_form').isLogged();
             }
         });
