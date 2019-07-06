@@ -23,6 +23,7 @@ function configureEndpoints(app) {
     app.post('/api/gettechnics', api.get_technics_by_tp);
     app.post('/api/gettechnicsmodelim', api.get_technics_im_by_tp_model);
     app.post('/api/upload_user_photo', api.upload_user_photo);
+    app.post('/api/update_user', api.update_user);
 
 
     //Сторінки

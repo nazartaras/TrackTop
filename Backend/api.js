@@ -76,7 +76,14 @@ exports.sign_in = function(req, res) {
             if(!(data[0]==null) && require('./hash').md5(info.password) === data[0].hash)
                  res.send({
                      success: true,
-                     data: data
+                     data: {
+                         id: require('./hash').md5(""+data[0].id),
+                         surname: data[0].surname,
+                         name: data[0].name,
+                         settelment: data[0].settelment,
+                         phone_number: data[0].phone_number,
+                         photo_location: data[0].photo_location
+                     }
                  });
             else
                 res.send({
@@ -236,8 +243,6 @@ var fs = require("fs"),
 
 exports.upload_user_photo = function (req,res) {
 
-    var db = require('./db');
-
     var form = new multiparty.Form();
     var uploadFile = {uploadPath: '', type: '', size: 0};
     var maxSize = 2 * 1024 * 1024; //2MB
@@ -304,4 +309,41 @@ exports.upload_user_photo = function (req,res) {
 
     // парсим форму
     form.parse(req);
+}
+
+exports.update_user = function(req,res){
+    var db = require('./db');
+    var info = req.body;
+
+    function callback(error,data){
+        if(error) {
+            console.log("Error! ", error.sqlMessage);
+            res.send({
+                success: true,
+                error: error.sqlMessage
+            });
+        }
+        else {
+            console.log("Success! ", data);
+            res.send({
+                success: true
+            });
+        }
+    }
+
+    db.get_client_by_phone(info.info.phone_number,function(error,data){
+        if(error) {
+            console.log("Error! ", error.sqlMessage);
+            res.send({
+                success: true,
+                error: error.sqlMessage
+            });
+        }
+        else {
+           // if(require('./hash').md5(""+data.id) == info.id)
+            if(!data.error)
+                db.update_client(data[0].id,info.info,callback);
+        }
+    });
+
 }

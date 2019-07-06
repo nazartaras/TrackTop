@@ -38,6 +38,7 @@ exports.login = function(){
                     }
                     else if(!(data.data[0]==null)){
                         localStorage.setItem('status',true);
+                        localStorage.setItem('id',data.data[0].id);
                         localStorage.setItem('name',data.data[0].name);
                         localStorage.setItem('surname',data.data[0].surname);
                         localStorage.setItem('phone',data.data[0].phone_number);
@@ -46,6 +47,7 @@ exports.login = function(){
                     }
                     else if(!(data==null)){
                         localStorage.setItem('status',true);
+                        localStorage.setItem('id',data.data.id);
                         localStorage.setItem('name',data.data.name);
                         localStorage.setItem('surname',data.data.surname);
                         localStorage.setItem('phone',data.data.phone_number);

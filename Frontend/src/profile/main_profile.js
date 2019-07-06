@@ -1,10 +1,17 @@
 $(function(){
 
+    var $surname = $('#surname_value')[0];
+    var $name = $('#name_value')[0];
+    var $phone_value = $('#phone_value')[0];
+    var $password_value = $('#password_value')[0];
+    var $password_confirm_value = $('#password_confirm_value')[0];
+    var $location_value = $('#location_value')[0];
+    var $location_post_office_value = $('#location_post_office_value')[0];
+    var $post_office_number_value = $('#post_office_number_value')[0];
+
     $('#logo').click(function () {
         document.location.href = "http://localhost:5050/";
     })
-
-
 
     $('#login').click(function() {
         require('./login_form').openForm();
@@ -35,7 +42,32 @@ $(function(){
         var image = document.getElementById('my_avatar');
         image.src = URL.createObjectURL(event.target.files[0]);
         require('../API').uploadUserPhoto(event.target.files[0],function(err,data){
-            //TODO
+            if(err || data.error){}
+            else {
+                console.log(event.target.files[0]);
+                localStorage.setItem('photo',event.target.files[0].name);
+                var id = localStorage.getItem('id');
+                require('../API').updateClient(id,{
+                    photo_location: event.target.files[0].name,
+                    phone_number: $phone_value.value
+                },function(err){
+                    if (err) console.log(err);
+                })
+            }
+        })
+    })
+
+    $('#update_user_info').click(function(){
+        var id = localStorage.getItem('id');
+        require('../API').updateClient(id,{
+            surname: $surname.value,
+            name: $name.value,
+            phone_number: $phone_value.value,
+            settelment: $location_value.value,
+            nova_poshta_settlment: $location_post_office_value.value,
+            nova_poshta_number: $post_office_number_value.value
+        },function(err){
+            if (err) console.log(err);
         })
     })
 

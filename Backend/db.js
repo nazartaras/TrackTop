@@ -206,15 +206,15 @@ exports.update_check = function(id,check,callback){
 }
 
 exports.update_client = function(id,client,callback){
-    connection.query("UPDATE tracktop.clients SET ?"+ client + "WHERE id = "+ id,callback);
+    connection.query("UPDATE tracktop.clients SET ? WHERE id = ?", [client,id],callback);
 }
 
 exports.update_client_by_phone = function(phone,client,callback){
-    connection.query("UPDATE tracktop.clients SET ?"+ client + "WHERE phone_number = "+ phone,callback);
+    connection.query("UPDATE tracktop.clients SET ? "+ client + "WHERE phone_number = "+ phone,callback);
 }
 
 exports.update_equipments = function(id,equipment,callback){
-    connection.query("UPDATE tracktop.equipments SET ?"+ equipment + "WHERE id = "+ id,callback);
+    connection.query("UPDATE tracktop.equipments SET ? "+ equipment + "WHERE id = "+ id,callback);
 }
 
 exports.update_mark_of_technic = function(id,mark,callback){

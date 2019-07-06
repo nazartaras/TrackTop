@@ -97,6 +97,8 @@ function addClient(){
         require("../API").addClient(newT, function (err, data) {
             if (data.error) console.log(data.error);
             else {
+                //TODO: сделать вызов авторизации
+                localStorage.setItem('status',true);
                 localStorage.setItem('status',true);
                 localStorage.setItem('name',name);
                 localStorage.setItem('surname',surname);

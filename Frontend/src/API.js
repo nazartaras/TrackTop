@@ -91,3 +91,7 @@ exports.uploadUserPhoto = function(photo,callback){
     data.append('uploadFile', photo);
     backendPostFiles("/api/upload_user_photo/", data, callback);
 };
+
+exports.updateClient = function(id,info,callback) {
+    backendPost("/api/update_user",{id: id, info: info},callback);
+}
