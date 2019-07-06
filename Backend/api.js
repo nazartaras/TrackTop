@@ -229,3 +229,79 @@ exports.get_user_information = function (req,res) {
     }
     db.get_client_by_phone(info.phone_number,callback);
 }
+
+
+var fs = require("fs"),
+    multiparty = require('multiparty');
+
+exports.upload_user_photo = function (req,res) {
+
+    var db = require('./db');
+
+    var form = new multiparty.Form();
+    var uploadFile = {uploadPath: '', type: '', size: 0};
+    var maxSize = 2 * 1024 * 1024; //2MB
+    var supportMimeTypes = ['image/jpg', 'image/jpeg', 'image/png'];
+    var errors = [];
+
+    form.on('error', function(err){
+        if(fs.existsSync(uploadFile.path)) {
+            //если загружаемый файл существует удаляем его
+            fs.unlinkSync(uploadFile.path);
+            console.log('error');
+        }
+    });
+
+    form.on('close', function() {
+        //если нет ошибок и все хорошо
+        if(errors.length == 0) {
+            //сообщаем что все хорошо
+            res.send({status: 'ok', text: 'Success'});
+        }
+        else {
+            if(fs.existsSync(uploadFile.path)) {
+                //если загружаемый файл существует удаляем его
+                fs.unlinkSync(uploadFile.path);
+            }
+            //сообщаем что все плохо и какие произошли ошибки
+            res.send({status: 'bad', errors: errors});
+        }
+    });
+
+    // при поступление файла
+    form.on('part', function(part) {
+        console.log(part.byteCount);
+        console.log(part);
+        //читаем его размер в байтах
+        uploadFile.size = part.byteCount;
+        //читаем его тип
+        uploadFile.type = part.headers['content-type'];
+        //путь для сохранения файла
+        uploadFile.path = './Backend/res/images/users_photos/' + part.filename;
+
+        //проверяем размер файла, он не должен быть больше максимального размера
+        if(uploadFile.size > maxSize) {
+            errors.push('File size is ' + uploadFile.size + '. Limit is' + (maxSize / 1024 / 1024) + 'MB.');
+        }
+
+        //проверяем является ли тип поддерживаемым
+        if(supportMimeTypes.indexOf(uploadFile.type) == -1) {
+            errors.push('Unsupported mimetype ' + uploadFile.type);
+        }
+
+        //если нет ошибок то создаем поток для записи файла
+        if(errors.length == 0) {
+            var out = fs.createWriteStream(uploadFile.path);
+            part.pipe(out);
+        }
+        else {
+            console.log(errors);
+            //пропускаем
+            //вообще здесь нужно как-то остановить загрузку и перейти к onclose
+            part.resume();
+        }
+    });
+
+    // парсим форму
+    form.parse(req);
+}

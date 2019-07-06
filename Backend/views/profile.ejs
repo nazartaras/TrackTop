@@ -29,7 +29,7 @@
             <div class="text-center">
                 <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail" alt="avatar" id="my_avatar">
                 <h6>Завантажити фото</h6>
-                <input type="file" accept="image/*" class="text-center center-block well well-sm" onchange="loadFile(event)">
+                <input type="file" id="photo_input" accept="image/*" class="text-center center-block well well-sm">
                 <script>
                     var loadFile = function(event) {
                         var image = document.getElementById('my_avatar');
