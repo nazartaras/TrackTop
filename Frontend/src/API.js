@@ -29,6 +29,23 @@ function backendPost(url, data, callback) {
     })
 }
 
+function backendPostFiles(url, data, callback) {
+    $.ajax({
+        url: API_URL + url,
+        type: 'POST',
+        cache: false,
+        contentType : false,
+        processData: false,
+        data: data,
+        success: function(data){
+            callback(null, data);
+        },
+        error: function() {
+            callback(new Error("Ajax Failed"));
+        }
+    })
+}
+
 exports.addTehnic = function(tehnic, callback) {
     backendPost("/api/addtechnic/", tehnic, callback);
 };
@@ -67,4 +84,10 @@ exports.getTechnicsByType = function(tp,callback) {
 
 exports.getTechnicsImagesByTypeMarkModel = function(tp,callback) {
     backendPost("/api/gettechnicsmodelim/", tp, callback);
+};
+
+exports.uploadUserPhoto = function(photo,callback){
+    var data = new FormData();
+    data.append('uploadFile', photo);
+    backendPostFiles("/api/upload_user_photo/", data, callback);
 };

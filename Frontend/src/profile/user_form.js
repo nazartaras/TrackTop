@@ -4,6 +4,7 @@ exports.isLogged = function () {
     var status = localStorage.getItem('status');
     var phone = localStorage.getItem('phone');
     if(status) {
+        console.log('status true');
         // add info to panel
         $('#full_name').html('<b>' +surname + " " + name + '</b>');
         $('#user_phone').html('<b>' + phone + '</b>');

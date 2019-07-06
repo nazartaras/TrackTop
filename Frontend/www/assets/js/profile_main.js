@@ -30,6 +30,23 @@ function backendPost(url, data, callback) {
     })
 }
 
+function backendPostFiles(url, data, callback) {
+    $.ajax({
+        url: API_URL + url,
+        type: 'POST',
+        cache: false,
+        contentType : false,
+        processData: false,
+        data: data,
+        success: function(data){
+            callback(null, data);
+        },
+        error: function() {
+            callback(new Error("Ajax Failed"));
+        }
+    })
+}
+
 exports.addTehnic = function(tehnic, callback) {
     backendPost("/api/addtechnic/", tehnic, callback);
 };
@@ -70,6 +87,11 @@ exports.getTechnicsImagesByTypeMarkModel = function(tp,callback) {
     backendPost("/api/gettechnicsmodelim/", tp, callback);
 };
 
+exports.uploadUserPhoto = function(photo,callback){
+    var data = new FormData();
+    data.append('uploadFile', photo);
+    backendPostFiles("/api/upload_user_photo/", data, callback);
+};
 },{}],2:[function(require,module,exports){
 
 var ejs = require('ejs');
@@ -297,14 +319,14 @@ exports.login = function(){
         var phone = $phone.value;
         var password = $password.value;
 
-        console.log(password);
         require("../API").sign_in({
             phone_number: phone,
             password: password
         }, function (err,data) {
+                    if (err) console.log(err);
                     if(data.error) {
                         console.log(data.error);
-                        alert( "Не вірний пароль" );
+                        alert( "Невірний пароль" );
                     }
                     else if(!(data.data[0]==null)){
                         localStorage.setItem('status',true);
@@ -357,6 +379,15 @@ $(function(){
         require('./user_form').isLogged();
         $('#user_info').css("display", "none");
     })
+
+    $('#photo_input').change(function (event) {
+        var image = document.getElementById('my_avatar');
+        image.src = URL.createObjectURL(event.target.files[0]);
+        require('../API').uploadUserPhoto(event.target.files[0],function(err,data){
+            //TODO
+        })
+    })
+
     require('./signup_form').initializeLogin();
     require('./login_form').login();
     require('./user_form').isLogged();
@@ -370,7 +401,7 @@ $(function(){
 
 
 })
-},{"../basket":3,"./login_form":4,"./profile":6,"./signup_form":7,"./user_form":8}],6:[function(require,module,exports){
+},{"../API":1,"../basket":3,"./login_form":4,"./profile":6,"./signup_form":7,"./user_form":8}],6:[function(require,module,exports){
 exports.initializeUser = function () {
     var phone = localStorage.getItem('phone');
 
@@ -562,6 +593,7 @@ exports.isLogged = function () {
     var status = localStorage.getItem('status');
     var phone = localStorage.getItem('phone');
     if(status) {
+        console.log('status true');
         // add info to panel
         $('#full_name').html('<b>' +surname + " " + name + '</b>');
         $('#user_phone').html('<b>' + phone + '</b>');

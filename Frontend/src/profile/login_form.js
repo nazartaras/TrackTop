@@ -28,14 +28,14 @@ exports.login = function(){
         var phone = $phone.value;
         var password = $password.value;
 
-        console.log(password);
         require("../API").sign_in({
             phone_number: phone,
             password: password
         }, function (err,data) {
+                    if (err) console.log(err);
                     if(data.error) {
                         console.log(data.error);
-                        alert( "Не вірний пароль" );
+                        alert( "Невірний пароль" );
                     }
                     else if(!(data.data[0]==null)){
                         localStorage.setItem('status',true);
