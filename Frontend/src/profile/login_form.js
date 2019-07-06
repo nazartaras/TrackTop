@@ -32,7 +32,6 @@ exports.login = function(){
             phone_number: phone,
             password: password
         }, function (err,data) {
-                    if (err) console.log(err);
                     if(data.error) {
                         console.log(data.error);
                         alert( "Невірний пароль" );
@@ -53,6 +52,8 @@ exports.login = function(){
                         require('./login_form').closeForm();
                         require('./user_form').isLogged();
                     }
+
         });
+
     });
 }

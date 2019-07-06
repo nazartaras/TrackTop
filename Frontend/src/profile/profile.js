@@ -10,11 +10,14 @@ exports.initializeUser = function () {
         else if(!(data.data[0]==null)){
             localStorage.setItem('status',true);
             //
+            console.log(data.data[0].photo_location);
+            $('#my_avatar').attr("src", "http://localhost:5050/images/user_images/"+data.data[0].photo_location);
+
             $('#surname_value').val(data.data[0].surname);
             $('#name_value').val(data.data[0].name);
             $('#phone_value').val(data.data[0].phone_number);
             $('#location_value').val(data.data[0].settelment);
-            $('#location_post_office_value').val(data.data[0].nova_poshta_settlement);
+            $('#location_post_office_value').val(data.data[0].nova_poshta_settlment);
             $('#post_office_number_value').val(data.data[0].nova_poshta_number);
            // $('#password_value').set(data.data[0].password);
            // $('#password_confirm_value').set(data.data[0].password);
@@ -32,11 +35,13 @@ exports.initializeUser = function () {
 
             console.log(data.data);
             console.log(data.name);
+            console.log(data.data[0].photo_location);
+            $('#my_avatar').attr("src","http://localhost:5050/images/user_images/"+  data.data.photo_location);
             $('#surname_value').val(data.data.surname);
             $('#name_value').val(data.data.name);
             $('#phone_value').val(data.data.phone_number);
             $('#location_value').val(data.data.settelment);
-            $('#location_post_office_value').val(data.data.nova_poshta_settlement);
+            $('#location_post_office_value').val(data.data.nova_poshta_settlment);
             $('#post_office_number_value').val(data.data.nova_poshta_number);
            // closeForm();
             require('./user_form').isLogged();
@@ -48,7 +53,24 @@ exports.initializeUser = function () {
 }
 
 exports.updateClient = function () {
+    var prev_phone_number = localStorage.getItem('phone');
+
+    function callback(error,data) {
+        console.log(data);
+        if (data.error) {
+            console.log(data.error);
+            alert("Не вірний пароль");
+        }
+        else if (!(data.data[0]==null)){
+
+        }
+        else if(!(data==null)) {
+
+        }
+    }
+
     $('#update_user_info').click(function() {
+
         var surname = $('#surname_value').val();
         var name = $('#name_value').val();
         var phone_number = $('#phone_value').val();
@@ -70,4 +92,6 @@ exports.updateClient = function () {
         }
        // var db = require("./");
     });
+
+    require("../API").getClientbyPhone(prev_phone_number,callback);
 }
