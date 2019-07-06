@@ -29,10 +29,13 @@ exports.login = function(){
         var password = $password.value;
 
         console.log(password);
+        console.log(phone);
+
         require("../API").sign_in({
             phone_number: phone,
             password: password
         }, function (err,data) {
+            console.log(data);
                     if(data.error) {
                         console.log(data.error);
                         alert( "Не вірний пароль" );
@@ -53,6 +56,8 @@ exports.login = function(){
                         require('./login_form').closeForm();
                         require('./user_form').isLogged();
                     }
+
         });
+
     });
 }
