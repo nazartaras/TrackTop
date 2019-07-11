@@ -23,7 +23,40 @@ exports.technic = function(req, res) {
     var mark = req.query.mark;
     var type = req.query.type;
 
+    console.log("model"+ model + "mark = " + mark + "type" + type);
+
+
     require('./db').get_technic_by_type_model_mark(type,mark,model, function (error,data) {
+
+        if(error) {
+            console.log("Error! ", error.sqlMessage);
+            res.send({
+                success: true,
+                error: error.sqlMessage
+            });
+        }
+        else {
+
+            if(data.length>0) {
+               // console.log(data[0]+"\n");
+
+                res.render('oneTechnicPage', {
+                    pageTitle: type + ': ' + mark + ' ' + model,
+                    name: mark + ' ' + model,
+                    technic: data[0]
+                });
+            }
+        }
+    });
+
+
+};
+
+exports.equipments = function(req, res) {
+
+    var type = req.query.type;
+
+    require('./db').get_equipments( function (error,data) {
 
         if(error) {
             console.log("Error! ", error.sqlMessage);
@@ -36,9 +69,8 @@ exports.technic = function(req, res) {
 
             if(data.length>0)
                 res.render('oneTechnicPage', {
-                    pageTitle: type + ': ' + mark + ' ' + model,
-                    name: mark + ' ' + model,
-                    technic: data[0]
+                    pageTitle: type ,
+
                 });
         }
     });

@@ -53,8 +53,87 @@ exports.addClient = function(req, res) {
     db.insert_client(info,callback);
 
 };
+// to do
+exports.addCheck = function(req, res) {
+    var db = require('./db');
+    var info = req.body;
 
 
+    function callback(error,data){
+        if(error) {
+            console.log("Error! ", error.sqlMessage);
+            res.send({
+                success: true,
+                error: error.sqlMessage
+            });
+        }
+        else {
+            console.log("Success! ", data);
+            res.send({
+                success: true,
+                data: data
+            });
+        }
+    }
+
+    db.insert_check(info,callback);
+
+};
+
+exports.addCheckEquipment = function(req, res) {
+    var db = require('./db');
+    var info = req.body;
+
+
+    function callback(error,data){
+        if(error) {
+            console.log("Error! ", error.sqlMessage);
+            res.send({
+                success: true,
+                error: error.sqlMessage
+            });
+        }
+        else {
+            console.log("Success! ", data);
+            res.send({
+                success: true,
+                data: data
+            });
+        }
+    }
+
+    db.insert_check_equipments(info,callback);
+
+};
+
+
+exports.addCheckTechnic = function(req, res) {
+    var db = require('./db');
+    var info = req.body;
+
+
+    function callback(error,data){
+        if(error) {
+            console.log("Error! ", error.sqlMessage);
+            res.send({
+                success: true,
+                error: error.sqlMessage
+            });
+        }
+        else {
+            console.log("Success! ", data);
+            res.send({
+                success: true,
+                data: data
+            });
+        }
+    }
+
+    db.insert_check_technics(info,callback);
+
+};
+
+//
 exports.sign_in = function(req, res) {
     var db = require('./db');
     var info = req.body;
@@ -166,6 +245,28 @@ exports.get_technics = function (req,res) {
         }
     }
     db.get_technics(callback);
+}
+
+exports.get_equipments = function (req,res) {
+    var db = require('./db');
+
+    function callback(error,data){
+        if(error) {
+            console.log("Error! ", error.sqlMessage);
+            res.send({
+                success: true,
+                error: error.sqlMessage
+            });
+        }
+        else {
+            console.log("Success! ", data);
+            res.send({
+                success: true,
+                data: data
+            });
+        }
+    }
+    db.get_equipments(callback);
 }
 
 exports.get_technics_by_tp = function (req,res) {

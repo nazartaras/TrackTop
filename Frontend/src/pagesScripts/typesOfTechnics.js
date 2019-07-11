@@ -12,6 +12,7 @@ function showTypes(list) {
 
         var $node = $(html_code);
         var typ = $node.find('.type_h2').html();
+        console.log(typ);
 
         $node.click(function () {
             localStorage.setItem('currentTypeOfTechnics', typ);

@@ -2,8 +2,8 @@ var mysql      = require('mysql');
 var connection;
 
 exports.connect = function() {
-     if(connection===null)
-         return;
+    if(connection===null)
+        return;
 
     connection = mysql.createConnection({
         host: 'localhost',
@@ -83,6 +83,10 @@ exports.insert_providers_equipments = function(providers_equipments,callback){
 exports.insert_technics_equipments = function(technics_equipments,callback){
     connection.query("INSERT INTO tracktop.technics_equipments SET ?", technics_equipments, callback);
 }
+
+exports.insert_equipments = function(equipment,callback){
+    connection.query("INSERT INTO tracktop.equipments SET ?", equipment, callback);
+}
 //select methods
 
 exports.get_types_of_technics = function(callback){
@@ -96,14 +100,16 @@ exports.get_marks_of_technics = function(callback){
 ////
 // select for technics
 exports.get_technics_by_mark_name = function(mark_of_technics,callback){
-    connection.query("SELECT * FROM (tracktop.technics INNER JOIN (SELECT id,name type_name,photo_location FROM tracktop.types_of_technics) T " +
-    "ON technics.type_id = T.id ) inner JOIN (select id, name mark_name From tracktop.marks_of_technics Where name = '" +
-        mark_of_technics  +"') R1 ON technics.mark_id = R1.id",callback);
+connection.query("SELECT * FROM (tracktop.technics INNER JOIN (SELECT id as type_id ,name type_name,photo_location FROM tracktop.types_of_technics) T " +
+    "ON technics.type_id = T.type_id ) inner JOIN (select id as mark_id, name  From tracktop.marks_of_technics Where name = '" +
+    mark_of_technics  +"') R1 ON technics.mark_id = R1.mark_id",callback);
 }
 
+
+
 exports.get_technics_by_type_name = function(type_of_technics,callback){
-    connection.query("SELECT * FROM (tracktop.technics inner JOIN tracktop.marks_of_technics ON technics.mark_id = marks_of_technics.id)  INNER JOIN (SELECT id,name type_name,photo_location FROM tracktop.types_of_technics WHERE name = '"+type_of_technics+
-        "') T ON technics.type_id = T.id ",callback);
+    connection.query("SELECT * FROM (tracktop.technics inner JOIN (select id as marks_of_technics_id , name from tracktop.marks_of_technics) k On k.marks_of_technics_id=technics.mark_id )  INNER JOIN (SELECT id as type_id ,name type_name,photo_location FROM tracktop.types_of_technics WHERE name = '"+type_of_technics+
+        "') T ON technics.type_id = T.type_id ",callback);
 }
 
 exports.get_technics_by_type_and_mark = function(type_of_technics, mark_of_technics, callback){
@@ -111,22 +117,22 @@ exports.get_technics_by_type_and_mark = function(type_of_technics, mark_of_techn
         "ON tracktop.types_of_technics.type_id = R1.type_id INNER JOIN (SELECT * FROM tracktop.marks_of_technics as R2 WHERE R1.name = "+mark_of_technics +
         +"ON tracktop.technics.mark_id = R2.mark_id",callback);
 }
-
+/*
 exports.get_technic_by_type_model_mark = function(type_of_technics, mark_of_technics,model, callback){
     connection.query("SELECT * FROM (tracktop.technics inner join (select id id_mark,name mark_name from tracktop.marks_of_technics) D on technics.mark_id = D.id_mark) \n" +
         "INNER JOIN (SELECT id,name type_name,photo_location from tracktop.types_of_technics WHERE name= " + type_of_technics+") L\n" +
         "on type_id = L.id\n" +
         "WHERE model = " + model + " AND mark_name= '"+mark_of_technics+"'" , callback);
 }
-
+*/
 exports.get_technic_im_by_type_model_mark = function(type_of_technics, mark_of_technics,model, callback){
     console.log("SELECT file_name from (SELECT id FROM (tracktop.technics inner join (select id id_mark,name mark_name from tracktop.marks_of_technics) D on technics.mark_id = D.id_mark) "+
-         "INNER JOIN (SELECT id id_type,name type_name,photo_location from tracktop.types_of_technics WHERE name='"+type_of_technics+"') L " +
-         "on type_id = L.id_type WHERE model ='" + model+ "' AND mark_name='" +mark_of_technics+
+        "INNER JOIN (SELECT id id_type,name type_name,photo_location from tracktop.types_of_technics WHERE name='"+type_of_technics+"') L " +
+        "on type_id = L.id_type WHERE model ='" + model+ "' AND mark_name='" +mark_of_technics+
         "' ) Q inner join tracktop.images_technics on images_technics.id_technic=Q.id");
     connection.query("SELECT file_name from (SELECT id FROM (tracktop.technics inner join (select id id_mark,name mark_name from tracktop.marks_of_technics) D on technics.mark_id = D.id_mark) "+
-     "INNER JOIN (SELECT id id_type,name type_name,photo_location from tracktop.types_of_technics WHERE name='"+type_of_technics+"') L " +
-     "on type_id = L.id_type WHERE model ='" + model+ "' AND mark_name='" +mark_of_technics+
+        "INNER JOIN (SELECT id id_type,name type_name,photo_location from tracktop.types_of_technics WHERE name='"+type_of_technics+"') L " +
+        "on type_id = L.id_type WHERE model ='" + model+ "' AND mark_name='" +mark_of_technics+
         "' ) Q inner join tracktop.images_technics on images_technics.id_technic=Q.id"
         , callback);
 }
@@ -143,6 +149,7 @@ exports.get_technics_by_model = function(model,callback){
     connection.query("SELECT * FROM tracktop.technics WHERE tracktop.technics.model =" + model,callback);
 }
 
+
 exports.get_technic_by_type_model_mark = function(type_of_technics, mark_of_technics,model, callback){
     connection.query("SELECT * FROM (tracktop.technics inner join (select id id_mark,name mark_name from tracktop.marks_of_technics) D on technics.mark_id = D.id_mark) \n" +
         "INNER JOIN (SELECT id,name type_name,photo_location from tracktop.types_of_technics WHERE name= '" + type_of_technics+"') L\n" +
@@ -150,17 +157,22 @@ exports.get_technic_by_type_model_mark = function(type_of_technics, mark_of_tech
         "WHERE model = '" + model+"' AND mark_name= '"+mark_of_technics+"'" , callback);
 }
 
+
 exports.get_technics_by_country = function(country,callback){
     connection.query("SELECT * FROM tracktop.technics WHERE tracktop.technics.country_producer =" + country,callback);
 }
 
 
 exports.get_technics = function(callback){
-    connection.query("SELECT * FROM (tracktop.technics INNER JOIN tracktop.types_of_technics on technics.type_id = types_of_technics.id) INNER JOIN tracktop.marks_of_technics on technics.mark_id = marks_of_technics.id",callback);
+    connection.query("SELECT technics.id, technics.mark_id , technics.type_id, technics.amount,technics.price,technics.delivery_time,technics.state,technics.model,technics.reserved_amount,technics.production_date,technics.country_producer,technics.shipping_date,technics.currency,technics.main_photo_location,technics.description, types_of_technics.id as types_of_technics_id , types_of_technics.name as types_of_technics_name , photo_location , marks_of_technics.id as marks_of_technics_id,marks_of_technics.name as marks_of_technics_name FROM (tracktop.technics INNER JOIN tracktop.types_of_technics on technics.type_id = types_of_technics.id) INNER JOIN tracktop.marks_of_technics on technics.mark_id = marks_of_technics.id",callback);
 }
 
 exports.get_client_by_phone = function(phone,callback){
     connection.query("SELECT * FROM tracktop.clients WHERE phone_number ='" + phone + "'",callback);
+}
+
+exports.get_equipments = function(callback){
+    connection.query("SELECT * FROM tracktop.equipments",callback);
 }
 
 

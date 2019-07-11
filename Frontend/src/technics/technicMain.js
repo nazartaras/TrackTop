@@ -4,12 +4,17 @@ function  initialize() {
 
     $('.order_technic').click(function(){
         var tech = JSON.parse(localStorage.getItem('currTechnic'));
+        var equipment = localStorage.getItem('currEquipment');
+        console.log(equipment);
+        var isTech = equipment==null ? false : true;
         require('../basket').addToCart({
+            id : tech.id,
             title: tech.mark+' '+tech.model,
             price: tech.price,
             currency: tech.currency,
             icon: tech.main_photo_location,
-            quantity: tech.amount
+            quantity: tech.amount,
+            isTech : isTech
         });
     })
 }

@@ -43,6 +43,7 @@ exports.login = function(){
                         localStorage.setItem('surname',data.data[0].surname);
                         localStorage.setItem('phone',data.data[0].phone_number);
                         localStorage.setItem('settlement',data.data[0].settelment);
+                        localStorage.setItem('photo',data.data[0].photo_location);
                         require('./login_form').closeForm();
                         require('./user_form').isLogged();
                     }
@@ -53,6 +54,7 @@ exports.login = function(){
                         localStorage.setItem('surname',data.data.surname);
                         localStorage.setItem('phone',data.data.phone_number);
                         localStorage.setItem('settlement',data.data.settelment);
+                        localStorage.setItem('photo',data.data.photo_location);
                         require('./login_form').closeForm();
                         require('./user_form').isLogged();
                     }

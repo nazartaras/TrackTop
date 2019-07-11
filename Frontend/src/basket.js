@@ -63,13 +63,16 @@ function addToCart(tech) {
     });
     if(flag){
         allPrice += tech.price;
+       // tech.
         amountOfOrders += 1;
         Cart.push({
+            id: tech.id,
             title: tech.title,
             price: tech.price,
             currency: tech.currency,
             icon: tech.icon,
-            quantity: 1
+            quantity: 1,
+            isTech: tech.isTech
         });
     }
     flag=true;
@@ -110,6 +113,7 @@ function initialiseCart() {
 
             var status = localStorage.getItem("status");
             if(status) {
+                var id = localStorage.getItem("id");
                 var name = localStorage.getItem("name");
                 var surname = localStorage.getItem("surname");
                 var phone = localStorage.getItem("phone");
@@ -125,14 +129,59 @@ function initialiseCart() {
                     //order+=Cart[i].currency+")\n";
                 }
                 //console.log(order);
+               // removeAll();
+                alert("Дякуємо за замовлення! Найближчим часом ми з вами зв'яжемось.");
+                var today = getCurrentDate();
                 var message = user_info + "\n" + order;
                 client.sendMessage("-327577485", message, {
                     disable_web_page_preview: true,
                     disable_notification: false,
                 });
-                removeAll();
-                alert("Дякуємо за замовлення! Найближчим часом ми з вами зв'яжемось.");
-                var today = getCurrentDate();
+
+                /////////////////////////////////////////
+
+
+
+                var id ;
+                var check_id;
+                var newCheck = {
+                    client_id: id,
+                    purchase_date: today,
+                    purchase_status: 0
+                };
+                var check_technic;
+                function callback(error,data){
+                    console.log(data);
+                    if(data.error) {
+                        console.log(data.error);
+                    }
+                    else if(!(data.data[0]==null)){
+                         id = data.data[0].id;
+                       // console.log(id);
+                        newCheck.client_id=id;
+                       // console.log(newCheck);
+                         addCheck(newCheck,function (check_id) {
+                             console.log("return "+check_id);
+                             addCheckEquipments(check_id);
+                         });
+
+                    }
+                    else if(!(data==null)){
+                        id = data.data.id;
+                       // console.log(id);
+                        newCheck.client_id=id;
+                       // console.log(newCheck);
+                        addCheck(newCheck,function (check_id) {
+                            console.log("return "+check_id);
+                            addCheckEquipments(check_id);
+                        });
+                    }
+                }
+                require("./API").getClientbyPhone(phone,callback);
+
+                /////////////////////////////////////////
+
+
             }
             else {
                 alert("Покупки можуть здійснювати лише зареєстровані користувачі");
@@ -148,6 +197,38 @@ function initialiseCart() {
         Cart.forEach(removeFromCart);
     });
     updateCart();
+}
+
+function addCheck(check,callback) {
+    require("./API").addCheck(check, function (err, data) {
+        if (data.error) console.log(data.error);
+        else {
+            console.log("data = "+data.insertId);
+            console.log("data.data = "+data.data.insertId);
+             callback(data.data.insertId);
+        }
+    });
+}
+
+function addCheckEquipments(check_id) {
+    let carts = getTechnicsInCart();
+
+    for(let i =0;i<carts.length;i++) {
+        var check_technic = {
+            check_id : check_id,
+            technic_id: carts[i].id,
+            amount : carts[i].quantity
+        };
+        require("./API").addCheck_technic(check_technic, function (err, data) {
+            if (data.error) console.log(data.error);
+            else {
+                //  console.log(data.insertId);
+                console.log("Успіх");
+                //  return data.data.insertId
+            }
+        });
+    }
+    removeAll();
 }
 
 function getTechnicsInCart() {
@@ -213,7 +294,7 @@ function getCurrentDate() {
     var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
     var yyyy = today.getFullYear();
 
-    today = mm + '/' + dd + '/' + yyyy;
+    today = yyyy + "/" + mm + '/' + dd ;
     return today;
 }
 

@@ -54,6 +54,15 @@ exports.addClient = function(client, callback) {
     backendPost("/api/addclient/", client, callback);
 };
 
+exports.addCheck = function(check, callback) {
+    backendPost("/api/addcheck/", check, callback);
+};
+exports.addCheck_equipment = function(check_equipment, callback) {
+    backendPost("/api/addcheckequipment/", check_equipment, callback);
+};
+exports.addCheck_technic = function(check_technic, callback) {
+    backendPost("/api/addchecktechnic/", check_technic, callback);
+};
 
 exports.sign_in = function(phone, callback) {
     backendPost("/api/signin/", phone, callback);

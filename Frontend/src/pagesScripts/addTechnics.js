@@ -14,12 +14,23 @@ function showTechnics(list) {
 
         var model = $node.find('.model_').html();
         var mark = $node.find('.mark_').html();
-        var typ = localStorage.getItem('currentTypeOfTechnics');
+       var typ = localStorage.getItem('currentTypeOfTechnics');
+
+       var s = type.type_name;
+
+       console.log("s = "+ s );
+       // var typ = $node.find('.type_h2').html();
+//console.log(typ);
+        console.log("model:" + model+ " mark = "+ mark + "type  = " + typ);
 
         $node.click(function () {
-            // localStorage.setItem('', typ);
+            console.log("type"+ type);
+            //
+            localStorage.setItem('currentTypeOfTechnics', type.type_name);
+            ///
             localStorage.setItem('currTechnic',JSON.stringify({
-                model:type.model,
+                id: type.id,
+                model: type.model,
                 mark: type.name,
                 main_photo_location: type.main_photo_location,
                 price: type.price,
@@ -27,7 +38,7 @@ function showTechnics(list) {
                 amount: type.amount,
                 description: type.description
             }));
-            document.location.href = "http://localhost:5050/technic?model="+model+"&mark="+mark+'&type='+typ;
+            document.location.href = "http://localhost:5050/technic?model="+model+"&mark="+mark+'&type='+type.type_name;
         });
 
         $technics.append($node);
@@ -51,9 +62,18 @@ exports.initializeTechnics = function(){
         showTechnics(l);
     }
 
-    if(tp==null)
+    if(tp==null) {
+        console.log("tp == null");
         require("../API").getTechnics(callback);
-    else
-        if(/type=([^&]+)/.exec(document.location.href)) require("../API").getTechnicsByType({type: tp},callback);
-        else  require("../API").getTechnicsByType({mark: mrk},callback);
+    }
+    else {
+        if (/type=([^&]+)/.exec(document.location.href)) {
+            require("../API").getTechnicsByType({type: tp}, callback);
+            console.log("type");
+        }
+        else {
+            require("../API").getTechnicsByType({mark: mrk}, callback);
+            console.log("mark");
+        }
+    }
 }

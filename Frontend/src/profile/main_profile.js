@@ -44,7 +44,6 @@ $(function(){
         require('../API').uploadUserPhoto(event.target.files[0],function(err,data){
             if(err || data.error){}
             else {
-                console.log(event.target.files[0]);
                 localStorage.setItem('photo',event.target.files[0].name);
                 var id = localStorage.getItem('id');
                 require('../API').updateClient(id,{
@@ -52,6 +51,9 @@ $(function(){
                     phone_number: $phone_value.value
                 },function(err){
                     if (err) console.log(err);
+                    else {
+                        $('#user_photo').attr("src", "http://localhost:5050/images/users_photos/"+event.target.files[0].name);
+                    }
                 })
             }
         })

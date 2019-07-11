@@ -1,6 +1,8 @@
 exports.initializeUser = function () {
     var phone = localStorage.getItem('phone');
 
+    console.log(phone);
+
     function callback(error,data){
         console.log(data);
         if(data.error) {
@@ -11,7 +13,7 @@ exports.initializeUser = function () {
             localStorage.setItem('status',true);
             //
             console.log(data.data[0].photo_location);
-            $('#my_avatar').attr("src", "http://localhost:5050/images/user_images/"+data.data[0].photo_location);
+            $('#my_avatar').attr("src", "http://localhost:5050/images/users_photos/"+data.data[0].photo_location);
 
             $('#surname_value').val(data.data[0].surname);
             $('#name_value').val(data.data[0].name);
@@ -36,7 +38,7 @@ exports.initializeUser = function () {
             console.log(data.data);
             console.log(data.name);
             console.log(data.data[0].photo_location);
-            $('#my_avatar').attr("src","http://localhost:5050/images/user_images/"+  data.data.photo_location);
+            $('#my_avatar').attr("src","http://localhost:5050/images/users_photos/"+  data.data.photo_location);
             $('#surname_value').val(data.data.surname);
             $('#name_value').val(data.data.name);
             $('#phone_value').val(data.data.phone_number);

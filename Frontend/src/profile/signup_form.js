@@ -93,7 +93,7 @@ function addClient(){
             settelment: address,
             hash: password
         }
-        console.log(newT);
+       // console.log(newT);
         require("../API").addClient(newT, function (err, data) {
             if (data.error) console.log(data.error);
             else {

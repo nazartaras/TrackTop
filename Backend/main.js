@@ -13,14 +13,19 @@ function configureEndpoints(app) {
     //Налаштування URL за якими буде відповідати сервер
     app.post('/api/addtechnic/', api.addTehnic);
     app.post('/api/addclient/', api.addClient);
+    app.post('/api/addcheck/', api.addCheck);
+    app.post('/api/addcheckequipment/', api.addCheckEquipment);
+    app.post('/api/addchecktechnic/', api.addCheckTechnic);
     app.get('/api/gettypes', api.get_types_of_technics);
     app.get('/api/getmarks', api.get_marks_of_technics);
     app.get('/api/getclient', api.get_user_information);
+    app.get('/api/getequipment', api.get_equipments);
 
     app.post('/api/signin',  api.sign_in);
 
     app.get('/api/gettechnics', api.get_technics);
     app.post('/api/gettechnics', api.get_technics_by_tp);
+
     app.post('/api/gettechnicsmodelim', api.get_technics_im_by_tp_model);
     app.post('/api/upload_user_photo', api.upload_user_photo);
     app.post('/api/update_user', api.update_user);
@@ -31,6 +36,7 @@ function configureEndpoints(app) {
     app.get('/profile', pages.profile);
     app.get('/technics', pages.technics);
     app.get('/technic', pages.technic);
+    app.get('/equipments', pages.equipments);
 
     //Якщо не підійшов жоден url, тоді повертаємо файли з папки www
     app.use(express.static(path.join(__dirname, '../Frontend/www')));
