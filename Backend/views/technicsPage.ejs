@@ -24,16 +24,24 @@
 
 <div id="main" class="container-fluid">
     <div class='type_header'>
+
         <% if(types){ %>
         <%= types %>
         <% } else{ %>
+        <% if(mark) {%>
         Вся техніка марки <%= mark %>
+        <% } else {%>
+        Запчастини
+        <% } %>
         <% } %>
 
     </div>
     <% include common/searchBar.ejs %>
+    <% if(!mark && !types) {%>
+    <div class="equipments">
+    <% } else { %>
     <div class="technics">
-
+    <%}%>
     </div>
 </div>
 
@@ -43,7 +51,10 @@
 <!--Bootsrap JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
+<% if(!mark && !types) {%>
+<script type="text/javascript" src="assets/js/equipmentsMain.js"> </script>
+<%} else {%>
 <script type="text/javascript" src="assets/js/technicsMain.js"> </script>
-
+<% } %>
 </body>
 </html>

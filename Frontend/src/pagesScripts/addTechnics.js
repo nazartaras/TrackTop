@@ -1,24 +1,26 @@
 var Templates = require('../Templates');
 
-var $technics =   $('.technics');
+var $technics   =   $('.technics');
+var $equipments =   $('.equipments');
 
 
 function showTechnics(list) {
 
     $technics.html("");
-
+    if(list.length===0) {
+        $technics.append("Нічого не знайдено");
+        return;
+    }
     function showOne(type) {
         var html_code = Templates.technicInList({technic: type});
-
         var $node = $(html_code);
 
-        var model = $node.find('.model_').html();
-        var mark = $node.find('.mark_').html();
-       var typ = localStorage.getItem('currentTypeOfTechnics');
+        var model = $node.find('.model_').html();var mark = $node.find('.mark_').html();
+        var typ = localStorage.getItem('currentTypeOfTechnics');
 
-       var s = type.type_name;
+        var s = type.type_name;
 
-       console.log("s = "+ s );
+        console.log("s = "+ s );
        // var typ = $node.find('.type_h2').html();
 //console.log(typ);
         console.log("model:" + model+ " mark = "+ mark + "type  = " + typ);
@@ -76,4 +78,42 @@ exports.initializeTechnics = function(){
             console.log("mark");
         }
     }
+}
+
+function showEquipments(list) {
+
+    $equipments.html("");
+    if(list.length===0) {
+        $equipments.append("Нічого не знайдено");
+        //TODO: templ for empty result
+        return;
+    }
+    function showOne(type) {
+        var html_code = Templates.equipmentInList({equipment: type});
+        var $node = $(html_code);
+
+        var typ = localStorage.getItem('currentTypeOfTechnics');
+
+        $node.click(function () {
+            //document.location.href = "http://localhost:5050/technic?model="+model+"&mark="+mark+'&type='+type.type_name;
+        });
+
+        $equipments.append($node);
+    }
+
+    list.forEach(showOne);
+}
+
+exports.initializeEquipments = function(){
+    var l=[];
+
+    function callback(err,data) {
+        if(data.error) console.log(data.error);
+        data.data.forEach(function(item){
+            l.push(item)
+        });
+        showEquipments(l);
+    }
+
+    require("../API").getEquipments(callback);
 }

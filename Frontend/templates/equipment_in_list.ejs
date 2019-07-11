@@ -1,12 +1,11 @@
 <div class="oneTechnic col-md-6 col-lg-4">
     <div class="thumbnail technic-card">
-        <img class="" src="http://localhost:5050/images/<%= technic.main_photo_location %>">
-
+        <img class="" src="http://localhost:5050/images/photo1.jpg">  <!--<%= equipment.main_photo_location %>-->
         <div class="caption">
-            <div class="model"><b><span class="mark_"><%= technic.name %></span> <span class="model_"><%= technic.model %></span></b></div>
-            <div class="price"><i>Ціна:</i> <%= technic.price %> <%= technic.currency %></div>
-            <div class="amount"><i>Кількість:</i> <%= technic.amount %></div>
-            <div class="description"><i>Опис:</i> <%= technic.description %></div>
+            <div class="name"><b><span class="mark_"><%= equipment.name %></span></b></div>
+            <div class="price"><i>Ціна:</i> <%= equipment.price %> <%= equipment.currency %></div>
+            <div class="amount"><i>Кількість:</i> <%= equipment.amount %></div>
+            <div class="state"><i>Стан:</i> <%= equipment.state %></div>
 
         </div>
     </div>

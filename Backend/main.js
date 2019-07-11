@@ -19,7 +19,7 @@ function configureEndpoints(app) {
     app.get('/api/gettypes', api.get_types_of_technics);
     app.get('/api/getmarks', api.get_marks_of_technics);
     app.get('/api/getclient', api.get_user_information);
-    app.get('/api/getequipment', api.get_equipments);
+    app.get('/api/getequipments', api.get_equipments);
 
     app.post('/api/signin',  api.sign_in);
 
