@@ -2,7 +2,7 @@ var Templates = require('../Templates');
 
 var $technics =   $('.vertical-menu-technics');
 var $models =   $('.vertical-menu-models');
-var $equioment =   $('.vertical-menu-equioment');
+var $equipment =   $('.vertical-menu-equipment');
 
 
 function showTechnics(list) {
@@ -74,4 +74,7 @@ exports.initialize = function(){
     require("../API").getTypes(callback);
     require("../API").getMarks(callback2);
 
+    $equipment.click(function(){
+        document.location.href = "http://localhost:5050/equipments";
+    })
 }

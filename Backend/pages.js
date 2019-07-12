@@ -54,26 +54,10 @@ exports.technic = function(req, res) {
 
 exports.equipments = function(req, res) {
 
-    var type = req.query.type;
-
-    require('./db').get_equipments( function (error,data) {
-
-        if(error) {
-            console.log("Error! ", error.sqlMessage);
-            res.send({
-                success: true,
-                error: error.sqlMessage
-            });
-        }
-        else {
-
-            if(data.length>0)
-                res.render('oneTechnicPage', {
-                    pageTitle: type ,
-
-                });
-        }
+    res.render('technicsPage', {
+        pageTitle: 'Запчастини',
+        types: null,
+        mark: null
     });
-
 
 };

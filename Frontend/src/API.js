@@ -87,6 +87,10 @@ exports.getTechnics = function(callback) {
     backendGet("/api/gettechnics/", callback);
 };
 
+exports.getEquipments = function(callback) {
+    backendGet("/api/getequipments/", callback);
+};
+
 exports.getTechnicsByType = function(tp,callback) {
     backendPost("/api/gettechnics/", tp, callback);
 };
