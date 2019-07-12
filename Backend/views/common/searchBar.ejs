@@ -1,9 +1,27 @@
+<div class="topnav_1">
+    <input type="text" id="myInput" onkeyup="filterSelection()"  placeholder="Search" title="Type in a name">
 
-    <div class="topnav_1">
-        <div class="search-container">
-            <form class="searchForm">
-                <input type="text" placeholder="Search" name="search">
-                <button type="submit"><img src="assets\images\ic_search.png"></button>
-            </form>
-        </div>
-    </div>
+</div>
+
+<script>
+
+    function filterSelection() {
+        var input =  document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        var list;
+        list = document.getElementsByClassName("oneTechnic");
+
+        for(let i =0 ; i< list.length;i++) {
+            // let a = list[i].getElementsByClassName();
+            var txtValue;
+            txtValue = list[i].innerText;
+            console.log(txtValue);
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                list[i].style.display = "";
+            } else {
+                list[i].style.display = "none";
+            }
+            // console.log(list);
+        }
+    }
+</script>
