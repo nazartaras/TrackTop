@@ -15,7 +15,8 @@ function showTechnics(list) {
         var html_code = Templates.technicInList({technic: type});
         var $node = $(html_code);
 
-        var model = $node.find('.model_').html();var mark = $node.find('.mark_').html();
+        var model = $node.find('.model_').html();
+        var mark = $node.find('.mark_').html();
         var typ = localStorage.getItem('currentTypeOfTechnics');
 
         var s = type.type_name;
@@ -95,7 +96,7 @@ function showEquipments(list) {
         var typ = localStorage.getItem('currentTypeOfTechnics');
 
         $node.click(function () {
-            //document.location.href = "http://localhost:5050/technic?model="+model+"&mark="+mark+'&type='+type.type_name;
+            document.location.href = "http://localhost:5050/equipments?name="+type.name;
         });
 
         $equipments.append($node);

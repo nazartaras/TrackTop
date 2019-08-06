@@ -12,24 +12,42 @@
   img{
     width: @w1 - @pr1;
     height: @h1 - @pb1;
+    border-width: 1px;
+    border-color: #999;
+    border-style: dashed;
   }
 }
 
 .model{
   font-size: 22px;
-  height: 40px;
-  margin-bottom: 10px;
+  height: 29px;
+  margin-bottom: 4px;
   font-family: "Times New Roman", Times, Gabriola;
   overflow: hidden;
   text-overflow: ellipsis;
 }
+.equipment_info {
+  color: #414042;
+}
 
-.description, .amount, .price, .mark_t {
+.description, .amount, .price, .mark_t, .vendor_code {
   font-size: 16px;
   height: 20px;
   overflow: hidden;
   text-overflow: ellipsis;
+  color: #898989;
 }
+
+
+.vendor_code_label , .price_equipment{
+  width: 90px;
+  display: inline-flex;
+}
+
 .description{
   height: 40px;
 }
+.one_equipment {
+  height: 303px;
+}
+

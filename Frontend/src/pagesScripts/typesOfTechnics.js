@@ -15,8 +15,12 @@ function showTypes(list) {
         console.log(typ);
 
         $node.click(function () {
-            localStorage.setItem('currentTypeOfTechnics', typ);
-            document.location.href = "http://localhost:5050/technics?type="+typ;
+            if(type.name=="Запчастини")
+            document.location.href = "http://localhost:5050/equipments";
+            else {
+                localStorage.setItem('currentTypeOfTechnics', typ);
+                document.location.href = "http://localhost:5050/technics?type=" + typ;
+            }
         });
 
         $types.append($node);
@@ -31,13 +35,15 @@ exports.initializeTypes = function(){
 
     require("../API").getTypes(function (err,data) {
         if(data.error) console.log(data.error);
-        data.data.forEach(function(item){
-            l.push(item)
-        });
+
         l.push( {
             photo_location: 'equipment.jpg',//'http://localhost:5050/images/photo1.jpg'
             name: 'Запчастини'
         });
+        data.data.forEach(function(item){
+            l.push(item)
+        });
         showTypes(l);
     });
+
 }

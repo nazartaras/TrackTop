@@ -1,11 +1,33 @@
 <div class="oneTechnic col-md-6 col-lg-4">
-    <div class="thumbnail technic-card">
-        <img class="" src="http://localhost:5050/images/photo1.jpg">  <!--<%= equipment.main_photo_location %>-->
+    <div class="thumbnail technic-card  one_equipment">
+        <img class="" src="http://localhost:5050/images/equipments/<%= equipment.main_photo_location %>">
         <div class="caption">
             <div class="name"><b><span class="mark_"><%= equipment.name %></span></b></div>
-            <div class="price"><i>Ціна:</i> <%= equipment.price %> <%= equipment.currency %></div>
+
+             <% if(!equipment.vendor_code){ %>
+                        <div class="price" style="margin-top:10px;">
+
+                        <% } else {%>
+                              <div class="price"> <% } %>
+                        <div class="price_equipment"><i>Ціна</i></div> <span class="equipment_info"><%= equipment.price %>
+                            <% if(equipment.currency.toString() == "гривня") { %>
+                                грн
+                            <%}%>
+
+                            <% if(equipment.currency.toString() == "долар") { %>
+                                $
+                            <%}%>
+                            </span>
+                        </div>
+
+                        <!--
             <div class="amount"><i>Кількість:</i> <%= equipment.amount %></div>
             <div class="state"><i>Стан:</i> <%= equipment.state %></div>
+                        !-->
+                         <% if( equipment.vendor_code){ %>
+
+                          <div class="vendor_code"><div class="vendor_code_label"><i>Артикул</i></div> <span class ="equipment_info"><%= equipment.vendor_code %> </span></div>
+                           <% } %>
 
         </div>
     </div>
