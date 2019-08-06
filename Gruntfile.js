@@ -40,6 +40,10 @@ module.exports = function(grunt) {
             profile: {
                 src:        'Frontend/src/profile/main_profile.js',
                 dest:       'Frontend/www/assets/js/profile_main.js'
+            },
+            adminPanel: {
+                src:        'Frontend/src/adminPanel/adminPanel.js',
+                dest:       'Frontend/www/assets/js/adminPanel.js'
             }
 
         }
@@ -77,6 +81,7 @@ module.exports = function(grunt) {
             'browserify:equipments',
             'browserify:oneTechnic',
             'browserify:profile',
+            'browserify:adminPanel',
             //Інші завдання які необхідно виконати
         ]
     );
