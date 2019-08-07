@@ -1,5 +1,5 @@
 var modal = document.getElementById('id01');
-
+var model_message = document.getElementById('messageModal');
 function openSignUpForm() {
     modal.style.display='block';
 }
@@ -110,4 +110,32 @@ function addClient(){
        // }
 
     });
+}
+
+
+sendMessage_My = function () {
+
+        // document.getElementById("phone").mask('+380 (99) 999-99-99');
+      // e.preventDefault();
+       const {TelegramClient} = require('messaging-api-telegram');
+
+// get accessToken from telegram [@BotFather](https://telegram.me/BotFather)
+       const client = TelegramClient.connect('884221604:AAEVBWl5ETesASuZ0XjXZs3DBMG0YwovKZM');
+//event.preventDefault();
+    var name = $('#messageModal input[name=name]')[0].value;
+
+    var phone = $('#messageModal input[name=phone]')[0].value;
+    var text = $('#messageModal textarea[name=message]')[0].value;
+
+
+       // model_message.style.display = "none";
+       $('#messageModal').modal('toggle');
+        let message = "Від " + name + "\n тел  " + phone + "\n" + text;
+        console.log(message);
+        client.sendMessage("-327577485", message, {
+            disable_web_page_preview: true,
+            disable_notification: false,
+        });
+
+    // console.log("fsdf");
 }

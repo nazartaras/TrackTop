@@ -97,6 +97,15 @@ function showEquipments(list) {
 
         $node.click(function () {
             document.location.href = "http://localhost:5050/equipments?name="+type.name;
+            localStorage.setItem('currTechnic',JSON.stringify({
+                id: type.id,
+                name: type.name,
+                main_photo_location: type.main_photo_location,
+                price: type.price,
+                currency: type.currency,
+                amount: type.amount,
+                description: type.description
+            }));
         });
 
         $equipments.append($node);

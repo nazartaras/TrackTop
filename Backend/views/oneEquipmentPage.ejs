@@ -21,14 +21,13 @@
 <% include common/header.ejs %>
 <% include common/basket.ejs %>
 <% include common/left_panel.ejs %>
-<% include common/message.ejs %>
 
 <div id="main" class="container-fluid">
     <div class='type_header'>
         <%= name %>
     </div>
 
-    <div class="technics">
+    <div class="equipments">
         <div class="slider">
             <div class="slider__wrapper">
 
@@ -40,19 +39,17 @@
 
     <!-- !-->
 
-    <div class="btn_row"> <button class="order_technic">Замовити</button>
-    <button class="write_technic" data-toggle="modal" data-target="#messageModal">Написати</button> </div>
+    <div class="btn_row"> <button class="order_equipment">Замовити</button>
+        <button class="write_equipment">Написати</button> </div>
 
-
-
-<div class = "information">
-    <!--
+    <div class = "information">
+        <!--
     <table>
-        <tr><th><i><span class="header_type">Ціна</span></i></th><td><%= technic.price %>  <% if(technic.currency.toString() == "гривня") { %>
+        <tr><th><i><span class="header_type">Ціна</span></i></th><td><%= equipment.price %>  <% if(equipment.currency.toString() == "гривня") { %>
                     грн
                 <%}%>
 
-                <% if(technic.currency.toString() == "долар") { %>
+                <% if(equipment.currency.toString() == "долар") { %>
                     $
                 <%}%></td></tr>
         <tr><td>данные</td><td>данные</td></tr>
@@ -60,31 +57,31 @@
 
 !-->
 
-    <div class="row_info"><i><span class="header_type">Ціна</span></i><span class="type_description"> <%= technic.price %>  <% if(technic.currency.toString() == "гривня") { %>
-            грн
+        <div class="row_info"><i><span class="header_type">Ціна</span></i><span class="type_description"> <%= equipment.price %>  <% if(equipment.currency.toString() == "гривня") { %>
+                    грн
+                <%}%>
+
+                <% if(equipment.currency.toString() == "долар") { %>
+                    $
+                <%}%> </span></div>
+
+        <% if(equipment.production_date) { %>
+            <div class="row_info float_left"><i><span class="header_type">Рік випуску</span></i> <span class="type_description"><%= equipment.production_date%> </span>  </div>
         <%}%>
-
-        <% if(technic.currency.toString() == "долар") { %>
-            $
-        <%}%> </span></div>
-
-    <% if(technic.production_date) { %>
-        <div class="row_info float_left"><i><span class="header_type">Рік випуску</span></i> <span class="type_description"><%= technic.production_date%> </span>  </div>
+        <!--
+    <% if(equipment.country_producer) { %>
+        <div class="amount"><i><span class="header_type">Виробник</span></i> <%= equipment.country_producer%></div>
     <%}%>
-    <!--
-    <% if(technic.country_producer) { %>
-        <div class="amount"><i><span class="header_type">Виробник</span></i> <%= technic.country_producer%></div>
-    <%}%>
-    <div class="amount"><i><span class="header_type">Кількість</span></i> <%= technic.amount %></div>
-    <% if(technic.description) { %>
-        <div class="description"><i><span class="header_type"></span>Опис</i> <%= technic.description %></div>
+    <div class="amount"><i><span class="header_type">Кількість</span></i> <%= equipment.amount %></div>
+    <% if(equipment.description) { %>
+        <div class="description"><i><span class="header_type"></span>Опис</i> <%= equipment.description %></div>
     <%}%>
     !-->
 
 
-</div>
-    <% if(technic.description) { %>
-        <div class="description_technic"> <%= technic.description %></div>
+    </div>
+    <% if(equipment.description) { %>
+        <div class="description_equipment"> <%= equipment.description %></div>
     <%}%>
 
 
@@ -98,9 +95,8 @@
 <!--Bootsrap JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
-<script type="text/javascript" src="assets/js/oneTechnicMain.js"> </script>
+<script type="text/javascript" src="assets/js/oneequipmentMain.js"> </script>
 <!--<script type="text/javascript" src="assets/js/slider.js"> </script>-->
-
 
 </body>
 </html>

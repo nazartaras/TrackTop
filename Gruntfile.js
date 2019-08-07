@@ -37,6 +37,10 @@ module.exports = function(grunt) {
                 src:        'Frontend/src/technics/technicMain.js',
                 dest:       'Frontend/www/assets/js/oneTechnicMain.js'
             },
+            oneEquipment: {
+                src:        'Frontend/src/technics/equipmentMain.js',
+                dest:       'Frontend/www/assets/js/equipments.js'
+            },
             profile: {
                 src:        'Frontend/src/profile/main_profile.js',
                 dest:       'Frontend/www/assets/js/profile_main.js'
@@ -82,6 +86,7 @@ module.exports = function(grunt) {
             'browserify:oneTechnic',
             'browserify:profile',
             'browserify:adminPanel',
+            'browserify:oneEquipment',
             //Інші завдання які необхідно виконати
         ]
     );

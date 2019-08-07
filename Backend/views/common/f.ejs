@@ -1,0 +1,42 @@
+<!-- Modal -->
+<div class="modal fade" id="messageModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="exampleModalLabel">Написати</h2>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="contactForm" >
+                    <div class="form-group">
+                        <label for="name">Ваше ім'я</label>
+                        <input id="name" class="form-control" name="name" required type="text" placeholder="Ваше ім'я">
+                    </div>
+
+                    <!--<div class="form-group">
+                        <label for="email">Тема повідомлення</label>
+                        <input id="email" class="form-control" name="email" required type="email" placeholder="ivanov@email.com">
+                    </div>
+                    !-->
+
+                    <div class="form-group">
+                        <label for="phone">Ваш телефон:</label>
+                        <input id="phone" class="form-control" name="phone" required type="text" placeholder="+380 (XX) XXX-XX-XX">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Текст повідомлення:</label>
+                        <textarea id="message" class="form-control" required name="message" rows="4"></textarea>
+                    </div>
+
+                    <button id="button_send_message" onclick="sendMessage_My();" class="btn">Відправити</button>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

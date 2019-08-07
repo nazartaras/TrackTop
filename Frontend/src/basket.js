@@ -119,13 +119,13 @@ function initialiseCart() {
                 var phone = localStorage.getItem("phone");
                 var settlement = localStorage.getItem("settlement");
 
-                var user_info = "Покупець:" + surname + " " + name + "\nТелефон : " + phone + "нас. пункт : " + settlement;
+                var user_info = "Покупець:  " + surname + " " + name + "\nТелефон : " + phone + "\nнас. пункт : " + settlement;
 
                 var order = "Замовлення\n";
                 for (let i = 0; i < Cart.length; i++) {
                     order += "назва: " + Cart[i].title + "\n";
                     order += "ціна: " + Cart[i].price + "\n";
-                    order += "кількість: " + Cart[i].quantity + " шт.\n";
+                    order += "кількість: " + Cart[i].quantity + " шт.\n\n";
                     //order+=Cart[i].currency+")\n";
                 }
                 //console.log(order);
