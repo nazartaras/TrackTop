@@ -10,7 +10,10 @@ exports.isLogged = function () {
         $('#full_name').html('<b>' +surname + " " + name + '</b>');
         $('#user_phone').html('<b>' + phone + '</b>');
         $('#user_photo').css("display","block");
-        $('#user_photo').attr("src", "http://localhost:5050/images/users_photos/"+photo_location);
+        if(photo_location==null) {
+            $('#user_photo').attr("src", "assets/images/avatar_2x.png");
+        }
+       else  $('#user_photo').attr("src", "http://localhost:5050/images/users_photos/"+photo_location);
         $('#login').css("display", "none");
         $('#signup').css("display", "none");
     }

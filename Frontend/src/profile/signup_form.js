@@ -99,7 +99,6 @@ function addClient(){
             else {
                 //TODO: сделать вызов авторизации
                 localStorage.setItem('status',true);
-                localStorage.setItem('status',true);
                 localStorage.setItem('name',name);
                 localStorage.setItem('surname',surname);
                 localStorage.setItem('phone',phone);
@@ -113,7 +112,7 @@ function addClient(){
 }
 
 
-sendMessage_My = function () {
+sendMessage_My = function (i) {
 
         // document.getElementById("phone").mask('+380 (99) 999-99-99');
       // e.preventDefault();
@@ -130,7 +129,10 @@ sendMessage_My = function () {
 
        // model_message.style.display = "none";
        $('#messageModal').modal('toggle');
-        let message = "Від " + name + "\n тел  " + phone + "\n" + text;
+        let message = "Від " + name + "\n тел: " + phone + "\n" ;
+       // let curr =  localStorage.getItem('currTechnic');
+        if(i==1) message+="Стосовно: "+ document.getElementsByClassName("type_header")[0].innerText+"\n";
+          message += text;
         console.log(message);
         client.sendMessage("-327577485", message, {
             disable_web_page_preview: true,
@@ -138,4 +140,44 @@ sendMessage_My = function () {
         });
 
     // console.log("fsdf");
+}
+
+openMessageModal = function () {
+    $('#messageModal').modal('show');
+   // $('#messageModal').on('shown.bs.modal', function(e) {
+
+        var status = localStorage.getItem('status');
+        //console.log("");
+        var $modal = $(this);
+        // esseyId = e.relatedTarget.id;
+
+//            $.ajax({
+//                cache: false,
+//                type: 'POST',
+//                url: 'backend.php',
+//                data: 'EID='+essay_id,
+//                success: function(data)
+//                {
+
+        if(status) {
+            console.log("status is true");
+
+            let name = localStorage.getItem("name");
+            let surname = localStorage.getItem("surname");
+            $("#username_messageForm").val(name+" "+ surname);
+            $("#username_messageForm").attr("disabled", true);
+            $("#phone_messageForm").val(localStorage.getItem("phone"));
+            $("#phone_messageForm").attr("disabled", true);
+            $("#message").val("");
+        }
+        else {
+            $("#username_messageForm").val("");
+            $("#phone_messageForm").val("");
+            $("#message").val("");
+        }
+
+//                }
+//            });
+
+    //})
 }
