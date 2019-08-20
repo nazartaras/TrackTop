@@ -40,7 +40,7 @@
 
 <!--(contains the Log in  form) -->
 <div class="form-popup" id="myForm" >
-    <form  class="form-container">
+    <form  class="form-container" onsubmit="return false">
         <h1>Login</h1>
 
         <label for="phone"><b>Телефон</b></label>
@@ -57,7 +57,7 @@
 <!-- The Modal (contains the Sign Up form) -->
 <div id="id01" class="modal">
 
-    <form class="modal-content" >
+    <form class="modal-content" onsubmit='return false'>
         <span onclick="document.getElementById('id01').style.display='none'" class="close close-signup" title="Закрити">x</span>
         <div class="container">
             <h1>Форма реєстрації</h1>
