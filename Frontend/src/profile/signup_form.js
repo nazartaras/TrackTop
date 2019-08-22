@@ -6,6 +6,7 @@ function openSignUpForm() {
 
 exports.initializeLogin = function(){
     $('#signup').click(function() {
+        $('#myForm').css("display", "none");
         openSignUpForm();
         addClient();
     });
@@ -75,6 +76,49 @@ checkValidation = function(){
     return true;
 }
 
+checkMessageForm = function () {
+    var $name = $('#messageModal input[name=name]')[0];
+    var $phone = $('#messageModal input[name=phone]')[0];
+    var $message = $('#messageModal textarea[name=message]')[0];
+   // var $address = $('#messageModal input[name=location]')[0];
+
+        var name = $name.value;
+        var phone = $phone.value;
+        var message = $message.value;
+       // var address = $address.value;
+
+        if (name == "")
+        {
+            window.alert("Введіть ім'я");
+           // name.focus();
+            return false;
+        }
+
+        if (message == "")
+        {
+            window.alert("Введіть повідомлення");
+           // message.focus();
+            return false;
+        }
+
+    if (phone == "")
+    {
+        window.alert("Введіть телефон");
+       // phone.focus();
+        return false;
+    }
+
+    var phoneno = ///^\+?([0-9]{2})\)?[-. ]?([0-9]{4})[-. ]?([0-9]{4})$/;
+    /^[+]*[(]{0,1}[0-9]{1,3}[)]{0,1}[-\s\./0-9]*$/g;
+    if(!phoneno.test(phone)) {
+        alert("Введіть дісний номер\n" +
+            "Приклад 093-345-3456");
+        return false;
+    }
+
+    return true;
+}
+
 function addClient(){
     $('#signup_btn').click(function() {
 
@@ -111,40 +155,45 @@ function addClient(){
 }
 
 
+
 sendMessage_My = function (i) {
+    if(checkMessageForm()) {
+
 
         // document.getElementById("phone").mask('+380 (99) 999-99-99');
-      // e.preventDefault();
-       const {TelegramClient} = require('messaging-api-telegram');
+        // e.preventDefault();
+        const {TelegramClient} = require('messaging-api-telegram');
 
 // get accessToken from telegram [@BotFather](https://telegram.me/BotFather)
-       const client = TelegramClient.connect('884221604:AAEVBWl5ETesASuZ0XjXZs3DBMG0YwovKZM');
+        const client = TelegramClient.connect('884221604:AAEVBWl5ETesASuZ0XjXZs3DBMG0YwovKZM');
 //event.preventDefault();
-    var name = $('#messageModal input[name=name]')[0].value;
+        var name = $('#messageModal input[name=name]')[0].value;
 
-    var phone = $('#messageModal input[name=phone]')[0].value;
-    var text = $('#messageModal textarea[name=message]')[0].value;
+        var phone = $('#messageModal input[name=phone]')[0].value;
+        var text = $('#messageModal textarea[name=message]')[0].value;
 
 
-       // model_message.style.display = "none";
-       $('#messageModal').modal('toggle');
-        let message = "Від " + name + "\n тел: " + phone + "\n" ;
-       // let curr =  localStorage.getItem('currTechnic');
-        if(i==1) message+="Стосовно: "+ document.getElementsByClassName("type_header")[0].innerText+"\n";
-          message += text;
+        // model_message.style.display = "none";
+        $('#messageModal').modal('toggle');
+        let message = "Від " + name + "\n тел: " + phone + "\n";
+        // let curr =  localStorage.getItem('currTechnic');
+        if (document.getElementsByClassName("type_header").length!=0) message += "Стосовно: " + document.getElementsByClassName("type_header")[0].innerText + "\n";
+        message += text;
         console.log(message);
         client.sendMessage("-327577485", message, {
             disable_web_page_preview: true,
             disable_notification: false,
         });
-
-    // console.log("fsdf");
+        Notify("Повідомлення відправлено!!!",null,null,'success');
+        // console.log("fsdf");
+         }
 }
 
 openMessageModal = function () {
     $('#messageModal').modal('show');
    // $('#messageModal').on('shown.bs.modal', function(e) {
-
+    $('#user_info').css("display", "none");
+    $('#myForm').css("display", "none");
         var status = localStorage.getItem('status');
         //console.log("");
         var $modal = $(this);
@@ -170,8 +219,8 @@ openMessageModal = function () {
             $("#message").val("");
         }
         else {
-            $("#username_messageForm").val("");
-            $("#phone_messageForm").val("");
+           // $("#username_messageForm").val("");
+           // $("#phone_messageForm").val("");
             $("#message").val("");
         }
 
@@ -179,4 +228,50 @@ openMessageModal = function () {
 //            });
 
     //})
+}
+
+Notify = function(text, callback, close_callback, style) {
+
+    var time = '20000';
+    var $container = $('#notifications');
+    var icon = '<i class="fa fa-info-circle "></i>';
+
+    if (typeof style == 'undefined' ) style = 'warning'
+
+    var html = $('<div class="alert alert-' + style + '  hide">' + icon +  " " + text + '</div>');
+
+    $('<a>',{
+        text: '×',
+        class: 'button close',
+        style: 'padding-left: 10px;',
+        href: '#',
+        click: function(e){
+            e.preventDefault()
+            close_callback && close_callback()
+            remove_notice()
+        }
+    }).prependTo(html)
+
+    $container.prepend(html)
+    html.removeClass('hide').hide().fadeIn('slow')
+
+    function remove_notice() {
+        html.stop().fadeOut('slow').remove()
+    }
+
+    var timer =  setInterval(remove_notice, time);
+
+    $(html).hover(function(){
+        clearInterval(timer);
+    }, function(){
+        timer = setInterval(remove_notice, time);
+    });
+
+    html.on('click', function () {
+        clearInterval(timer)
+        callback && callback()
+        remove_notice()
+    });
+
+
 }

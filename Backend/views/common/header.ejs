@@ -1,5 +1,5 @@
 
-
+<% include message.ejs %>
 <div class="header">
     <img id= "logo" src="assets\images\logo.png" alt='This is a logo image'>
 
@@ -7,13 +7,16 @@
     <span id = "contact_phone">+380 93 493 14 81</span>
 
     <div class="header-right">
-        <a id="basketBtn" class='basketBtn'>Покупки</a>
+        <a id="writeMessageMainPage" onclick="openMessageModal();"><img src="assets/images/letterMainPanel.png" style="height: 48px;margin-top: -8px;"></a>
+        <a id="basketBtn" class='basketBtn'><img src="assets/images/cartMainPanel.png" style="height: 50px;margin-top: -10px;"></a>
         <a id = "signup" href="#signup" display="none">Зареєструватись</a>
         <a  id= "login" href="#login" display="none">Увійти</a>
         <img id= "user_photo" alt='This is a user image' display="none">
 
     </div>
 </div>
+
+<div id="notifications"></div>
 
 
 <!--(contains the Pop up user info) -->
@@ -58,7 +61,7 @@
 <div id="id01" class="modal">
 
     <form class="modal-content" onsubmit='return false'>
-        <span onclick="document.getElementById('id01').style.display='none'" class="close close-signup" title="Закрити">x</span>
+        <span onclick="document.getElementById('id01').style.display='none'" class="close_ close-signup" title="Закрити">x</span>
         <div class="container">
             <h1>Форма реєстрації</h1>
             <p>Заповніть цю форму, щоб зареєструватись</p>

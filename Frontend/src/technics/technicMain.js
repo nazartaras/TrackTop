@@ -1,3 +1,4 @@
+
 function  initialize() {
     var tech = JSON.parse(localStorage.getItem('currTechnic'));
     var dataset = [];
@@ -11,9 +12,14 @@ function  initialize() {
     require('../API').getTechnicsImagesById(tech.id,callback);
 
     $('.order_technic').click(function(){
+
         // var equipment = localStorage.getItem('currEquipment');
         // console.log(equipment);
         // var isTech = equipment==null ? false : true;
+
+        var tech = JSON.parse(localStorage.getItem('currTechnic'));
+        require('../pagesScripts/notify').Notify("Товар додано.Перейдіть в корзину, щоб оформити замовлення!!!",null,null,'success');
+
         require('../basket').addToCart({
             id : tech.id,
             title: tech.mark+' '+tech.model,
@@ -23,6 +29,8 @@ function  initialize() {
             quantity: tech.amount,
             isTech : true
         });
+
+       // Notify("Товар додано.Перейдіть в корзину, щоб оформити замовлення!!!")
     })
 }
 

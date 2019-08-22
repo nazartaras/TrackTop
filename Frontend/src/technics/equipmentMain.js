@@ -13,7 +13,9 @@ function  initialize() {
 
 
     $('.order_technic').click(function(){
+
         // var tech = JSON.parse(localStorage.getItem('currTechnic'));
+
         var equipment = localStorage.getItem('currEquipment');
         console.log(equipment);
         // var isTech = equipment==null ? false : true;

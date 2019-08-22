@@ -36,6 +36,13 @@ $(function(){
         require('./user_form').deleteInfoFromLocalStorage();
         require('./user_form').isLogged();
         $('#user_info').css("display", "none");
+        if(document.location.href == "http://localhost:5050/profile") {
+            document.location.href = "http://localhost:5050";
+        }
+    })
+
+    $('.toMainPageBtn').click(function() {
+            document.location.href = "http://localhost:5050";
     })
 
     $('#photo_input').change(function (event) {
@@ -69,7 +76,13 @@ $(function(){
             nova_poshta_settlment: $location_post_office_value.value,
             nova_poshta_number: $post_office_number_value.value
         },function(err){
-            if (err) console.log(err);
+            if (err) {
+                console.log(err);
+                require('../pagesScripts/notify').Notify("Помилка!!!",null,null,'success');
+            }
+            else {
+                require('../pagesScripts/notify').Notify("Зміни збережено!!!",null,null,'success');
+            }
         })
     })
 
