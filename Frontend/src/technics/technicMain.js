@@ -1,12 +1,19 @@
 function  initialize() {
-
-    require('../pagesScripts/slider').initialize();
+    var tech = JSON.parse(localStorage.getItem('currTechnic'));
+    var dataset = [];
+    function callback(err,data) {
+        if(data.error) console.log(data.error);
+        data.data.forEach(function(item){
+            dataset.push(item.file_name)
+        });
+        require('../pagesScripts/slider').initialize(dataset);
+    }
+    require('../API').getTechnicsImagesById(tech.id,callback);
 
     $('.order_technic').click(function(){
-        var tech = JSON.parse(localStorage.getItem('currTechnic'));
-        var equipment = localStorage.getItem('currEquipment');
-        console.log(equipment);
-        var isTech = equipment==null ? false : true;
+        // var equipment = localStorage.getItem('currEquipment');
+        // console.log(equipment);
+        // var isTech = equipment==null ? false : true;
         require('../basket').addToCart({
             id : tech.id,
             title: tech.mark+' '+tech.model,
@@ -14,7 +21,7 @@ function  initialize() {
             currency: tech.currency,
             icon: tech.main_photo_location,
             quantity: tech.amount,
-            isTech : isTech
+            isTech : true
         });
     })
 }

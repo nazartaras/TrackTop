@@ -34,15 +34,13 @@ checkValidation = function(){
 
     if (name.value == "")
     {
-        window.alert("Please enter your name.");
         name.focus();
         return false;
     }
 
     if (address.value == "")
     {
-        window.alert("Please enter your address.");
-        name.focus();
+        address.focus();
         return false;
     }
 
@@ -73,13 +71,14 @@ checkValidation = function(){
         alert("Пароль повинен містити як мінімум 1 цифру та 1 спеціальний символ");
         return false;
     }
-        return true;
+
+    return true;
 }
 
 function addClient(){
     $('#signup_btn').click(function() {
-       // var checked = checkValidation();
-       // if (checked) {
+
+       // if (checkValidation()) {
         var name = $name.value;
         var surname = $surname.value;
         var phone = $phone.value;

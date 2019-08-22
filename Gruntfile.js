@@ -39,7 +39,7 @@ module.exports = function(grunt) {
             },
             oneEquipment: {
                 src:        'Frontend/src/technics/equipmentMain.js',
-                dest:       'Frontend/www/assets/js/equipments.js'
+                dest:       'Frontend/www/assets/js/oneEquipmentMain.js'
             },
             profile: {
                 src:        'Frontend/src/profile/main_profile.js',

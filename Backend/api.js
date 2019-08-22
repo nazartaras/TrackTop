@@ -293,7 +293,29 @@ exports.get_technics_by_tp = function (req,res) {
 }
 
 
-exports.get_technics_im_by_tp_model = function (req,res) {
+// exports.get_technics_im_by_tp_model = function (req,res) {
+//     var db = require('./db');
+//
+//     function callback(error,data){
+//         if(error) {
+//             console.log("Error! ", error.sqlMessage);
+//             res.send({
+//                 success: true,
+//                 error: error.sqlMessage
+//             });
+//         }
+//         else {
+//             console.log("Success! ", data);
+//             res.send({
+//                 success: true,
+//                 data: data
+//             });
+//         }
+//     }
+//     db.get_technic_im_by_type_model_mark(req.body.type, req.body.mark, req.body.model, callback);
+// }
+
+exports.get_technics_im_by_id = function (req,res) {
     var db = require('./db');
 
     function callback(error,data){
@@ -312,7 +334,29 @@ exports.get_technics_im_by_tp_model = function (req,res) {
             });
         }
     }
-    db.get_technic_im_by_type_model_mark(req.body.type, req.body.mark, req.body.model, callback);
+    db.get_technic_im_by_id(req.body.id, callback);
+}
+
+exports.get_equipment_im_by_id = function (req,res) {
+    var db = require('./db');
+
+    function callback(error,data){
+        if(error) {
+            console.log("Error! ", error.sqlMessage);
+            res.send({
+                success: true,
+                error: error.sqlMessage
+            });
+        }
+        else {
+            console.log("Success! ", data);
+            res.send({
+                success: true,
+                data: data
+            });
+        }
+    }
+    db.get_equipment_im_by_id(req.body.id, callback);
 }
 
 exports.get_user_information = function (req,res) {

@@ -95,8 +95,16 @@ exports.getTechnicsByType = function(tp,callback) {
     backendPost("/api/gettechnics/", tp, callback);
 };
 
-exports.getTechnicsImagesByTypeMarkModel = function(tp,callback) {
-    backendPost("/api/gettechnicsmodelim/", tp, callback);
+// exports.getTechnicsImagesByTypeMarkModel = function(tp,callback) {
+//     backendPost("/api/gettechnicsmodelim/", tp, callback);
+// };
+
+exports.getTechnicsImagesById = function(id,callback) {
+    backendPost("/api/gettechnicsmodelim/", {id: id}, callback);
+};
+
+exports.getEquipmentImagesById = function(id,callback) {
+    backendPost("/api/getequipmentim/", {id: id}, callback);
 };
 
 exports.uploadUserPhoto = function(photo,callback){

@@ -26,7 +26,9 @@ function configureEndpoints(app) {
     app.get('/api/gettechnics', api.get_technics);
     app.post('/api/gettechnics', api.get_technics_by_tp);
 
-    app.post('/api/gettechnicsmodelim', api.get_technics_im_by_tp_model);
+    // app.post('/api/gettechnicsmodelim', api.get_technics_im_by_tp_model);
+    app.post('/api/gettechnicsmodelim', api.get_technics_im_by_id);
+    app.post('/api/getequipmentim', api.get_equipment_im_by_id);
     app.post('/api/upload_user_photo', api.upload_user_photo);
     app.post('/api/update_user', api.update_user);
 
@@ -37,6 +39,7 @@ function configureEndpoints(app) {
     app.get('/technics', pages.technics);
     app.get('/technic', pages.technic);
     app.get('/equipments', pages.equipments);
+    app.get('/equipment', pages.equipment);
 
     //Якщо не підійшов жоден url, тоді повертаємо файли з папки www
     app.use(express.static(path.join(__dirname, '../Frontend/www')));

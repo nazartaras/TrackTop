@@ -137,6 +137,14 @@ exports.get_technic_im_by_type_model_mark = function(type_of_technics, mark_of_t
         , callback);
 }
 
+exports.get_technic_im_by_id = function(id, callback){
+    connection.query("SELECT file_name from tracktop.images_technics where id_technic="+id, callback);
+}
+
+exports.get_equipment_im_by_id = function(id, callback){
+    connection.query("SELECT file_name from tracktop.images_equipments where id_equipment="+id, callback);
+}
+
 exports.get_technics_price_more = function(price,callback){
     connection.query("SELECT * FROM tracktop.technics WHERE tracktop.technics.price >" + price,callback);
 }
@@ -175,6 +183,9 @@ exports.get_equipments = function(callback){
     connection.query("SELECT * FROM tracktop.equipments",callback);
 }
 
+exports.get_equipment_by_id = function(id,callback){
+    connection.query("SELECT * FROM tracktop.equipments where id = " + id,callback);
+}
 
 // delete operations
 

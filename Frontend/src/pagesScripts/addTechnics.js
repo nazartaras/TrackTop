@@ -96,8 +96,8 @@ function showEquipments(list) {
         var typ = localStorage.getItem('currentTypeOfTechnics');
 
         $node.click(function () {
-            document.location.href = "http://localhost:5050/equipments?name="+type.name;
-            localStorage.setItem('currTechnic',JSON.stringify({
+            document.location.href = "http://localhost:5050/equipment?name="+type.name+"&id="+type.id;
+            localStorage.setItem('currEquipment',JSON.stringify({
                 id: type.id,
                 name: type.name,
                 main_photo_location: type.main_photo_location,

@@ -54,12 +54,10 @@ exports.technic = function(req, res) {
 
 exports.equipment = function(req, res) {
    // var model = req.query.model;
-   // var mark = req.query.mark;
-   // var type = req.query.type;
 
     console.log(req);
 
-    require('./db').get_technic_by_type_model_mark(type,mark,model, function (error,data) {
+    require('./db').get_equipment_by_id(req.query.id, function (error,data) {
 
         if(error) {
             console.log("Error! ", error.sqlMessage);
@@ -74,8 +72,6 @@ exports.equipment = function(req, res) {
                 // console.log(data[0]+"\n");
 
                 res.render('oneEquipmentPage', {
-                    pageTitle: 'sdfsdf',
-                    name: 'sdfsdf',
                     equipment: data[0]
                 });
             }
