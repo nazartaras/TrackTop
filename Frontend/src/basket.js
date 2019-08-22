@@ -19,6 +19,7 @@ function openNav() {
     $("#main").addClass("margR");
     $(".header").addClass("margR");
     $("#myForm").addClass("margR");
+    $("#user_info").addClass("margR");
 }
 
 function closeNav() {
@@ -26,10 +27,13 @@ function closeNav() {
     $("#main").removeClass("margR");
     $(".header").removeClass("margR");
     $("#myForm").removeClass("margR");
+    $("#user_info").removelClass("margR");
 }
 
 exports.initialiseBasket = function(){
     $('.basketBtn').click(function () {
+        $('#user_info').css("display", "none");
+        $('#myForm').css("display", "none");
         openNav();
     })
 

@@ -3,6 +3,9 @@ function  initialize() {
     require('../pagesScripts/slider').initialize();
 
     $('.order_technic').click(function(){
+
+
+
         var tech = JSON.parse(localStorage.getItem('currTechnic'));
         var equipment = localStorage.getItem('currEquipment');
         console.log(equipment);

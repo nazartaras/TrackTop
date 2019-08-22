@@ -7,6 +7,8 @@
     <!-- Bootsrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+
     <!-- LESS основний файл -->
     <link rel="stylesheet/less" type="text/css" href="assets/less/main.less" />
 
@@ -40,8 +42,11 @@
 
     <!-- !-->
 
-    <div class="btn_row"> <button class="order_technic">Замовити</button>
-    <button class="write_technic" onclick="openMessageModal();">Написати</button> </div>
+    <div class="btn_row"> <button class="order_technic">
+            <img src="assets/images/cart_btn.png" alt="" class="orderTechnicImg">
+            Замовити</button>
+    <button class="write_technic" onclick="openMessageModal();">
+        <img src="assets/images/letter_btn.png" alt="" class = "openMessageBtn">Написати</button> </div>
 
 
 
@@ -87,10 +92,8 @@
         <div class="description_technic"> <%= technic.description %></div>
     <%}%>
 
-
-
-
 </div>
+
 
 
 <!-- jQuery JavaScript -->

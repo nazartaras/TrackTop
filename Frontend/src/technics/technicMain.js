@@ -1,3 +1,4 @@
+
 function  initialize() {
 
     require('../pagesScripts/slider').initialize();
@@ -7,6 +8,7 @@ function  initialize() {
         var equipment = localStorage.getItem('currEquipment');
         console.log(equipment);
         var isTech = equipment==null ? false : true;
+        require('../pagesScripts/notify').Notify("Товар додано.Перейдіть в корзину, щоб оформити замовлення!!!",null,null,'success');
         require('../basket').addToCart({
             id : tech.id,
             title: tech.mark+' '+tech.model,
@@ -16,6 +18,8 @@ function  initialize() {
             quantity: tech.amount,
             isTech : isTech
         });
+
+       // Notify("Товар додано.Перейдіть в корзину, щоб оформити замовлення!!!")
     })
 }
 
