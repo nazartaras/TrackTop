@@ -8,7 +8,8 @@ function showTechnics(list) {
 
     $technics.html("");
     if(list.length===0) {
-        $technics.append("Нічого не знайдено");
+       // $technics.append("Нічого не знайдено");
+        $(".nothing_found").css("display","block");
         return;
     }
     function showOne(type) {
@@ -85,8 +86,9 @@ function showEquipments(list) {
 
     $equipments.html("");
     if(list.length===0) {
-        $equipments.append("Нічого не знайдено");
+       // $equipments.append("Нічого не знайдено");
         //TODO: templ for empty result
+        $(".nothing_found").css("display","block");
         return;
     }
     function showOne(type) {

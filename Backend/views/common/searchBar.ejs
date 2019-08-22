@@ -9,8 +9,9 @@
         var input =  document.getElementById("myInput");
         filter = input.value.toUpperCase();
         var list;
+        let count = 0;
         list = document.getElementsByClassName("oneTechnic");
-
+       // console.log(list);
         for(let i =0 ; i< list.length;i++) {
             // let a = list[i].getElementsByClassName();
             var txtValue;
@@ -20,8 +21,15 @@
                 list[i].style.display = "";
             } else {
                 list[i].style.display = "none";
+                count++;
             }
-            // console.log(list);
+
+        }
+        if(list.length==count) {
+         document.getElementsByClassName("nothing_found")[0].style.display="block";
+        }
+        else {
+            document.getElementsByClassName("nothing_found")[0].style.display="none";
         }
     }
 </script>
