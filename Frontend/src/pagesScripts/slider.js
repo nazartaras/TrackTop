@@ -44,7 +44,7 @@ exports.initialize = function(dataset){
     var l=[];
 
     dataset.forEach(function(item){
-        l.push(item.file_name)
+        l.push(item)
     });
     showImages(l);
 
