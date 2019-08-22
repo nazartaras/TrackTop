@@ -1,11 +1,11 @@
 function  initialize() {
-    var equipment = JSON.parse(localStorage.getItem('currTechnic'));
+    var equipment = JSON.parse(localStorage.getItem('currEquipment'));
     var dataset = [];
 
     function callback(err,data) {
         if(data.error) console.log(data.error);
         data.data.forEach(function(item){
-            dataset.push(item.file_name)
+            dataset.push("equipments/"+item.file_name)
         });
         require('../pagesScripts/slider').initialize(dataset);
     }
