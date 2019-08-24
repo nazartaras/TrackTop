@@ -19,6 +19,7 @@ function openNav() {
     $("#main").addClass("margR");
     $(".header").addClass("margR");
     $("#myForm").addClass("margR");
+    if($('#user_info').css("display")=="block")
     $("#user_info").addClass("margR");
 }
 
@@ -27,7 +28,8 @@ function closeNav() {
     $("#main").removeClass("margR");
     $(".header").removeClass("margR");
     $("#myForm").removeClass("margR");
-    $("#user_info").removelClass("margR");
+    if($('#user_info').css("display")=="block")
+    $("#user_info").removeClass("margR");
 }
 
 exports.initialiseBasket = function(){
@@ -218,19 +220,37 @@ function addCheckEquipments(check_id) {
     let carts = getTechnicsInCart();
 
     for(let i =0;i<carts.length;i++) {
-        var check_technic = {
-            check_id : check_id,
-            technic_id: carts[i].id,
-            amount : carts[i].quantity
-        };
-        require("./API").addCheck_technic(check_technic, function (err, data) {
-            if (data.error) console.log(data.error);
-            else {
-                //  console.log(data.insertId);
-                console.log("Успіх");
-                //  return data.data.insertId
-            }
-        });
+
+        if(carts[i].isTech) {
+            var check_technic = {
+                check_id : check_id,
+                technic_id: carts[i].id,
+                amount : carts[i].quantity
+            };
+            require("./API").addCheck_technic(check_technic, function (err, data) {
+                if (data.error) console.log(data.error);
+                else {
+                    //  console.log(data.insertId);
+                    console.log("Успіх техніка");
+                    //  return data.data.insertId
+                }
+            });
+        }
+        else {
+            var check_technic = {
+                check_id : check_id,
+                equipment_id: carts[i].id,
+                amount : carts[i].quantity
+            };
+            require("./API").addCheck_equipment(check_technic, function (err, data) {
+                if (data.error) console.log(data.error);
+                else {
+                    //  console.log(data.insertId);
+                    console.log("Успіх запчастина");
+                    //  return data.data.insertId
+                }
+            });
+        }
     }
     removeAll();
 }
@@ -249,7 +269,9 @@ function updateCart() {
     $allPrice.append(allPrice);
 
     function showOne(cart_item) {
+        if(cart_item.isTech)
         var html_code = Templates.technicInOrder({technic:cart_item});
+        else var html_code = Templates.equipmentInOrder({equipment:cart_item});
 
         var $node = $(html_code);
 

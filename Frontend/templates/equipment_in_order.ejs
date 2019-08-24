@@ -1,0 +1,21 @@
+<div class="myOrder">
+    <img class="imgInOrder" src="http://localhost:5050/images/equipments/<%=equipment.icon%>">
+    <p class="centerAlign">
+        <span class="order-title"><%= equipment.title%> </span>
+    </p>
+    <div class="orderCharacteristics">
+        <span class="price"><%=equipment.price %> <%= equipment.currency %></span>
+    </div>
+    <div class="price-box">
+        <div class="minus btn btn-xs btn-danger btn-circle" >
+            <i class="glyphicon glyphicon-minus"></i>
+        </div>
+        <span class="label order-count" style="color:black;"><span class="" style="display:none">x</span><%= equipment.quantity %></span>
+        <div class="plus btn btn-xs btn-success btn-circle" >
+            <i class="glyphicon glyphicon-plus "></i>
+        </div>
+        <div class="removeButton count-clear btn btn-xs btn-default btn-circle" >
+            <i class="glyphicon glyphicon-remove"></i>
+        </div>
+    </div>
+</div>

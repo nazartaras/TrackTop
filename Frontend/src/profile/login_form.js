@@ -1,5 +1,6 @@
 exports.openForm = function() {
     document.getElementById("myForm").style.display = "block";
+
 }
 
 var user_info_dispalyed = false;
@@ -13,6 +14,7 @@ exports.userInfo = function() {
     document.getElementById("user_info").style.display = "none";
         user_info_dispalyed = false;}
     else {
+        if($("#basketColumn").hasClass( "widthR" )) $("#user_info").addClass("margR");
         document.getElementById("user_info").style.display = "block";
         user_info_dispalyed = true;
     }
