@@ -88,10 +88,6 @@ Frontend/src/profile/main_profile.js
 
 .idea/misc.xml
 
-*.jpg
-*.png
-*.jpeg
-
 Frontend/www/assets/js/profile_main.js
 
 Frontend/www/assets/js/equipmentsMain.js

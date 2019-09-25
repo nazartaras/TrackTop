@@ -1,4 +1,4 @@
-var API_URL = "http://localhost:5050";
+var API_URL = "http://tracktop.com.ua";
 
 function backendGet(url, callback, data) {
     $.ajax({
