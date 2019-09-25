@@ -12,10 +12,11 @@ function showImages(list) {
 
         var $node = $(html_code);
 
-
         $images.append($node);
     }
-
+    if(list.length==0) {
+        list.push("default_technic.jpg");
+    }
     list.forEach(showOne);
     multiItemSlider('.slider');
 }

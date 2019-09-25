@@ -1,5 +1,5 @@
 function  initialize() {
-    var equipment = JSON.parse(localStorage.getItem('currTechnic'));
+    var equipment = JSON.parse(localStorage.getItem('currEquipment'));
     var dataset = [];
 
     function callback(err,data) {
@@ -8,20 +8,22 @@ function  initialize() {
             return;
         }
         data.data.forEach(function(item){
-            dataset.push(item.file_name)
+            dataset.push("equipments/"+item.file_name)
         });
         require('../pagesScripts/slider').initialize(dataset);
     }
     require('../API').getEquipmentImagesById(equipment.id,callback);
 
 
-    $('.order_technic').click(function(){
+    $('.order_equipment').click(function(){
 
         // var tech = JSON.parse(localStorage.getItem('currTechnic'));
 
-        var equipment = localStorage.getItem('currEquipment');
+        var equipment = JSON.parse(localStorage.getItem('currEquipment'));
         console.log(equipment);
         // var isTech = equipment==null ? false : true;
+        require('../pagesScripts/notify').Notify("Товар додано.Перейдіть в корзину, щоб оформити замовлення!!!",null,null,'success');
+
         require('../basket').addToCart({
             id : equipment.id,
             title: equipment.name,
