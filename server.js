@@ -1,3 +1,3 @@
 var main = require('./Backend/main');
-var port = 80;
+var port = 5050;
 main.startServer(port);
