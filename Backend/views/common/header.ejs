@@ -61,30 +61,21 @@
 <div id="id01" class="modal">
 
     <form class="modal-content" onsubmit='return false'>
-        <span onclick="document.getElementById('id01').style.display='none'" class="close_ close-signup" title="Закрити">x</span>
+        <div>
+            <span class="text-uppercase">Реєстрація</span>
+            <span onclick="document.getElementById('id01').style.display='none'" class="close_ close-signup fa fa-remove" title="Закрити"></span>
+        </div>
         <div class="container">
-            <h1>Форма реєстрації</h1>
-            <p>Заповніть цю форму, щоб зареєструватись</p>
-            <hr>
-            <label for="surname"><b>Прізвище</b></label>
-            <input type="text" placeholder="Ваше прізвище" name="surname" required>
-
-            <label for="name"><b>Ім'я</b></label>
-            <input type="text" placeholder="Ваше ім'я" name="name" required>
-
-            <label for="phone"><b>Номер телефону</b></label>
-            <input type="text" placeholder="Номер телефону" name="phone" required>
-
-            <label for="psw"><b>Пароль</b></label>
-            <input type="password" placeholder="Enter Password" name="psw" required>
-
-            <label for="location"><b>Населений пункт</b></label>
-            <input type="text" placeholder="Введіть населений пункт,в якому ви проживаєте" name="location" required>
-
-            <label>
-                <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Запам'ятати
-            </label>
-
+            <div class="form-group">
+                <input type="text" placeholder="Ваше прізвище" name="surname" required>
+                <input type="text" placeholder="Ваше ім'я" name="name" required>
+                <input type="text" placeholder="Номер телефону" name="phone" required>
+                <input type="password" placeholder="Пароль" name="psw" required>
+                <input type="text" placeholder="Населений пункт" name="location" required>
+                <label>
+                    <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Запам'ятати
+                </label>
+            </div>
 
             <div class="clearfix">
                 <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Скасувати</button>
