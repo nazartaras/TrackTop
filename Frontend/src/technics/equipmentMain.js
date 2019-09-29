@@ -3,7 +3,10 @@ function  initialize() {
     var dataset = [];
 
     function callback(err,data) {
-        if(data.error) console.log(data.error);
+        if(data.error) {
+            console.log(data.error);
+            return;
+        }
         data.data.forEach(function(item){
             dataset.push("equipments/"+item.file_name)
         });
