@@ -1,18 +1,21 @@
-<div class="topnav_1">
-    <input type="text" id="myInput" onkeyup="filterSelection()"  placeholder="Пошук" title="Type in a name">
-
+<div class='search'>
+    <div class="form-group has-search">
+        <i class="fa fa-search form-control-feedback"></i>
+        <input id="myInput" onkeyup="filterSelection()" type="text" class="form-control" placeholder="Пошук">
+    </div>
 </div>
+
 
 <script>
 
     function filterSelection() {
-        var input =  document.getElementById("myInput");
+        var input = document.getElementById("myInput");
         filter = input.value.toUpperCase();
         var list;
         let count = 0;
         list = document.getElementsByClassName("oneTechnic");
-       // console.log(list);
-        for(let i =0 ; i< list.length;i++) {
+        // console.log(list);
+        for (let i = 0; i < list.length; i++) {
             // let a = list[i].getElementsByClassName();
             var txtValue;
             txtValue = list[i].innerText;
@@ -25,11 +28,11 @@
             }
 
         }
-        if(list.length==count) {
-         document.getElementsByClassName("nothing_found")[0].style.display="block";
+        if (list.length == count) {
+            document.getElementsByClassName("nothing_found")[0].style.display = "block";
         }
         else {
-            document.getElementsByClassName("nothing_found")[0].style.display="none";
+            document.getElementsByClassName("nothing_found")[0].style.display = "none";
         }
     }
 </script>
