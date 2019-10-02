@@ -1,25 +1,9 @@
-/* Full-width input fields */
-input[type=text], input[type=password] {
-  width: 100%;
-  padding: 15px;
-  margin: 5px 0 22px 0;
-  display: inline-block;
-  border: none;
-  background: #f1f1f1;
-}
-
-/* Add a background color when the inputs get focus */
-input[type=text]:focus, input[type=password]:focus {
-  background-color: #ddd;
-  outline: none;
-}
-
 /* Set a style for all buttons */
 button {
   background-color: #4CAF50;
   color: white;
   padding: 14px 20px;
-  margin: 8px 0;
+  margin: 10px 0;
   border: none;
   cursor: pointer;
   width: 100%;
@@ -30,22 +14,10 @@ button:hover {
   opacity:1;
 }
 
-/* Extra styles for the cancel button */
-.cancelbtn {
-  padding: 14px 20px;
-  background-color: #f44336;
-}
-
-/* Float cancel and signup buttons and add an equal width */
-.cancelbtn, .signup {
-  float: left;
-  width: 50%;
-}
-
 /* Add padding to container elements */
 .container {
   padding: 16px;
-  width:400px!important;
+  width: 100%;
 }
 
 
@@ -61,15 +33,15 @@ button:hover {
   height: 100%; /* Full height */
   overflow: auto; /* Enable scroll if needed */
   background-color: rgba(71, 78, 93, 0.7);
-  padding-top: 50px;
+  padding-top: 10px;
 }
 
 /* Modal Content/Box */
 .modal-content {
   background-color: #fefefe;
-  margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
-  border: 1px solid #888;
-  width: 400px; /* Could be more or less, depending on screen size */
+  margin: 3% auto auto auto; /* 3% from the top */
+  width: 300px; /* Could be more or less, depending on screen size */
+  font-family: "Segoe UI","Lucida Grande",Roboto,"Open Sans",sanf-serif,helvetica,tahoma,verdana,serif !important
 }
 
 /* Style the horizontal ruler */
@@ -115,4 +87,58 @@ hr {
   width:75%!important;
   border: #2196F3 solid 2px;
   border-radius: 20px;
+}
+
+.form-item {
+  margin: 7px 0 0 0;
+}
+
+.header-signup {
+  height: 40px;
+  background: #4c78ab;
+  padding: 0 9px;
+  border-radius: 3px 3px 0 0;
+  color: white;
+  margin: auto auto;
+  line-height: 40px
+}
+
+.popup-close {
+  opacity: 0.8;
+  cursor: pointer;
+  line-height: 40px;
+}
+
+.right {
+  float: right !important;
+  line-height: 40px;
+}
+.left {
+  float: left;
+}
+
+
+
+.btn-cancel, .btn-ok{
+  width: 45%;
+  border: none;
+  min-width: 64px;
+}
+
+.btn-ok, .btn-ok:hover  {
+  background: #4c78ab;
+}
+
+.btn-cancel, .btn-cancel:hover  {
+  background: #bbbbbb;
+}
+
+.btn:hover{
+  opacity: 1 !important;
+  text-decoration: none;
+  color: white;
+}
+
+.signup-btn-container {
+  text-align: center;
 }
