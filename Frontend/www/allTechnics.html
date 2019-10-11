@@ -75,7 +75,7 @@
             <span class="form-group">
 <!--    <label for="sel1">Тип</label>-->
                 <span class="name-type">Тип</span>
-     <div class="ds"> <select class="form-control form-item" id="sel1" name="sellist1">
+     <div class="ds"> <select class="form-control form-item" id="type_technics" name="sellist1">
 <!--          <option selected disabled>Тип</option>-->
         <option>Комбайн</option>
         <option>Трактор</option>
@@ -97,8 +97,21 @@
     <option value="Vanilla">
 </datalist>
                 <br>
+                <div class="name-type ">Модель</div>
+                <div class="ds">
+<input class="form-control form-item" id="model-choice" list="models" placeholder="Модель" required/>
+</div>
+<datalist id="models">
+    <option disabled selected value="Модель"/>
+    <option value="Chocolate">
+    <option value="Coconut">
+    <option value="Mint">
+    <option value="Strawberry">
+    <option value="Vanilla">
+</datalist>
 
-<div class="name-type">Ціна</div>
+
+<div class="name-type right-type">Ціна</div>
                <div class="ds">
                    <input class="form-control form-item" id="price-input-technic" min="1" name ="price-input" placeholder="Ціна" required type="number">
 
@@ -110,9 +123,10 @@
       </select>
                     </div>
                     </div>
+ <br>
+<!--                <input type="text" name="color" value="Orange,Black">-->
 
-
-                <div class="name-type right-type">Рік</div>
+                <div class="name-type">Рік</div>
                 <div class="ds">
                 <input class="form-control form-item" max="2020" min="1950" placeholder="Рік випуску" required
                        type="number" name="year-input">
@@ -147,6 +161,11 @@
 
 </body>
 <script src="../www/assets/js/adminPanel.js"></script>
+
+
+<!-- Amsify Plugin -->
+<link rel="stylesheet" href="../www/assets/less/adminPanel/amsify.suggestags.css">
+<script src="../src/adminPanel/jquery.amsify.suggestags.js"></script>
 
 <!--<script>-->
 <!--    function ready() {-->
