@@ -4,17 +4,18 @@
 
 
     <span id="contact_phone"><img src="assets/images/viber24.png" style="height: 24px"> <img
-                src="assets/images/telegram24.png" style="height: 24px;margin-right: 4px">380 67 646 22 44</span>
+            src="assets/images/telegram24.png" style="height: 24px;margin-right: 4px">380 67 646 22 44</span>
 
     <div class="header-right">
-        <a id="writeMessageMainPage" onclick="openMessageModal();"><img src="assets/images/letterMainPanel.png"
-                                                                        style="height: 48px;margin-top: -8px;"></a>
-        <a id="basketBtn" class='basketBtn'><img src="assets/images/cartMainPanel.png"
-                                                 style="height: 50px;margin-top: -10px;"></a>
-        <a id="signup" href="#signup" display="none">Зареєструватись</a>
-        <a id="login" href="#login" display="none">Увійти</a>
-        <img id="user_photo" alt='This is a user image' display="none">
-
+        <div class="mess-bask">
+            <a id="writeMessageMainPage" onclick="openMessageModal();"><i class="fas fa-envelope icons"></i></a>
+            <a id="basketBtn" class='basketBtn'><i class="fa fa-shopping-basket icons"></i></a>
+        </div>
+        <div class="log-sign">
+            <a id="signup" href="#signup" display="none">Зареєструватись</a>
+            <a id="login" href="#login" display="none">Увійти</a>
+            <img id="user_photo" alt='This is a user image' display="none">
+        </div>
     </div>
 </div>
 
@@ -68,7 +69,8 @@
                 <span class="text-uppercase">Реєстрація</span>
             </div>
             <div class="right">
-                <div onclick="document.getElementById('id01').style.display='none'"class="fa fa-remove popup-close link" title="Закрити"></div>
+                <div onclick="document.getElementById('id01').style.display='none'"
+                    class="fa fa-remove popup-close link" title="Закрити"></div>
             </div>
         </div>
         <div class="container">
@@ -86,13 +88,14 @@
                 <input type="email" placeholder="Email" title="Введіть email" name="email"
                     class="form-control form-item">
                 <label class="form-item">
-                    <input type="checkbox" checked="checked"  name="remember"> Запам'ятати
+                    <input type="checkbox" checked="checked" name="remember"> Запам'ятати
                 </label>
-             </span>
+            </span>
 
             <div class="signup-btn-container">
                 <button id="signup_btn" class="signup btn small btn-ok">OK</button>
-                <button type="button" onclick="document.getElementById('id01').style.display='none'" class="btn btn-primary btn-small btn-cancel">
+                <button type="button" onclick="document.getElementById('id01').style.display='none'"
+                    class="btn btn-primary btn-small btn-cancel">
                     СКАСУВАТИ
                 </button>
             </div>

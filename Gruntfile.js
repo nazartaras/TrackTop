@@ -46,9 +46,10 @@ module.exports = function(grunt) {
                 dest:       'Frontend/www/assets/js/profile_main.js'
             },
             adminPanel: {
-                src:        'Frontend/src/adminPanel/adminPanel.js',
+                src:        'Frontend/src/adminPanel/allTechnicsScript.js',
                 dest:       'Frontend/www/assets/js/adminPanel.js'
-            }
+            },
+
 
         }
     };
