@@ -25,6 +25,7 @@ var $surname = $('#id01 input[name=surname]')[0];
 var $phone = $('#id01 input[name=phone]')[0];
 var $password = $('#id01 input[name=psw]')[0];
 var $address = $('#id01 input[name=location]')[0];
+var $email = $('#id01 input[name=email]')[0];
 
 checkValidation = function(){
     var name = $name.value;
@@ -121,19 +122,21 @@ checkMessageForm = function () {
 
 function addClient(){
     $('#signup_btn').click(function() {
-
+        document.getElementById('id01').style.display='none'
        // if (checkValidation()) {
         var name = $name.value;
         var surname = $surname.value;
         var phone = $phone.value;
         var password = $password.value;
         var address = $address.value;
+        var email = $email.value;
 
         var newT = {
             surname: surname,
             name: name,
             phone_number: phone,
             settelment: address,
+            email: email,
             hash: password
         }
        // console.log(newT);
