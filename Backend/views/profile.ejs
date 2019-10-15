@@ -27,19 +27,23 @@
 
 <div style="width: 165px; float: left; position: fixed;"> <button class="toMainPageBtn">На головну</button> </div>
 
-<div class="container"  id ="kkk">
+<div class="container profile-container"  id ="kkk">
 
 
     <h1 class="page-header">Edit Profile</h1>
     <div class="row">
 
         <!-- left column -->
-        <div class="col-md-4 col-sm-6 col-xs-12">
+        <div class="col-lg-4 col-xs-12">
 
             <div class="text-center">
                 <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail" alt="avatar" id="my_avatar">
                 <h6>Завантажити фото</h6>
-                <input type="file" id="photo_input" accept="image/*" class="text-center center-block well well-sm">
+                <input
+                       type="file"
+                       id="photo_input"
+                       accept="image/*"
+                       class="text-center center-block well well-sm file-wrapper">
                 <script>
                     var loadFile = function(event) {
                         var image = document.getElementById('my_avatar');
@@ -49,9 +53,8 @@
             </div>
         </div>
         <!-- edit form column -->
-        <div class="col-md-8 col-sm-6 col-xs-12 personal-info">
+        <div class="col-lg-8 col-xs-12 personal-info profile-fields-container">
 
-            <h3>Ваші дані</h3>
             <form class="form-horizontal" role="form" id="form_user_info">
                 <div class="form-group">
                     <label class="col-lg-3 control-label">Прізвище</label>
@@ -72,41 +75,41 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-lg-3 control-label">Де ви проживаєте</label>
+                    <label class="col-lg-3 control-label">Місце проживання</label>
                     <div class="col-lg-8">
                         <input class="form-control" value="" id="location_value"  type="text">
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label class="col-md-3 control-label">Пункт "Нової Пошти"</label>
-                    <div class="col-md-8">
+                    <label class="col-lg-3 control-label">Пункт Нової Пошти</label>
+                    <div class="col-lg-8">
                         <input class="form-control" value="" id="location_post_office_value"type="text">
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label class="col-md-3 control-label">Відділення "Нової Пошти"</label>
-                    <div class="col-md-8">
+                    <label class="col-lg-3 control-label">Відділення Нової Пошти</label>
+                    <div class="col-lg-8">
                         <input class="form-control" value="" id="post_office_number_value" type="text">
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label class="col-md-3 control-label">Пароль</label>
-                    <div class="col-md-8">
+                    <label class="col-lg-3 control-label">Пароль</label>
+                    <div class="col-lg-8">
                         <input class="form-control" value="" id="password_value" type="password">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-md-3 control-label">Підтвердіть пароль</label>
-                    <div class="col-md-8">
+                    <label class="col-lg-3 control-label">Підтвердіть пароль</label>
+                    <div class="col-lg-8">
                         <input class="form-control" value="" id ="password_confirm_value" type="password">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-md-3 control-label"></label>
-                    <div class="col-md-8">
+                    <label class="col-lg-3 control-label"></label>
+                    <div class="col-lg-8">
                         <input class="btn btn-primary" id = "update_user_info" value="Зберегти" type="button">
                         <span></span>
                         <input class="btn btn-default" value="Скасувати" type="reset" onclick="document.location.href='http://localhost:5050/' ">
