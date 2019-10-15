@@ -46,6 +46,7 @@ function configureEndpoints(app) {
     app.get('/technic', pages.technic);
     app.get('/equipments', pages.equipments);
     app.get('/equipment', pages.equipment);
+    app.get('/about', pages.about);
 
     //Якщо не підійшов жоден url, тоді повертаємо файли з папки www
     app.use(express.static(path.join(__dirname, '../Frontend/www')));

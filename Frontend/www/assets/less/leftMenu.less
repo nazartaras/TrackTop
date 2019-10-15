@@ -4,7 +4,7 @@
   left      : 5px;
   overflow-x: hidden;
   width     : @WidthLeftPanel - 10;
-
+  overflow-y: scroll;
 
   //padding : 0px!important;
   border    : 0.5px solid #c4c4c4;
@@ -40,7 +40,7 @@
 #menuToggle {
   display            : none;
   position           : relative;
-  top                : 10px;
+  top                : 40px;
   left               : 10px;
   z-index            : 1;
   -webkit-user-select: none;
@@ -133,7 +133,7 @@
   transform: translate(15%, 0);
 }
 
-@media screen and (max-width:700px) {
+@media (max-width:500px) {
   #menuToggle {
     display: block;
   }
