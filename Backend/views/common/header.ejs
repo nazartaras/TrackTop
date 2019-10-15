@@ -45,17 +45,18 @@
 </div>
 
 <!--(contains the Log in  form) -->
-<div class="form-popup" id="myForm">
+<div class="form-popup message-popup" id="myForm">
     <form class="form-container" onsubmit="return false">
-        <h1>Login</h1>
-
-        <label for="phone"><b>Телефон</b></label>
-        <input type="text" placeholder="Введіть ваш номер телефону" name="phone" required>
-
-        <label for="psw"><b>Пароль</b></label>
-        <input type="password" placeholder="Введіть ваш пароль" name="psw" required>
-        <button id="log_in_btn" class="btn">Увійти</button>
-        <button type="button" class="btn cancel">Закрити</button>
+        <input type="text" placeholder="Введіть номер телефону" name="phone"
+               class="form-control form-item" required>
+        <input type="password" placeholder="Введіть пароль" title="Введіть пароль" name="psw"
+               class="form-control form-item" required>
+        <div class="login-btn-container">
+            <button id="log_in_btn" class="signup btn small btn-ok">Увійти</button>
+            <button type="button" class="cancel btn btn-primary btn-small btn-cancel">
+                Закрити
+            </button>
+        </div>
     </form>
 </div>
 
@@ -66,11 +67,11 @@
     <form class="modal-content" onsubmit='return false'>
         <div class="header-signup">
             <div class="left">
-                <span class="text-uppercase">Реєстрація</span>
+                <span>Реєстрація</span>
             </div>
             <div class="right">
                 <div onclick="document.getElementById('id01').style.display='none'"
-                    class="fa fa-remove popup-close link" title="Закрити"></div>
+                     class="fa fa-remove popup-close link" title="Закрити"></div>
             </div>
         </div>
         <div class="container">
@@ -85,16 +86,18 @@
                     class="form-control form-item" required>
                 <input type="text" placeholder="Населений пункт" title="Введіть населений пункт" name="location"
                     class="form-control form-item" required>
+                <input type="email" placeholder="Email" title="Введіть email" name="email"
+                    class="form-control form-item">
                 <label class="form-item">
                     <input type="checkbox" checked="checked" name="remember"> Запам'ятати
                 </label>
             </span>
 
             <div class="signup-btn-container">
-                <button id="signup_btn" class="signup btn small btn-ok">OK</button>
+                <button id="signup_btn" class="signup btn small btn-ok">Ok</button>
                 <button type="button" onclick="document.getElementById('id01').style.display='none'"
                     class="btn btn-primary btn-small btn-cancel">
-                    СКАСУВАТИ
+                    Скасувати
                 </button>
             </div>
         </div>
