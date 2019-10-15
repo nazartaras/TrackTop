@@ -8,7 +8,7 @@ exports.connect = function() {
     connection = mysql.createConnection({
         host: 'localhost',
         user: 'root',
-        password: 'Mihamiha_123'
+        password: 'root'
     });
 
     connection.connect(function(err) {
@@ -19,11 +19,15 @@ exports.connect = function() {
 }
 
 exports.insert_tehnic = function(tehnic,callback){
-    connection.query("INSERT INTO tracktop.technic SET ?", tehnic, callback);
+    connection.query("INSERT INTO tracktop.technics SET ?", tehnic, callback);
 }
 
 exports.insert_equipment = function(equipment,callback){
     connection.query("INSERT INTO tracktop.equipment SET ?", equipment, callback);
+}
+
+exports.insert_model = function(model,callback){
+    connection.query("INSERT INTO tracktop.models SET ?", model, callback);
 }
 
 exports.insert_type_of_technics = function(type_of_technics,callback){
@@ -88,6 +92,10 @@ exports.insert_equipments = function(equipment,callback){
     connection.query("INSERT INTO tracktop.equipments SET ?", equipment, callback);
 }
 //select methods
+
+exports.get_id = function (table_name, name , callback) {
+    connection.query("SELECT id FROM tracktop."+table_name + " where name= '" + name + "'",callback);
+}
 
 exports.get_types_of_technics = function(callback){
     connection.query("SELECT * FROM tracktop.types_of_technics",callback);
@@ -155,6 +163,17 @@ exports.get_technics_price_less = function(price,callback){
 
 exports.get_technics_by_model = function(model,callback){
     connection.query("SELECT * FROM tracktop.technics WHERE tracktop.technics.model =" + model,callback);
+}
+
+exports.get_models_by_type_mark = function(type,mark,callback){
+    if(type!=null && mark !=null)
+    connection.query("SELECT Distinct model FROM tracktop.models WHERE tracktop.models.technic_type = '" + type +"' AND tracktop.models.technic_mark = '"+ mark+"'",callback);
+    else if (mark==null)     connection.query("SELECT Distinct * FROM tracktop.models WHERE tracktop.models.technic_type = '" + type +"'",callback);
+
+}
+
+exports.get_models = function(callback){
+    connection.query("SELECT * FROM tracktop.models",callback);
 }
 
 

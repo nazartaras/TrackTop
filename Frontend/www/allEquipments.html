@@ -118,6 +118,30 @@
                 <!--                <label for="mark-choice">Модель</label>-->
                 </div>
 
+                <br>
+                <div >Підходить до:</div>
+                <span class="name-type">Категорія</span>
+                     <div class="ds"> <select class="form-control form-item" id="type_technics" name="sellist1" onchange="getMarks()">
+<!--          <option selected disabled>Тип</option>-->
+                        <option  selected disabled >Тип</option>
+                     </select>
+         </div>
+                <span class="name-type  right-type">Марка</span>
+                <div class="ds">
+<input class="form-control form-item" id="mark-choice" list="marks" placeholder="Марка"  disabled/>
+</div>
+<datalist id="marks">
+    <option disabled selected value="Марка"/>
+</datalist>
+                <br>
+                <div class="name-type ">Модель</div>
+                <div class="ds">
+<input class="form-control form-item" id="model-choice" list="models" placeholder="Модель"  disabled />
+</div>
+<datalist id="models">
+    <option disabled selected value="Модель"/>
+</datalist>
+
                 <div class="form-group">
                 <label for="description">Опис</label>
                 <textarea id="description" class="form-control"  name="description" rows="6" ></textarea>
