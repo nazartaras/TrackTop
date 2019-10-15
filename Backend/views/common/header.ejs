@@ -1,19 +1,24 @@
 <% include message.ejs %>
 <div class="header">
-    <img id="logo" src="assets\images\logo.png" alt='This is a logo image'>
-
-
-    <span id="contact_phone"><img src="assets/images/viber24.png" style="height: 24px"> <img
-            src="assets/images/telegram24.png" style="height: 24px;margin-right: 4px">380 67 646 22 44</span>
-
+    <div class='header-left'>
+        <img id="logo" src="assets\images\logo.png" alt='This is a logo image'>
+        <span>
+            <div id="contact_phone"><img src="assets/images/viber24.png" style="height: 11px"> <img
+                    src="assets/images/telegram24.png" style="height: 12px;margin-right: 4px">380 67 646 22 44</div>
+            <div id="contact_phone"><img src="assets/images/viber24.png" style="height: 11px"> <img
+                    src="assets/images/telegram24.png" style="height: 12px;margin-right: 4px">380 67 646 22 44</div>
+            <div id="contact_phone"><img src="assets/images/viber24.png" style="height: 11px"> <img
+                    src="assets/images/telegram24.png" style="height: 12px;margin-right: 4px">380 67 646 22 44</div>
+        </span>
+    </div>
     <div class="header-right">
         <div class="mess-bask">
             <a id="writeMessageMainPage" onclick="openMessageModal();"><i class="fas fa-envelope icons"></i></a>
             <a id="basketBtn" class='basketBtn'><i class="fa fa-shopping-basket icons"></i></a>
         </div>
         <div class="log-sign">
-            <a id="signup" href="#signup" display="none">Зареєструватись</a>
-            <a id="login" href="#login" display="none">Увійти</a>
+            <a id="signup" href="#signup" display="none"><i class="fas fa-plus-circle" style="font-size: 24px;"></i></a>
+            <a id="login" href="#login" display="none"><i class="fas fa-door-open" style="font-size: 24px;"></i></a>
             <img id="user_photo" alt='This is a user image' display="none">
         </div>
     </div>
