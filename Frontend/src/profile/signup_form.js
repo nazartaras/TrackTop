@@ -238,23 +238,25 @@ openMessageModal = function () {
     // }
     // require("../API").getId("types_of_technics","Трактори", callback1);
 
-//
-//     let marks = new Array(),all = new Array();
-//     let types = new Set(), models = new Array();
-//     let unique ;
-//     function callback(err,data) {
-// console.log(data.data);
-//         all=data.data;
-//         data.data.forEach(function(item){
-//             types.add(item.technic_type);
-//             marks.push(item.technic_mark);
-//             models.push(item.model);
-//             console.log(item);
-//             // $('#type_technics').append(new Option(item.name, item.name));
-//         });
-//     }
-//     require("../API").getModels(callback);
-// console.log(types);
+
+    let marks = new Array(),all = new Array();
+    let types = new Array(), models = new Array();
+    let unique ;
+    function callback(err,data) {
+console.log(data.data);
+        all=data.data;
+        data.data.forEach(function(item){
+            if(!types.includes(item.technic_type)) {
+                types.push(item.technic_type);
+                console.log(item.technic_type);
+                // $('#type_technics').append(new Option(item.name, item.name));
+            }
+           // console.log(item);
+
+        });
+    }
+    require("../API").getModels(callback);
+
 
     $('#messageModal').modal('show');
    // $('#messageModal').on('shown.bs.modal', function(e) {

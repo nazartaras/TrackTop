@@ -50,6 +50,14 @@ exports.addTehnic = function(tehnic, callback) {
     backendPost("/api/addtechnic/", tehnic, callback);
 };
 
+exports.addEquipment = function(equipment, callback) {
+    backendPost("/api/addequipment/", equipment, callback);
+};
+
+exports.addEquipmentsModels = function(equipment_model, callback) {
+    backendPost("/api/addequipmentsmodels/", equipment_model, callback);
+};
+
 exports.addTypeTechnics = function(type, callback) {
     backendPost("/api/addtypetechnics/", type, callback);
 };

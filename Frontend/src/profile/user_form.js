@@ -11,7 +11,7 @@ exports.isLogged = function () {
         $('#user_phone').html('<b>' + phone + '</b>');
         $('#user_photo').css("display","block");
         if(photo_location==null) {
-            $('#user_photo').attr("src", "assets/images/avatar_2x.png");
+            $('#user_photo').attr("src", "assets/images/avatar.png");
         }
        else  $('#user_photo').attr("src", "http://localhost:5050/images/users_photos/"+photo_location);
         $('#login').css("display", "none");
