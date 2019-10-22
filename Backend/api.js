@@ -68,8 +68,8 @@ exports.addEquipmentsModels = function(req, res) {
             });
         }
     }
-
-    db.insert_equipment(info,callback);
+console.log("info = " + info);
+    db.insert_equipments_models(info,callback);
 
 };
 

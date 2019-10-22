@@ -370,33 +370,37 @@ addEquipmentToDB = function () {
 
     function callback(err,data) {
         let insertedid = data.data.insertId;
-       // console.log(data.data.insertId);
+        // console.log(data.data.insertId);
         let model_id = null;
         function callback2(err,data) {
+            let equipmentmodel;
             data.data.forEach(function (item) {
                 if(item.model==model) {
                     model_id= item.id;
-                    let equipmentmodel = {
+                    equipmentmodel = {
                         equipment_id:insertedid,
                         model_id: model_id
                     }
-                    function callback3(err,data) {
-                        if(err) console.log(err);
-                        else {
-                            console.log("Success");
-                        }
-                    }
-                    require("../API").addEquipmentsModels(equipmentmodel,callback3);
                 }
             })
+            //console.log(equipmentmodel);
+
+            require("../API").addEquipmentsModels(equipmentmodel,callback3);
+            function callback3(err,data) {
+                if(err) console.log(err);
+                else {
+                    console.log("Success");
+                }
+            }
+
         }
         require("../API").getModels(callback2);
 
     }
     require("../API").addEquipment(equipment,callback);
 
-    $("#allEquipments tbody").append(
-        productBuildTableRow(102));
+    // $("#allEquipments tbody").append(
+    //     productBuildTableRow(102));
 }
 
 
