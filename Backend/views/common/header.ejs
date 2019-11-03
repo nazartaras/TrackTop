@@ -11,16 +11,18 @@
                     src="assets/images/telegram24.png" style="height: 12px;margin-right: 4px">380 67 646 22 44</div>
         </span>
     </div>
-    <div class="header-right">
-        <div class="mess-bask">
-            <a id="writeMessageMainPage" onclick="openMessageModal();"><i class="fas fa-envelope icons"></i></a>
-            <a id="basketBtn" class='basketBtn'><i class="fa fa-shopping-basket icons"></i></a>
+    <div style="display: flex;">
+        <div class="header-right">
+            <div class="mess-bask">
+                <a id="writeMessageMainPage" onclick="openMessageModal();"><i class="fas fa-envelope icons"></i></a>
+                <a id="basketBtn" class='basketBtn'><i class="fa fa-shopping-basket icons"></i></a>
+            </div>
+            <div class="log-sign">
+                <a id="signup" href="#signup" display="none"><i class="fas fa-plus-circle icons"></i></a>
+                <a id="login" href="#login" display="none"><i class="fas fa-door-open icons"></i></a>
+            </div>
         </div>
-        <div class="log-sign">
-            <a id="signup" href="#signup" display="none"><i class="fas fa-plus-circle" style="font-size: 24px;"></i></a>
-            <a id="login" href="#login" display="none"><i class="fas fa-door-open" style="font-size: 24px;"></i></a>
-            <img id="user_photo" alt='This is a user image' display="none">
-        </div>
+        <img id="user_photo" alt='This is a user image' display="none">
     </div>
 </div>
 
@@ -52,10 +54,9 @@
 <!--(contains the Log in  form) -->
 <div class="form-popup message-popup" id="myForm">
     <form class="form-container" onsubmit="return false">
-        <input type="text" placeholder="Введіть номер телефону" name="phone"
-               class="form-control form-item" required>
+        <input type="text" placeholder="Введіть номер телефону" name="phone" class="form-control form-item" required>
         <input type="password" placeholder="Введіть пароль" title="Введіть пароль" name="psw"
-               class="form-control form-item" required>
+            class="form-control form-item" required>
         <div class="login-btn-container">
             <button id="log_in_btn" class="signup btn small btn-ok">Увійти</button>
             <button type="button" class="cancel btn btn-primary btn-small btn-cancel">
@@ -76,7 +77,7 @@
             </div>
             <div class="right">
                 <div onclick="document.getElementById('id01').style.display='none'"
-                     class="fa fa-remove popup-close link" title="Закрити"></div>
+                    class="fa fa-remove popup-close link" title="Закрити"></div>
             </div>
         </div>
         <div class="container">

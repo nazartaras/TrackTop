@@ -90,11 +90,6 @@
 
 
 .order_technic, .order_equipment{
-  border-radius: 20px;
-  width: 300px;
-  height: 48px;
-  font-size: 18px;
-  padding: 0;
 }
 
 .openMessageBtn {
@@ -113,9 +108,21 @@
 }
 
 .btn_row {
-  width: 608px;
+  width: 50%;
   margin: 8px auto;
   display: block;
+  button{
+    font-size: 18px;
+    i{
+      margin-right: 10px;
+    }
+  }
+}
+
+@media screen and (max-width: 900px){
+  .btn_row{
+    width: 100%;
+  }
 }
 
 .row_info {

@@ -1,35 +1,37 @@
-@heightTopBot:@heightTopPanel;
+@heightTopBot: @heightTopPanel;
 @heightBottom: @heightTopPanel*1.7;
 
 .sidenav {
-  height: 100%;
-  width: @WidthRightPanel;
-  //width:@WidthRightPanel;
-  position: fixed;
-  top: 0;
-  right: @WidthRightPanel*(-1);
-  overflow-x: hidden;
-  transition: 0.5s;
+  height     : 100%;
+  width      : @WidthRightPanel;
+  //width    :@WidthRightPanel;
+  position   : fixed;
+  top        : 0;
+  right      : @WidthRightPanel*(-1);
+  overflow-x : hidden;
+  transition : 0.5s;
   padding-top: 60px;
 
-  background: white;
-  border-left:0.5px solid #c4c4c4;
-  box-shadow: rgba(0,0,0,.2) -3px 3px 10px;
-  z-index: 2;
+  background : white;
+  border-left: 0.5px solid #c4c4c4;
+  box-shadow : rgba(0, 0, 0, .2) -3px 3px 10px;
+  z-index    : 2;
 
   .basketCloseBtn {
-    position: absolute;
-    top: -10px;
-    right: 10px;
-    font-size: 36px;
+    position   : absolute;
+    top        : -10px;
+    right      : 10px;
+    font-size  : 36px;
     margin-left: 50px;
-    z-index: 3;
+    z-index    : 3;
   }
+
   a {
     color: #d9534f;
   }
-  a:hover{
-    color: #b92c28;
+
+  a:hover {
+    color          : #b92c28;
     text-decoration: none;
   }
 
@@ -37,196 +39,210 @@
 
 //a:hover {
 //  background: #786b59; /* Цвет фона под ссылкой */
-//  color: #ffe; /* Цвет ссылки */
+//  color     : #ffe; /* Цвет ссылки */
 //}
 
 #main {
   transition: margin-left .5s;
-  padding: 16px;
+  padding   : 16px;
 }
 
 @media screen and (max-height: 450px) {
-  .sidenav {padding-top: 15px;}
-  .sidenav a {font-size: 18px;}
+  .sidenav {
+    padding-top: 15px;
+  }
+
+  .sidenav a {
+    font-size: 18px;
+  }
 }
 
-.orderLabel{
-  padding-top:@heightTopBot/3;
-  position: absolute;
-  box-sizing: content-box;
-  width:100%;
-  height:@heightTopBot;
-  top:0;
-  text-align: center;
+.orderLabel {
+  padding-top: @heightTopBot/3;
+  position   : absolute;
+  box-sizing : content-box;
+  width      : 100%;
+  height     : @heightTopBot;
+  top        : 0;
+  text-align : center;
 
 
-  .labelOrder{
-    font-size: 20px;
+  .labelOrder {
+    font-size  : 20px;
     font-weight: 700;
     line-height: 17px;
   }
 
-  .labelOrderDelete{
-    color: #fcf8e3;
-    margin-left: 10px;
-    margin-right: 60px;
-    padding: 5px;
-    /* margin-top: 5px; */
-    float: right;
-    font-size: 12px;
-    line-height: 11px;
-    font-weight: 400;
+  .labelOrderDelete {
+    color           : #fcf8e3;
+    margin-left     : 10px;
+    margin-right    : 60px;
+    padding         : 5px;
+    /* margin-top   : 5px; */
+    float           : right;
+    font-size       : 12px;
+    line-height     : 11px;
+    font-weight     : 400;
     background-color: #999;
-    border-radius: 5px;
+    border-radius   : 5px;
   }
 
 }
 
-.endOrderLabel{
-  padding:10px;
-  position: absolute;
-  bottom:0;
-  height:@heightBottom;
-  width:100%;
-  border-top: 1px solid rgba(0,0,0,.1);
+.endOrderLabel {
+  padding   : 10px;
+  position  : absolute;
+  bottom    : 0;
+  height    : @heightBottom;
+  width     : 100%;
+  border-top: 1px solid rgba(0, 0, 0, .1);
 
-  .sumLabel{
+  .sumLabel {
     font-weight: 700;
-    font-size: 15px;
+    font-size  : 15px;
   }
 
-  .amountLabel{
+  .amountLabel {
     font-weight: 700;
-    font-size: 20px;
-    float:right;
+    font-size  : 20px;
+    float      : right;
   }
 
-  .buttonOrderDiv{
+  .buttonOrderDiv {
 
-    padding:20px;
+    padding: 20px;
 
-    .orderButton{
-      width:100%;
-      left: 50px;
-      border-color: darken(@mainColor,5%);
-      background-color: lighten(@mainColor,2%);
+    .orderButton {
+      width           : 100%;
+      left            : 50px;
+      border-color    : darken(@mainColor, 5%);
+      background-color: lighten(@mainColor, 2%);
     }
-    .orderButton:hover{
-      background-color: darken(@mainColor,1%);
+
+    .orderButton:hover {
+      background-color: darken(@mainColor, 1%);
     }
 
   }
 
 }
 
-.buyList{
-  position: absolute;
+.buyList {
+  position       : absolute;
   text-overflow-y: scroll;
-  background: #F5F5F5;
-  width:100%;
-  top:@heightTopBot;
-  bottom:0px;
-  margin-bottom: @heightBottom;
-  padding:0!important;
-  overflow-y:scroll;
-  overflow-x:hidden;
+  background     : #F5F5F5;
+  width          : 100%;
+  top            : @heightTopBot;
+  bottom         : 0px;
+  margin-bottom  : @heightBottom;
+  padding        : 0 !important;
+  overflow-y     : scroll;
+  overflow-x     : hidden;
 
-  .myOrder{
-    position:relative;
-    height: 120px;
-    padding: 10px 61px 10px 24px;
-    border-bottom: 1px solid rgba(0,0,0,.1);
-    position: relative;
-    overflow: hidden;
-    box-sizing: border-box;
+  .myOrder {
+    position     : relative;
+    height       : 120px;
+    padding      : 10px;
+    border-bottom: 1px solid rgba(0, 0, 0, .1);
+    position     : relative;
+    overflow     : hidden;
+    box-sizing   : border-box;
 
-    p{
-      margin:0px;
+
+    .image-control {
+      display        : flex;
+      justify-content: space-between;
     }
 
-    .centerAlign{
+    p {
+      margin: 0px;
+    }
+
+    .centerAlign {
       text-align: center;
     }
 
-    .imgInOrder{
-      position: absolute;
-      right: 75px;
-      top: 45px;
-      width:120px;
-      height:68px;
-      max-width: 120px;
-      border-width: 1px;
-      border-color: #999;
-      border-style: ridge;
+    .imgInOrder {
+      width        : 120px;
+      height       : 68px;
+      max-width    : 120px;
+      border-width : 1px;
+      border-color : #999;
+      border-style : ridge;
       border-radius: 5px;
     }
 
-    .order-title{
-      color:darken(@mainColor,3%);
-      font-size:20px;
+    .order-title {
+      color    : darken(@mainColor, 3%);
+      font-size: 20px;
     }
 
-    .orderCharacteristics{
-      margin:6px 0 8px;
+    .orderCharacteristics {
+      margin: 6px 0 8px;
 
-      .orderWeightIcon{
-        margin-left:10px;
+      .orderWeightIcon {
+        margin-left: 10px;
       }
     }
 
-    .price{
-      margin-right:10px;
-      font-size: 14px;
+    .price {
+      margin-right: 10px;
+      font-size   : 14px;
+      font-weight : 700;
+    }
+
+    .order-count {
+      font-size  : 14px;
       font-weight: 700;
     }
 
-    .order-count{
-      font-size: 14px;
-      font-weight: 700;
-    }
-
-    .btn-circle{
-      width: 30px;
-      height: 30px;
-      padding: 6px 0;
-      font-size: 12px;
-      line-height: 1.428571429;
+    .btn-circle {
+      width        : 30px;
+      height       : 30px;
+      padding      : 6px 0;
+      font-size    : 12px;
+      line-height  : 1.428571429;
       border-radius: 15px;
-      text-align:center;
+      text-align   : center;
     }
 
-    .plus{
-      background-image: linear-gradient(to bottom,#5cb85c 0,#419641 100%);
-      border-color: #398439;
+    .plus {
+      background-image: linear-gradient(to bottom, #5cb85c 0, #419641 100%);
+      border-color    : #398439;
     }
-    .plus:hover{
+
+    .plus:hover {
       background-image: linear-gradient(to bottom, #5bb65b 0, #397a39 100%);
     }
-    .minus{
-      background-image: linear-gradient(to bottom,#d9534f 0,#c12e2a 100%);
-      border-color: #b92c28;
+
+    .minus {
+      background-image: linear-gradient(to bottom, #d9534f 0, #c12e2a 100%);
+      border-color    : #b92c28;
     }
-    .minus:hover{
+
+    .minus:hover {
       background-image: linear-gradient(to bottom, #cd504c 0, #b22d29 100%);
     }
-    .btn-circle:last-child{
-      margin-left:20px;
-      color:darken(@mainColor,3%);
-      text-shadow: 0 1px 0 #fff;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,.15), 0 1px 1px rgba(0,0,0,.075);
+
+    .btn-circle:last-child {
+      margin-left      : 20px;
+      color            : darken(@mainColor, 3%);
+      text-shadow      : 0 1px 0 #fff;
+      box-shadow       : inset 0 1px 0 rgba(255, 255, 255, .15), 0 1px 1px rgba(0, 0, 0, .075);
       background-repeat: repeat-x;
-      background-image: linear-gradient(to bottom,#fff 0,#e0e0e0 100%);
+      background-image : linear-gradient(to bottom, #fff 0, #e0e0e0 100%);
     }
-    .btn-circle:hover:last-child{
+
+    .btn-circle:hover:last-child {
       background-image: linear-gradient(to bottom, #d7d7d7 0, #d7d7d7 100%);
     }
   }
 }
 
-.margR{
+.margR {
   margin-right: @WidthRightPanel;
 }
 
-.widthR{
+.widthR {
   right: 0;
 }
