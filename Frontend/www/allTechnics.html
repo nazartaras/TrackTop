@@ -76,14 +76,16 @@
 <!--    <label for="sel1">Тип</label>-->
                 <span class="name-type">Тип</span>
      <div class="ds"> <select class="form-control form-item" id="type_technics" name="sellist1" onchange="getModels()">
-<!--          <option selected disabled>Тип</option>-->
+          <option selected disabled>Тип</option>
+         <option>Комбайни</option>
+                  <option>Nhfrnjhb</option>
 
       </select>
          </div>
                 <!--                <label for="mark-choice">Модель</label>-->
                  <span class="name-type  right-type">Марка</span>
                 <div class="ds">
-<input class="form-control form-item" id="mark-choice" list="marks" placeholder="Марка" required onchange="getModels()"/>
+<input class="form-control form-item" id="mark-choice" list="marks" placeholder="Марка" required onchange="getModels()" disabled/>
 </div>
 <datalist id="marks">
     <option disabled selected value="Марка"/>
@@ -91,7 +93,7 @@
                 <br>
                 <div class="name-type ">Модель</div>
                 <div class="ds">
-<input class="form-control form-item" id="model-choice" list="models" placeholder="Модель" required />
+<input class="form-control form-item" id="model-choice" list="models" placeholder="Модель" required disabled/>
 </div>
 <datalist id="models">
     <option disabled selected value="Модель"/>
@@ -116,7 +118,7 @@
                 <div class="name-type">Рік</div>
                 <div class="ds">
                 <input class="form-control form-item" max="2020" min="1950" placeholder="Рік випуску" required
-                       type="number" name="year-input">
+                       type="number" name="year-input" id="year-technic-input">
                 </div>
                 <div class="form-group">
                 <label for="description">Опис</label>

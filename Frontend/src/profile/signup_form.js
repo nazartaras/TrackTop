@@ -193,68 +193,6 @@ sendMessage_My = function (i) {
 }
 
 openMessageModal = function () {
-    // let technic = {
-    //     mark_id : null,
-    //     type_id : null,
-    //     model : "model",
-    //     amount : 1,
-    //     price : "3123",
-    //     production_date : "1986",
-    //     currency:"долар",
-    //     description:"fsdf"
-    // }
-    //
-    // function callback1(err,data) {
-    //     console.log(data);
-    //     console.log(data.data);
-    //     if(data.error) console.log(data.error);
-    //     else {
-    //         technic.type_id= (data.data[0].id);
-    //         function callback2(err,data) {
-    //             if(data.error) console.log(data.error);
-    //             if(data.data.length <1) {
-    //                 function callback4(err,data) {
-    //                     console.log(data.data.insertId);
-    //                     technic.mark_id= data.data.insertId;
-    //                     function callback(err,data) {
-    //                         if(data.error) console.log(data.error);
-    //                         else console.log("success");
-    //                     }
-    //                     require("../API").addTehnic(technic,callback);
-    //                 }
-    //                 require("../API").addMarkTechnic({name : "fsd"},callback4);
-    //             }
-    //             else {
-    //                 technic.mark_id = data.data[0].id;
-    //                 function callback(err,data) {
-    //                     if(data.error) console.log(data.error);
-    //                     else console.log("success");
-    //                 }
-    //                 require("../API").addTehnic(technic,callback);
-    //             }
-    //         }
-    //         require("../API").getId("marks_of_technics","ffg", callback2);
-    //     }
-    // }
-    // require("../API").getId("types_of_technics","Трактори", callback1);
-
-//
-//     let marks = new Array(),all = new Array();
-//     let types = new Set(), models = new Array();
-//     let unique ;
-//     function callback(err,data) {
-// console.log(data.data);
-//         all=data.data;
-//         data.data.forEach(function(item){
-//             types.add(item.technic_type);
-//             marks.push(item.technic_mark);
-//             models.push(item.model);
-//             console.log(item);
-//             // $('#type_technics').append(new Option(item.name, item.name));
-//         });
-//     }
-//     require("../API").getModels(callback);
-// console.log(types);
 
     $('#messageModal').modal('show');
    // $('#messageModal').on('shown.bs.modal', function(e) {

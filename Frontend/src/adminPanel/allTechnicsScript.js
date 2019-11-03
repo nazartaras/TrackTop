@@ -1,6 +1,8 @@
 openAddTechnicModel = function () {
     $('#addTechnicModel').modal('show');
     $("#add-btn").text("Додати");
+
+    technicFormClear();
     // to do
     // get all types of technics, loop through and add options text = type, value=type
 
@@ -23,28 +25,33 @@ openAddTechnicModel = function () {
     // }
     // require("../API").getMarks(callback);
 
-    // get all models
 
 }
 
 getModels = function() {
     let type = $('#type_technics').children("option:selected").val();
-    let mark = $("#mark-choice").val();
-    console.log("type="+type + "  mark = "+ mark);
+    if($('#mark-choice').prop('disabled')) {
+        $('#mark-choice').prop("disabled", false);
+    }
+    else if ($('#mark-choice').val()!=""){
+        $('#model-choice').prop("disabled", false);
+        let mark = $("#mark-choice").val();
+        console.log("type=" + type + "  mark = " + mark);
 
-    if(type!="" && mark!="") {
+        if (type != "" && mark != "") {
 
-        // function callback(err, data) {
-        //$('#models').children().remove();
-        //     data.data.forEach(function (item) {
-        //         $('#models').append(new Option(item.model, item.model));
-        //     });
-        // }
-        //
-        // require("../API").getModelsbyTypeMark(type, mark, callback);
-        // not to use
-       // $('#models').children().remove();
-       // $('#models').append(new Option("consul", "consul"));
+            // function callback(err, data) {
+            //$('#models').children().remove();
+            //     data.data.forEach(function (item) {
+            //         $('#models').append(new Option(item.model, item.model));
+            //     });
+            // }
+            //
+            // require("../API").getModelsbyTypeMark(type, mark, callback);
+            // not to use
+            // $('#models').children().remove();
+            // $('#models').append(new Option("consul", "consul"));
+        }
     }
 }
 
@@ -97,7 +104,23 @@ deleteEquipment = function(cell) {
 }
 
 getMarks = function() {
+    var selectedType = $('#type_technics').children("option:selected").val();
     $('#mark-choice').prop("disabled", false);
+    console.log(selectedType);
+    let marks = new Array();
+
+    function callback(err,data) {
+        data.data.forEach(function(item){
+            if(!marks.includes(item.technic_mark)) {
+                marks.push(item.technic_mark);
+                //console.log(item.technic_mark);
+                $('#marks').append(new Option(item.technic_mark, item.technic_mark));
+            }
+
+        });
+
+    }
+    require("../API").getModelsbyTypeMark(selectedType,null,callback);
 }
 
 openAddEquipmentModel = function () {
@@ -106,35 +129,25 @@ openAddEquipmentModel = function () {
     // to do
     // get all types of technics, loop through and add options text = type, value=type
 
-    function callback(err,data) {
-
-        data.data.forEach(function(item){
-            console.log(item);
-            // $('#type_technics').append(new Option(item.name, item.name));
-        });
-
-    }
-    require("../API").getModels(callback);
-
     let marks = new Array(),all = new Array();
-    let types = new Set(), models = new Array();
+    let types = new Array(), models = new Array();
     let unique ;
     function callback(err,data) {
         console.log(data.data);
         all=data.data;
         data.data.forEach(function(item){
-            types.add(item.technic_type);
-            marks.push(item.technic_mark);
-            models.push(item.model);
-            //console.log(item);
-            // $('#type_technics').append(new Option(item.name, item.name));
+            if(!types.includes(item.technic_type)) {
+                types.push(item.technic_type);
+                //console.log(item.technic_type);
+                $('#type_technics').append(new Option(item.technic_type, item.technic_type));
+            }
+
         });
     }
     require("../API").getModels(callback);
 
-    for (let item of types)  $('#type_technics').append(new Option(item, item));
 
-    let type =
+    //let type =
 
  //   get all marks, loop through
     function callback(err,data) {
@@ -171,7 +184,7 @@ $(function(){
         $("#allTechnics tbody").append(
             "<tr class='rowTechnic'>" +
             "<td class=\"id\">"+i+"</td>" +
-            "<td class=\"type\">"+"Комбайн"+"</td>" +
+            "<td class=\"type\">"+"Комбайни"+"</td>" +
             " <td class=\"mark\">"+"claas"+"</td>" +
             " <td class=\"model\">"+"mercator 50"+"</td>" +
             " <td class=\"price\">"+"9000"+"</td>" +
@@ -344,6 +357,58 @@ addEquipmentToDB = function () {
     console.log(state);
     console.log(description);
     console.log(amount);
-    $("#allEquipments tbody").append(
-        productBuildTableRow(102));
+
+    var equipment = {
+        name : name,
+        amount:amount,
+        price:price,
+        vendor_code:code,
+        currency:"гривня",
+        state:state,
+        description:description
+    };
+
+    function callback(err,data) {
+        let insertedid = data.data.insertId;
+        // console.log(data.data.insertId);
+        let model_id = null;
+        function callback2(err,data) {
+            let equipmentmodel;
+            data.data.forEach(function (item) {
+                if(item.model==model) {
+                    model_id= item.id;
+                    equipmentmodel = {
+                        equipment_id:insertedid,
+                        model_id: model_id
+                    }
+                }
+            })
+            //console.log(equipmentmodel);
+
+            require("../API").addEquipmentsModels(equipmentmodel,callback3);
+            function callback3(err,data) {
+                if(err) console.log(err);
+                else {
+                    console.log("Success");
+                }
+            }
+
+        }
+        require("../API").getModels(callback2);
+
+    }
+    require("../API").addEquipment(equipment,callback);
+
+    // $("#allEquipments tbody").append(
+    //     productBuildTableRow(102));
+}
+
+
+function technicFormClear() {
+    $("#mark-choice").val("");
+    $("#description").val("");
+    $("#model-choice").val("");
+    $("#price-input-technic").val("");
+    $("#year-technic-input").val("");
+   // delete photoes if needed
 }

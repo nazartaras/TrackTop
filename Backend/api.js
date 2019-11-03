@@ -23,6 +23,56 @@ exports.addTehnic = function(req, res) {
 
 };
 
+exports.addEquipment = function(req, res) {
+    var db = require('./db');
+    var info = req.body;
+
+    function callback(error,data){
+        if(error) {
+            console.log("Error! ", error.sqlMessage);
+            res.send({
+                success: true,
+                error: error.sqlMessage
+            });
+        }
+        else {
+            console.log("Success! ", data);
+            res.send({
+                success: true,
+                data: data
+            });
+        }
+    }
+
+    db.insert_equipment(info,callback);
+
+};
+
+exports.addEquipmentsModels = function(req, res) {
+    var db = require('./db');
+    var info = req.body;
+
+    function callback(error,data){
+        if(error) {
+            console.log("Error! ", error.sqlMessage);
+            res.send({
+                success: true,
+                error: error.sqlMessage
+            });
+        }
+        else {
+            console.log("Success! ", data);
+            res.send({
+                success: true,
+                data: data
+            });
+        }
+    }
+console.log("info = " + info);
+    db.insert_equipments_models(info,callback);
+
+};
+
 exports.addMarkTechnics = function(req, res) {
     var db = require('./db');
     var info = req.body;
