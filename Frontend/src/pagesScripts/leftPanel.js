@@ -19,7 +19,7 @@ function showTechnics(list) {
 
         $node.click(function () {
             localStorage.setItem('currentTypeOfTechnics', typ);
-            document.location.href = "http://localhost:5050/technics?type="+typ;
+            document.location.href = "http://tracktop.com.ua:5050/technics?type="+typ;
         })
 
         $technics.append($node);
@@ -41,7 +41,7 @@ function showMarks(list) {
         var mark = $node.html();
         $node.click(function () {
             localStorage.setItem('currentMarkOfTechnics', mark);
-            document.location.href = "http://localhost:5050/technics?mark="+mark;
+            document.location.href = "http://tracktop.com.ua:5050/technics?mark="+mark;
         })
 
         $models.append($node);
@@ -75,6 +75,6 @@ exports.initialize = function(){
     require("../API").getMarks(callback2);
 
     $equipment.click(function(){
-        document.location.href = "http://localhost:5050/equipments";
+        document.location.href = "http://tracktop.com.ua:5050/equipments";
     })
 }

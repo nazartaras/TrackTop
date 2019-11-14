@@ -15,7 +15,7 @@ $(function(){
     //     });
     // });
     $('#logo').click(function () {
-        document.location.href = "http://localhost:5050/";
+        document.location.href = "http://tracktop.com.ua:5050/";
     })
 
     require('./basket').initialiseBasket();
@@ -33,7 +33,7 @@ $(function(){
     })
 
     $('.edit-profile').click(function(){
-        document.location.href = "http://localhost:5050/profile";
+        document.location.href = "http://tracktop.com.ua:5050/profile";
     })
 
     // added
