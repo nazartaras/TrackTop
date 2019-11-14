@@ -16,10 +16,10 @@ function showTypes(list) {
 
         $node.click(function () {
             if(type.name=="Запчастини")
-            document.location.href = "http://localhost:5050/equipments";
+            document.location.href = "http://tracktop.com.ua:5050/equipments";
             else {
                 localStorage.setItem('currentTypeOfTechnics', typ);
-                document.location.href = "http://localhost:5050/technics?type=" + typ;
+                document.location.href = "http://tracktop.com.ua:5050/technics?type=" + typ;
             }
         });
 

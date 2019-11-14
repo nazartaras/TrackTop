@@ -13,7 +13,7 @@ exports.isLogged = function () {
         if(photo_location==null) {
             $('#user_photo').attr("src", "assets/images/avatar_2x.png");
         }
-       else  $('#user_photo').attr("src", "http://localhost:5050/images/users_photos/"+photo_location);
+       else  $('#user_photo').attr("src", "http://tracktop.com.ua:5050/images/users_photos/"+photo_location);
         $('#login').css("display", "none");
         $('#signup').css("display", "none");
     }
