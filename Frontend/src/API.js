@@ -1,4 +1,4 @@
-var API_URL = "http://tracktop.com.ua:5050";
+var API_URL = "http://localhost:5050";
 
 function backendGet(url, callback, data) {
     $.ajax({
@@ -50,6 +50,26 @@ exports.addTehnic = function(tehnic, callback) {
     backendPost("/api/addtechnic/", tehnic, callback);
 };
 
+exports.addEquipment = function(equipment, callback) {
+    backendPost("/api/addequipment/", equipment, callback);
+};
+
+exports.addEquipmentsModels = function(equipment_model, callback) {
+    backendPost("/api/addequipmentsmodels/", equipment_model, callback);
+};
+
+exports.addTypeTechnics = function(type, callback) {
+    backendPost("/api/addtypetechnics/", type, callback);
+};
+
+exports.addMarkTechnic = function(mark, callback) {
+    backendPost("/api/addmarktechnics/", mark, callback);
+};
+
+exports.addModel = function(model, callback) {
+    backendPost("/api/addmodel/", model, callback);
+};
+
 exports.addClient = function(client, callback) {
     backendPost("/api/addclient/", client, callback);
 };
@@ -72,9 +92,21 @@ exports.sign_in = function(phone, callback) {
 exports.getTypes = function(callback) {
     backendGet("/api/gettypes/", callback);
 };
+
 exports.getMarks = function(callback) {
     backendGet("/api/getmarks/", callback);
+};
 
+exports.getId = function(table_name, name,callback) {
+    backendGet("/api/getid/", callback,{table_name :table_name, name:name});
+};
+
+exports.getModelsbyTypeMark = function(type,mark,callback) {
+    backendGet("/api/getmodelsbytypemark/", callback,{type:type, mark:mark});
+};
+
+exports.getModels = function(callback) {
+    backendGet("/api/getmodels/", callback);
 };
 
 /////// adedd

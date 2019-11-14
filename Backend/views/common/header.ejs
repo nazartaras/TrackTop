@@ -1,18 +1,28 @@
-
 <% include message.ejs %>
 <div class="header">
-    <img id= "logo" src="assets\images\logo.png" alt='This is a logo image'>
-
-
-    <span id = "contact_phone"><img src="assets/images/viber24.png" style="height: 24px"> <img src="assets/images/telegram24.png" style="height: 24px;margin-right: 4px">380 67 646 22 44</span>
-
-    <div class="header-right">
-        <a id="writeMessageMainPage" onclick="openMessageModal();"><img src="assets/images/letterMainPanel.png" style="height: 48px;margin-top: -8px;"></a>
-        <a id="basketBtn" class='basketBtn'><img src="assets/images/cartMainPanel.png" style="height: 50px;margin-top: -10px;"></a>
-        <a id = "signup" href="#signup" display="none">Зареєструватись</a>
-        <a  id= "login" href="#login" display="none">Увійти</a>
-        <img id= "user_photo" alt='This is a user image' display="none">
-
+    <div class='header-left'>
+        <img id="logo" src="assets\images\logo.png" alt='This is a logo image'>
+        <span>
+            <div id="contact_phone"><img src="assets/images/viber_24.png" style="height: 11px"> <img
+                    src="assets/images/telegram_24.png" style="height: 12px;margin-right: 4px">380 67 646 22 44</div>
+            <div id="contact_phone"><img src="assets/images/viber_24.png" style="height: 11px"> <img
+                    src="assets/images/telegram_24.png" style="height: 12px;margin-right: 4px">380 67 922 33 97</div>
+            <div id="contact_phone"><img src="assets/images/viber_24.png" style="height: 11px"> <img
+                    src="assets/images/telegram_24.png" style="height: 12px;margin-right: 4px">380 97 837 87 72</div>
+        </span>
+    </div>
+    <div style="display: flex;">
+        <div class="header-right">
+            <div class="mess-bask">
+                <a id="writeMessageMainPage" onclick="openMessageModal();"><i class="fas fa-envelope icons"></i></a>
+                <a id="basketBtn" class='basketBtn'><i class="fa fa-shopping-basket icons"></i></a>
+            </div>
+            <div class="log-sign">
+                <a id="signup" href="#signup" display="none"><i class="fas fa-plus-circle icons"></i></a>
+                <a id="login" href="#login" display="none"><i class="fas fa-door-open icons"></i></a>
+            </div>
+        </div>
+        <img id="user_photo" alt='This is a user image' display="none">
     </div>
 </div>
 
@@ -21,38 +31,38 @@
 
 <!--(contains the Pop up user info) -->
 <div class="form-popup" id="user_info">
-    <form  class="form-container">
+    <form class="form-container">
 
-        <div class = "menu_item">
-        <label  class = "menu_item" id = "full_name">Name<b></b></label>
-        </div>
-
-        <div class = "menu_item">
-        <label for="phone" id = "user_phone"><b>Телефон</b></label><br>
+        <div class="menu_item">
+            <label class="menu_item" id="full_name">Name<b></b></label>
         </div>
 
-        <div class = "menu_item edit-profile">
-        <label ><b>Редагувати профіль</b></label><br>
+        <div class="menu_item">
+            <label for="phone" id="user_phone"><b>Телефон</b></label><br>
         </div>
-        <div class = "menu_item purchase_history">
-        <label >Історія покупок</label>
+
+        <div class="menu_item edit-profile">
+            <label><b>Редагувати профіль</b></label><br>
         </div>
-        <button type="button" class="btn"  id = "exit_btn">Вийти</button>
+        <div class="menu_item purchase_history">
+            <label>Історія покупок</label>
+        </div>
+        <button type="button" class="btn" id="exit_btn">Вийти</button>
     </form>
 </div>
 
 <!--(contains the Log in  form) -->
-<div class="form-popup" id="myForm" >
-    <form  class="form-container" onsubmit="return false">
-        <h1>Login</h1>
-
-        <label for="phone"><b>Телефон</b></label>
-        <input type="text" placeholder="Введіть ваш номер телефону" name="phone" required>
-
-        <label for="psw"><b>Пароль</b></label>
-        <input type="password" placeholder="Введіть ваш пароль" name="psw" required>
-        <button id = "log_in_btn" class="btn">Увійти</button>
-        <button type="button" class="btn cancel">Закрити</button>
+<div class="form-popup message-popup" id="myForm">
+    <form class="form-container" onsubmit="return false">
+        <input type="text" placeholder="Введіть номер телефону" name="phone" class="form-control form-item" required>
+        <input type="password" placeholder="Введіть пароль" title="Введіть пароль" name="psw"
+            class="form-control form-item" required>
+        <div class="login-btn-container">
+            <button id="log_in_btn" class="signup btn small btn-ok">Увійти</button>
+            <button type="button" class="cancel btn btn-primary btn-small btn-cancel">
+                Закрити
+            </button>
+        </div>
     </form>
 </div>
 
@@ -61,34 +71,40 @@
 <div id="id01" class="modal">
 
     <form class="modal-content" onsubmit='return false'>
-        <span onclick="document.getElementById('id01').style.display='none'" class="close_ close-signup" title="Закрити">x</span>
+        <div class="header-signup">
+            <div class="left">
+                <span>Реєстрація</span>
+            </div>
+            <div class="right">
+                <div onclick="document.getElementById('id01').style.display='none'"
+                    class="fa fa-remove popup-close link" title="Закрити"></div>
+            </div>
+        </div>
         <div class="container">
-            <h1>Форма реєстрації</h1>
-            <p>Заповніть цю форму, щоб зареєструватись</p>
-            <hr>
-            <label for="surname"><b>Прізвище</b></label>
-            <input type="text" placeholder="Ваше прізвище" name="surname" required>
+            <span class="form-group">
+                <input type="text" placeholder="Ваше прізвище" name="surname" title="Введіть прізвище"
+                    class="form-control form-item" required>
+                <input type="text" placeholder="Ваше ім'я" title="Введіть ім'я" name="name"
+                    class="form-control form-item" required>
+                <input type="text" placeholder="Номер телефону" title="Введіть номер телефону" name="phone"
+                    class="form-control form-item" required>
+                <input type="password" placeholder="Пароль" title="Введіть пароль" name="psw"
+                    class="form-control form-item" required>
+                <input type="text" placeholder="Населений пункт" title="Введіть населений пункт" name="location"
+                    class="form-control form-item" required>
+                <input type="email" placeholder="Email" title="Введіть email" name="email"
+                    class="form-control form-item">
+                <label class="form-item">
+                    <input type="checkbox" checked="checked" name="remember"> Запам'ятати
+                </label>
+            </span>
 
-            <label for="name"><b>Ім'я</b></label>
-            <input type="text" placeholder="Ваше ім'я" name="name" required>
-
-            <label for="phone"><b>Номер телефону</b></label>
-            <input type="text" placeholder="Номер телефону" name="phone" required>
-
-            <label for="psw"><b>Пароль</b></label>
-            <input type="password" placeholder="Enter Password" name="psw" required>
-
-            <label for="location"><b>Населений пункт</b></label>
-            <input type="text" placeholder="Введіть населений пункт,в якому ви проживаєте" name="location" required>
-
-            <label>
-                <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Запам'ятати
-            </label>
-
-
-            <div class="clearfix">
-                <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Скасувати</button>
-                <button id ="signup_btn" class="signup">Зареєструватись</button>
+            <div class="signup-btn-container">
+                <button id="signup_btn" class="signup btn small btn-ok">Ok</button>
+                <button type="button" onclick="document.getElementById('id01').style.display='none'"
+                    class="btn btn-primary btn-small btn-cancel">
+                    Скасувати
+                </button>
             </div>
         </div>
     </form>

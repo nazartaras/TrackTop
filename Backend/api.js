@@ -19,12 +19,108 @@ exports.addTehnic = function(req, res) {
         }
     }
 
-
     db.insert_tehnic(info,callback);
 
-    // res.send({
-    //     success: true
-    // });
+};
+
+exports.addEquipment = function(req, res) {
+    var db = require('./db');
+    var info = req.body;
+
+    function callback(error,data){
+        if(error) {
+            console.log("Error! ", error.sqlMessage);
+            res.send({
+                success: true,
+                error: error.sqlMessage
+            });
+        }
+        else {
+            console.log("Success! ", data);
+            res.send({
+                success: true,
+                data: data
+            });
+        }
+    }
+
+    db.insert_equipment(info,callback);
+
+};
+
+exports.addEquipmentsModels = function(req, res) {
+    var db = require('./db');
+    var info = req.body;
+
+    function callback(error,data){
+        if(error) {
+            console.log("Error! ", error.sqlMessage);
+            res.send({
+                success: true,
+                error: error.sqlMessage
+            });
+        }
+        else {
+            console.log("Success! ", data);
+            res.send({
+                success: true,
+                data: data
+            });
+        }
+    }
+console.log("info = " + info);
+    db.insert_equipments_models(info,callback);
+
+};
+
+exports.addMarkTechnics = function(req, res) {
+    var db = require('./db');
+    var info = req.body;
+
+    function callback(error,data){
+        if(error) {
+            console.log("Error! ", error.sqlMessage);
+            res.send({
+                success: true,
+                error: error.sqlMessage
+            });
+        }
+        else {
+            console.log("Success! ", data);
+            res.send({
+                success: true,
+                data: data
+            });
+        }
+    }
+
+    db.insert_marks_of_technics(info,callback);
+
+};
+
+exports.addModel = function(req, res) {
+    var db = require('./db');
+    var info = req.body;
+
+    function callback(error,data){
+        if(error) {
+            console.log("Error! ", error.sqlMessage);
+            res.send({
+                success: true,
+                error: error.sqlMessage
+            });
+        }
+        else {
+            console.log("Success! ", data);
+            res.send({
+                success: true,
+                data: data
+            });
+        }
+    }
+
+    db.insert_model(info,callback);
+
 };
 
 exports.addClient = function(req, res) {
@@ -176,6 +272,72 @@ exports.sign_in = function(req, res) {
 
 }
 
+
+exports.get_models_by_type_mark = function(req,res) {
+    var db = require('./db');
+    function callback(error,data){
+        if(error) {
+            console.log("Error! ", error.sqlMessage);
+            res.send({
+                success: true,
+                error: error.sqlMessage
+            });
+        }
+        else {
+            console.log("Success! ", data);
+            res.send({
+                success: true,
+                data: data
+            });
+        }
+    }
+
+    db.get_models_by_type_mark(req.query.type,req.query.mark, callback);
+}
+
+exports.get_models = function(req,res) {
+    var db = require('./db');
+    function callback(error,data){
+        if(error) {
+            console.log("Error! ", error.sqlMessage);
+            res.send({
+                success: true,
+                error: error.sqlMessage
+            });
+        }
+        else {
+            console.log("Success! ", data);
+            res.send({
+                success: true,
+                data: data
+            });
+        }
+    }
+
+    db.get_models(callback);
+}
+
+exports.get_id = function(req,res) {
+    var db = require('./db');
+    function callback(error,data){
+        if(error) {
+            console.log("Error! ", error.sqlMessage);
+            res.send({
+                success: true,
+                error: error.sqlMessage
+            });
+        }
+        else {
+            console.log("Success! ", data);
+            res.send({
+                success: true,
+                data: data
+            });
+        }
+    }
+
+    db.get_id(req.query.table_name,req.query.name, callback);
+}
 
 exports.get_types_of_technics = function (req,res) {
     var db = require('./db');

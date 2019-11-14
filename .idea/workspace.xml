@@ -12,17 +12,34 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package-lock.json" afterPath="$PROJECT_DIR$/package-lock.json" />
+      <change afterPath="$PROJECT_DIR$/Backend/res/images/delete.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Backend/res/images/edit.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Backend/views/allTechnicsScript.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Backend/views/common/all.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Backend/views/common/allClients.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Backend/views/common/allEquipments.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Backend/views/common/allTechnics.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Backend/views/common/search.ejs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Frontend/src/adminPanel/allTechnicsScript.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Frontend/www/allTechnics.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Frontend/www/assets/images/delete.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Frontend/www/assets/images/edit.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Frontend/www/assets/less/all.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Frontend/www/assets/less/table_view_admins.less" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/db.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/db.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/API.js" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/API.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/www/assets/less/main.less" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/www/assets/less/main.less" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/www/assets/less/sigup_form.less" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/www/assets/less/sigup_form.less" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gruntfile.js" beforeDir="false" afterPath="$PROJECT_DIR$/Gruntfile.js" afterDir="false" />
     </list>
-    <ignored path="$PROJECT_DIR$/.tmp/" />
-    <ignored path="$PROJECT_DIR$/temp/" />
-    <ignored path="$PROJECT_DIR$/tmp/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
-    <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="api.js" pinned="false" current-in-tab="false">
@@ -120,115 +137,20 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="HTML File" />
+        <option value="Less File" />
         <option value="JavaScript File" />
       </list>
     </option>
   </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>piz</find>
-      <find>userInfo</find>
-      <find>ini</find>
-      <find>initi</find>
-      <find>init</find>
-      <find>modelim</find>
-      <find>gettechnicsmodelim</find>
-      <find>gettechnics</find>
-      <find>mark</find>
-      <find>getTechnicsByType</find>
-      <find>localStorage.setItem('status',true);</find>
-      <find>login</find>
-      <find>data.append('uploadFile', photo.file);</find>
-      <find>image.src = URL.createObjectURL(event.target.files[0]);</find>
-      <find>id:</find>
-      <find>loca</find>
-      <find>api</find>
-      <find>$phone</find>
-      <find>data[</find>
-      <find>oneTechnic</find>
-      <find>equipment</find>
-      <find>technicsPage</find>
-      <find>Polar</find>
-      <find>chart</find>
-    </findStrings>
-  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="IdeDocumentHistory">
-    <option name="CHANGED_PATHS">
-      <list>
-        <option value="$PROJECT_DIR$/package-lock.json" />
-        <option value="$PROJECT_DIR$/package.json" />
-        <option value="$PROJECT_DIR$/Frontend/www/assets/js/API.js" />
-        <option value="$PROJECT_DIR$/Backend/views/common/footer.ejs" />
-        <option value="$PROJECT_DIR$/Backend/views/orders.ejs" />
-        <option value="$PROJECT_DIR$/Backend/views/mainPage.ejs" />
-        <option value="$PROJECT_DIR$/Frontend/src/user_form.js" />
-        <option value="$PROJECT_DIR$/Frontend/src/technics/technicsMain.js" />
-        <option value="$PROJECT_DIR$/Frontend/src/profile.js" />
-        <option value="$PROJECT_DIR$/Backend/views/oneTechnicPage.ejs" />
-        <option value="$PROJECT_DIR$/Frontend/src/Templates.js" />
-        <option value="$PROJECT_DIR$/Frontend/src/technics/technicMain.js" />
-        <option value="$PROJECT_DIR$/Frontend/src/pagesScripts/slider.js" />
-        <option value="$PROJECT_DIR$/Frontend/templates/one_image.ejs" />
-        <option value="$PROJECT_DIR$/Frontend/www/assets/less/technicPage.less" />
-        <option value="$PROJECT_DIR$/Frontend/src/main.js" />
-        <option value="$PROJECT_DIR$/Frontend/src/profile/profile.js" />
-        <option value="$PROJECT_DIR$/Frontend/src/profile/user_form.js" />
-        <option value="$PROJECT_DIR$/Backend/views/common/header.ejs" />
-        <option value="$PROJECT_DIR$/Backend/views/profile.ejs" />
-        <option value="$PROJECT_DIR$/Frontend/www/assets/js/profile_main.js" />
-        <option value="$PROJECT_DIR$/Frontend/src/profile/login_form.js" />
-        <option value="$PROJECT_DIR$/Frontend/src/profile/signup_form.js" />
-        <option value="$PROJECT_DIR$/Frontend/src/profile/main_profile.js" />
-        <option value="$PROJECT_DIR$/Backend/api.js" />
-        <option value="$PROJECT_DIR$/Backend/db.js" />
-        <option value="$PROJECT_DIR$/Frontend/templates/technic_in_list.ejs" />
-        <option value="$PROJECT_DIR$/Frontend/www/assets/less/technicList.less" />
-        <option value="$PROJECT_DIR$/Frontend/src/technics/equipmentsMain.js" />
-        <option value="$PROJECT_DIR$/Frontend/templates/equipment_in_list.ejs" />
-        <option value="$PROJECT_DIR$/Backend/views/technicsPage.ejs" />
-        <option value="$PROJECT_DIR$/Backend/pages.js" />
-        <option value="$PROJECT_DIR$/Backend/main.js" />
-        <option value="$PROJECT_DIR$/Frontend/src/API.js" />
-        <option value="$PROJECT_DIR$/Frontend/src/pagesScripts/addTechnics.js" />
-        <option value="$PROJECT_DIR$/Backend/views/common/left_panel.ejs" />
-        <option value="$PROJECT_DIR$/Frontend/src/pagesScripts/leftPanel.js" />
-        <option value="$PROJECT_DIR$/Backend/views/adminPanel.js" />
-        <option value="$PROJECT_DIR$/Backend/adminPanel.js" />
-        <option value="$PROJECT_DIR$/Backend/views/adminPanel.ejs" />
-        <option value="$PROJECT_DIR$/Backend/views/adminPanel.html" />
-        <option value="$PROJECT_DIR$/Frontend/www/assets/js/adminPanel.js" />
-        <option value="$PROJECT_DIR$/Frontend/src/adminPanel/adminPanel.js" />
-        <option value="$PROJECT_DIR$/Gruntfile.js" />
-        <option value="$PROJECT_DIR$/Frontend/www/adminPanel.html" />
-        <option value="$PROJECT_DIR$/Frontend/www/assets/less/adminPanel/styles.css" />
-      </list>
-    </option>
-  </component>
-  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER">
-    <gruntfile path="$PROJECT_DIR$/Gruntfile.js" />
-  </component>
-  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER">
-    <package-json value="$PROJECT_DIR$/package.json" />
-  </component>
-  <component name="JsGulpfileManager">
-    <detection-done>true</detection-done>
-    <sorting>DEFINITION_ORDER</sorting>
-  </component>
-  <component name="NodeModulesDirectoryManager">
-    <handled-path value="$PROJECT_DIR$/node_modules" />
-  </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-77" />
-    <option name="y" value="70" />
-    <option name="width" value="936" />
-    <option name="height" value="780" />
-  </component>
+  <component name="ProjectId" id="1RN6h6NS4uHsf5K8EGIXVZ4bL0I" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
+
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
       <flattenPackages />
@@ -369,24 +291,28 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="HbShouldOpenHtmlAsHb" value="" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../JS-Pizza" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Frontend/www/assets/less" />
+    <property name="list.type.of.created.stylesheet" value="Less" />
     <property name="nodejs_interpreter_path" value="C:/Program Files/nodejs/node" />
     <property name="nodejs_package_manager_path" value="npm" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\WebstormProjects\TrackTop\Frontend\src\adminPanel" />
+      <recent name="E:\WebstormProjects\TrackTop\Frontend\www" />
+      <recent name="E:\WebstormProjects\TrackTop\Backend\res\images" />
+      <recent name="E:\WebstormProjects\TrackTop\Frontend\www\assets\images" />
+      <recent name="D:\Education\js\JavaScript projects\gitProjects\TrackTop\Frontend\www\assets\js" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\WebstormProjects\TrackTop\Frontend\www\assets\less" />
+      <recent name="E:\WebstormProjects\TrackTop\Frontend" />
+      <recent name="E:\WebstormProjects\TrackTop\Frontend\src\pagesScripts" />
       <recent name="D:\Education\js\JavaScript projects\gitProjects\TrackTop\Frontend\www\assets\js" />
       <recent name="D:\Education\js\JavaScript projects\gitProjects\TrackTop\Frontend\www" />
-      <recent name="D:\Education\js\JavaScript projects\gitProjects\TrackTop\Frontend\www\assets\less\adminPanel" />
-      <recent name="D:\Education\js\JavaScript projects\gitProjects\TrackTop\Frontend\www\assets\images" />
-      <recent name="D:\Education\js\JavaScript projects\gitProjects\TrackTop\Backend" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\Education\js\JavaScript projects\gitProjects\TrackTop\Frontend\www\assets\js" />
-      <recent name="D:\Education\js\JavaScript projects\gitProjects\TrackTop\Frontend\src\adminPanel" />
-      <recent name="D:\Education\js\JavaScript projects\gitProjects\TrackTop\Backend\res\images" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -400,9 +326,6 @@
         </RuleState>
       </list>
     </option>
-  </component>
-  <component name="ShelveChangesManager" show_recycled="false">
-    <option name="remove_strategy" value="false" />
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -434,6 +357,12 @@
       <workItem from="1562877882677" duration="10000" />
       <workItem from="1562942773279" duration="7860000" />
       <workItem from="1563031847039" duration="802000" />
+      <workItem from="1569495352340" duration="10686000" />
+      <workItem from="1569668840183" duration="20424000" />
+      <workItem from="1569753746284" duration="14671000" />
+      <workItem from="1569781896105" duration="7809000" />
+      <workItem from="1569841288117" duration="3758000" />
+      <workItem from="1570007007281" duration="308000" />
     </task>
     <servers />
   </component>
@@ -823,5 +752,20 @@
         </state>
       </provider>
     </entry>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

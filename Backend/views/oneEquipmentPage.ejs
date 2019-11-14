@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head lang="en">
     <meta charset="UTF-8">
     <title>Запчастини: <%= equipment.name %></title>
@@ -10,44 +11,47 @@
     <!-- LESS основний файл -->
     <link rel="stylesheet/less" type="text/css" href="assets/less/main.less" />
 
+    <script src="https://kit.fontawesome.com/572f7f2830.js" crossorigin="anonymous"></script>
     <!-- LESS JavaScript компілятор -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.5.3/less.min.js"></script>
     <!--style for text-->
     <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
-
+    <!--font awesome-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 </head>
+
 <body>
 
-<% include common/header.ejs %>
-<% include common/basket.ejs %>
-<% include common/left_panel.ejs %>
+    <% include common/header.ejs %>
+    <% include common/basket.ejs %>
+    <% include common/left_panel.ejs %>
 
-<div id="main" class="container-fluid">
-    <div class='type_header'>
-        <%= equipment.name %>
-    </div>
-
-    <div class="equipments">
-        <div class="slider">
-            <div class="slider__wrapper">
-
-            </div>
-            <a class="slider__control slider__control_left" href="#" role="button"></a>
-            <a class="slider__control slider__control_right slider__control_show" href="#" role="button"></a>
+    <div id="main" class="container-fluid">
+        <div class='type_header'>
+            <%= equipment.name %>
         </div>
-    </div>
 
-    <!-- !-->
+        <div class="equipments">
+            <div class="slider">
+                <div class="slider__wrapper">
 
-    <div class="btn_row"> <button class="order_equipment">
-            <img src="assets/images/cart_btn.png" alt="" class="orderTechnicImg">
-            Замовити</button>
-        <button class="write_technic" onclick="openMessageModal();">
-            <img src="assets/images/letter_btn.png" alt="" class = "openMessageBtn">Написати</button> </div>
+                </div>
+                <a class="slider__control slider__control_left" href="#" role="button"></a>
+                <a class="slider__control slider__control_right slider__control_show" href="#" role="button"></a>
+            </div>
+        </div>
+
+        <!-- !-->
+
+        <div class="btn_row"> <button class="order_equipment">
+                <img src="assets/images/cart_btn.png" alt="" class="orderTechnicImg">
+                Замовити</button>
+            <button class="write_technic" onclick="openMessageModal();">
+                <img src="assets/images/letter_btn.png" alt="" class="openMessageBtn">Написати</button> </div>
 
 
-    <div class = "information">
-        <!--
+        <div class="information">
+            <!--
     <table>
         <tr><th><i><span class="header_type">Ціна</span></i></th><td><%= equipment.price %>  <% if(equipment.currency.toString() == "гривня") { %>
                     грн
@@ -61,30 +65,34 @@
 
 !-->
 
-        <div class="row_info"><i><span class="header_type">Ціна</span></i><span class="type_description"> <%= equipment.price %>  <% if(equipment.currency.toString() == "гривня") { %>
+            <div class="row_info"><i><span class="header_type">Ціна</span></i><span class="type_description">
+                    <%= equipment.price %> <% if(equipment.currency.toString() == "гривня") { %>
                     грн
-                <%}%>
+                    <%}%>
 
                 <% if(equipment.currency.toString() == "долар") { %>
                     $
-                <%}%> </span></div>
+                    <%}%> </span></div>
 
 
-            <div class="row_info float_left"><i><span class="header_type">В наявності</span></i> <span class="type_description"><%= equipment.amount%> </span>  </div>
+            <div class="row_info float_left"><i><span class="header_type">В наявності</span></i> <span class="type_description"><%= equipment.amount%>
+                </span> </div>
 
-        <% if(equipment.vendor_code) { %>
-        <div class="row_info vendor_code_one_equipment_page"><i><span class="header_type">Артикул </span></i> <span class="type_description"><%= equipment.vendor_code%> </span>
-            <%}%>
+            <% if(equipment.vendor_code) { %>
+            <div class="row_info vendor_code_one_equipment_page"><i><span class="header_type">Артикул </span></i> <span
+                    class="type_description"><%= equipment.vendor_code%> </span>
+                <%}%>
 
 
         <!--
     <% if(equipment.country_producer) { %>
-        <div class="amount"><i><span class="header_type">Виробник</span></i> <%= equipment.country_producer%></div>
-    <%}%>
+                <div class="amount"><i><span class="header_type">Виробник</span></i> <%= equipment.country_producer%>
+                </div>
+                <%}%>
     <div class="amount"><i><span class="header_type">Кількість</span></i> <%= equipment.amount %></div>
-    <% if(equipment.description) { %>
-        <div class="description"><i><span class="header_type"></span>Опис</i> <%= equipment.description %></div>
-    <%}%>
+            <% if(equipment.description) { %>
+            <div class="description"><i><span class="header_type"></span>Опис</i> <%= equipment.description %></div>
+            <%}%>
     !-->
 
 
@@ -93,8 +101,8 @@
 
 
     <% if(equipment.description) { %>
-        <div class="description_technic"> <%= equipment.description %></div>
-    <%}%>
+            <div class="description_technic"> <%= equipment.description %></div>
+            <%}%>
 
 
 
@@ -109,6 +117,7 @@
 
 <script type="text/javascript" src="assets/js/oneEquipmentMain.js"> </script>
 <!--<script type="text/javascript" src="assets/js/slider.js"> </script>-->
-
+        <!--font awesome-->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 </body>
 </html>

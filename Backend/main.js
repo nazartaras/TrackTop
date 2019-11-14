@@ -12,14 +12,22 @@ function configureEndpoints(app) {
 
     //Налаштування URL за якими буде відповідати сервер
     app.post('/api/addtechnic/', api.addTehnic);
+    app.post('/api/addequipment/', api.addEquipment);
+    app.post('/api/addequipmentsmodels/', api.addEquipmentsModels);
     app.post('/api/addclient/', api.addClient);
     app.post('/api/addcheck/', api.addCheck);
     app.post('/api/addcheckequipment/', api.addCheckEquipment);
     app.post('/api/addchecktechnic/', api.addCheckTechnic);
+    //app.post('/api/addtypetechnics/', api.addCheckEquipment);
+    app.post('/api/addmarktechnics/', api.addMarkTechnics);
+    app.post('/api/addmodel/', api.addModel);
     app.get('/api/gettypes', api.get_types_of_technics);
     app.get('/api/getmarks', api.get_marks_of_technics);
     app.get('/api/getclient', api.get_user_information);
     app.get('/api/getequipments', api.get_equipments);
+    app.get('/api/getmodelsbytypemark', api.get_models_by_type_mark);
+    app.get('/api/getid', api.get_id);
+    app.get('/api/getmodels', api.get_models);
 
     app.post('/api/signin',  api.sign_in);
 
@@ -40,6 +48,7 @@ function configureEndpoints(app) {
     app.get('/technic', pages.technic);
     app.get('/equipments', pages.equipments);
     app.get('/equipment', pages.equipment);
+    app.get('/about', pages.about);
 
     //Якщо не підійшов жоден url, тоді повертаємо файли з папки www
     app.use(express.static(path.join(__dirname, '../Frontend/www')));

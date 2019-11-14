@@ -90,3 +90,9 @@ exports.equipments = function(req, res) {
     });
 
 };
+
+exports.about = (req, res) => {
+    res.render('about', {
+        pageTitle: 'Про нас'
+    })
+}

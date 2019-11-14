@@ -3,17 +3,25 @@
 @pr1:5px;
 @pb1:5px;
 
+.typesOfTechnic{
+  width: 100%;
+  height: 100%;
+  display: grid;
+  padding: 3% 10%;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  grid-template-rows:auto;
+  grid-gap: 50px;
+}
 
 .typeDiv{
   position:relative;
-  width: @w1;
   height: @h1;
   padding-right: @pr1!important;
   padding-left: 0px!important;
   padding-bottom: @pb1;
+  overflow: hidden;
   img{
-    width: @w1 - @pr1;
-    height: @h1 - @pb1;
+    width: 100%;
   }
 }
 .nameType{

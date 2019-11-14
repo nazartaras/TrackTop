@@ -1,60 +1,75 @@
-@h11:220px;
-@w11:350px;
-@pr1:5px;
-@pb1:5px;
+@h11: 220px;
+@w11: 350px;
+@pr1: 5px;
+@pb1: 5px;
 
-.oneTechnic{
-  width: @w11;
-  height: @h11 +100;
-  padding-right: @pr1!important;
-  padding-left: 0px!important;
+.technics {
+  width                : 100%;
+  display              : grid;
+  padding              : 3% 10%;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-template-rows   : auto;
+  grid-gap             : 20px;
+}
+
+.oneTechnic {
+  position      : relative;
+  padding-right : @pr1  !important;
+  padding-left  : 0px !important;
   padding-bottom: @pb1;
-  img{
-    width: @w1 - @pr1;
-    height: @h1 - @pb1;
+  overflow      : hidden;
+
+  img {
+    width       : 100%;
     border-width: 1px;
     border-color: #999;
     border-style: dashed;
   }
 }
 
-.model{
-  font-size: 22px;
-  height: 29px;
+.model {
+  font-size    : 22px;
+  height       : 29px;
   margin-bottom: 4px;
-  font-family: "Times New Roman", Times, Gabriola;
-  overflow: hidden;
+  font-family  : "Times New Roman", Times, Gabriola;
+  overflow     : hidden;
   text-overflow: ellipsis;
 }
+
 .equipment_info {
   color: #414042;
 }
 
-.description, .amount, .price, .mark_t, .vendor_code {
-  font-size: 16px;
-  height: 20px;
-  overflow: hidden;
+.description,
+.amount,
+.price,
+.mark_t,
+.vendor_code {
+  font-size    : 16px;
+  height       : 20px;
+  overflow     : hidden;
   text-overflow: ellipsis;
-  color: #898989;
+  color        : #898989;
 }
 
 
-.vendor_code_label , .price_equipment{
-  width: 90px;
+.vendor_code_label,
+.price_equipment {
+  width  : 90px;
   display: inline-flex;
 }
 
-.description{
+.description {
   height: 40px;
 }
+
 .one_equipment {
   height: 303px;
 }
 
 .nothing_found {
-  display: none;
-  font-size: 24px;
+  display           : none;
+  font-size         : 24px;
   //background-color: #c4c4c4;
-  text-align: center;
+  text-align        : center;
 }
-

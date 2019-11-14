@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head lang="en">
     <meta charset="UTF-8">
     <title><%= pageTitle %></title>
@@ -8,6 +9,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    
+    <script src="https://kit.fontawesome.com/572f7f2830.js" crossorigin="anonymous"></script>
 
     <!-- LESS основний файл -->
     <link rel="stylesheet/less" type="text/css" href="assets/less/main.less" />
@@ -15,29 +18,32 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.5.3/less.min.js"></script>
     <!--style for text-->
     <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
-
+    <!--font awesome-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 </head>
+
 <body>
 
-<% include common/header.ejs %>
+    <% include common/header.ejs %>
 
-<% include common/basket.ejs %>
+    <% include common/basket.ejs %>
 
-<% include common/left_panel.ejs %>
+    <% include common/left_panel.ejs %>
 
-<div id="main" class="container-fluid">
-    <div class="typesOfTechnic">
+    <div id="main">
+        <div class="typesOfTechnic">
 
+        </div>
     </div>
-</div>
 
 
-<!-- jQuery JavaScript -->
-<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"> </script>
+    <!-- jQuery JavaScript -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"> </script>
 
-<!--Bootsrap JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-<script type="text/javascript"  src="assets/js/main.js"> </script>
+    <!--Bootsrap JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="assets/js/main.js"> </script>
 
 </body>
+
 </html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <title><%= pageTitle %></title>
+
+    <!-- Bootsrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+    <!-- LESS основний файл -->
+    <link rel="stylesheet/less" type="text/css" href="assets/less/main.less" />
+
+    <script src="https://kit.fontawesome.com/572f7f2830.js" crossorigin="anonymous"></script>
+    <!-- LESS JavaScript компілятор -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.5.3/less.min.js"></script>
+    <!--style for text-->
+    <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <% include common/header.ejs %>
+    <% include common/basket.ejs %>
+    <% include common/left_panel.ejs %>
+
+    <div id="main">
+        <h1 class="about-header">Про нас</h1>
+        <div class="about-description">
+            Компанія ”Tracktop” спеціалізується на продажі сільськогосподарської техніки і запчастин до них. Ми
+            реалізуємо як нову техніку так і бу, також можемо привезти техніку під індивідуальне замовлення
+            Покупця.</br>
+            Представлений компанією асортимент включає наступні види сг техніки:
+            <ul>
+                <li>комбайни;</li>
+                <li>трактори;</li>
+                <li>сівалки (бурякові, зернові, кукурудзяні);</li>
+                <li>борони;</li>
+                <li>преси-підбирачі;</li>
+                <li>плуги;</li>
+                <li>жатки;</li>
+                <li>запчастини до техніки;</li>
+            </ul>
+            Нова сг техніка звісно є хорошим капіталовкладенням, але якщо придбання нової сг техніки для вашого
+            підприємства є недоцільним, найкращим варіантом буде – купити сг техніку бу. Ми ретельно перевіряємо нашу
+            техніку перед продажем, в разі необхідності здійснюється капітальний ремонт, заміну вузлів і т.д. На
+            купленій у нас техніці ви без будь-яких роздумів можете відразу їхати в поле і збирати врожай.
+
+            Ми здійснюємо продаж сг техніки провідних світових виробників, таких як <strong>Джон Дір, Клаас, Массей Фергюгон,</strong>
+            яка добре проявила себе на українських полях, має високу надійність і високі експлуатаційні показники.
+
+            Якщо вам необхідно придбати зернозбиральний комбайн, краще за все купити комбайн Джон Дір 1075, який є
+            найкращим представником в даній ніші.
+
+            Сг техніка завжди працює в умовах наближених до екстремальних, що зумовлює необхідність мати під рукою
+            необхідні запчастини. Окрім техніки ми продаємо і найбільш затребувані запчастини до сг техніки яку ми
+            продаємо. Ми продаємо виключно сертифіковану продукцію, що дозволяє нам гарантувати працездатність техніки.
+
+            Навіть якщо у вас ще нічого не зламалося, в полі краще мати запчастини, які найчастіше потребують заміни.
+
+        </div>
+
+    </div>
+    <!-- jQuery JavaScript -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"> </script>
+
+    <!--Bootsrap JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript" src="assets/js/main.js"> </script>
+</body>
+
+</html>
