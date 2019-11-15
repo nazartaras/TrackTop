@@ -135,6 +135,10 @@ exports.getTechnicsImagesById = function(id,callback) {
     backendPost("/api/gettechnicsmodelim/", {id: id}, callback);
 };
 
+exports.getTechnicsById = function(id,callback) {
+    backendPost("/api/gettechnicsbyid/", {id: id}, callback);
+};
+
 exports.getEquipmentImagesById = function(id,callback) {
     backendPost("/api/getequipmentim/", {id: id}, callback);
 };

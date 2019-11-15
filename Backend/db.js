@@ -213,6 +213,10 @@ exports.get_equipment_by_id = function(id,callback){
     connection.query("SELECT * FROM tracktop.equipments where id = " + id,callback);
 }
 
+exports.get_equipments_by_model = function(model,callback) {
+    connection.query("SELECT * FROM tracktop.models inner join equipments_models on models.id = equipments_models.model_id inner join equipments on equipments.id = equipments_models.equipment_id where"+
+    "model = \'" + model + "\'", callback);
+}
 // delete operations
 
 exports.delete_technics = function(id,callback){

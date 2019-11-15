@@ -499,6 +499,29 @@ exports.get_technics_im_by_id = function (req,res) {
     db.get_technic_im_by_id(req.body.id, callback);
 }
 
+exports.get_technic_by_id = function (req,res) {
+    var db = require('./db');
+
+    function callback(error,data){
+        if(error) {
+            console.log("Error! ", error.sqlMessage);
+            res.send({
+                success: true,
+                error: error.sqlMessage
+            });
+        }
+        else {
+            console.log("Success! ", data);
+            res.send({
+                success: true,
+                data: data
+            });
+        }
+    }
+    db.get_technics_by_id(req.body.id, callback);
+}
+
+
 exports.get_equipment_im_by_id = function (req,res) {
     var db = require('./db');
 
