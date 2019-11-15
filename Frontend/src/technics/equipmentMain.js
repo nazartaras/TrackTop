@@ -38,7 +38,7 @@ function  initialize() {
 
 $(function(){
     $('#logo').click(function () {
-        document.location.href = "http://localhost:5050/";
+        document.location.href = "http://tracktop.com.ua:5050/";
     })
 
     require('../basket').initialiseBasket();
@@ -72,6 +72,6 @@ $(function(){
     initialize();
 
     $('.edit-profile').click(function(){
-        document.location.href = "http://localhost:5050/profile";
+        document.location.href = "http://tracktop.com.ua:5050/profile";
     })
 });

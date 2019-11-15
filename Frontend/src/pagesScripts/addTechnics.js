@@ -42,7 +42,7 @@ function showTechnics(list) {
                 amount: type.amount,
                 description: type.description
             }));
-            document.location.href = "http://localhost:5050/technic?model="+model+"&mark="+mark+'&type='+type.type_name;
+            document.location.href = "http://tracktop.com.ua:5050/technic?model="+model+"&mark="+mark+'&type='+type.type_name;
         });
 
         $technics.append($node);
@@ -121,7 +121,7 @@ function showEquipments(list) {
         var typ = localStorage.getItem('currentTypeOfTechnics');
 
         $node.click(function () {
-            document.location.href = "http://localhost:5050/equipment?name="+type.name+"&id="+type.id;
+            document.location.href = "http://tracktop.com.ua:5050/equipment?name="+type.name+"&id="+type.id;
             localStorage.setItem('currEquipment',JSON.stringify({
                 id: type.id,
                 name: type.name,
