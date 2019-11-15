@@ -7,8 +7,8 @@ exports.connect = function() {
 
     connection = mysql.createConnection({
         host: 'localhost',
-        user: 'root',
-        password: 'root'
+        user: 'tracktop',
+        password: 'tracktop123'
     });
 
     connection.connect(function(err) {

@@ -58,6 +58,29 @@ exports.initializeTechnics = function(){
     var tp = localStorage.getItem('currentTypeOfTechnics');
     var mrk = localStorage.getItem('currentMarkOfTechnics');
 
+    console.log(tp);
+    if(tp=="Сівалки") {
+        console.log("Сівалки");
+        $("#description_technic_equipment").append("Сівалки від \"TrackTop\"\n" +
+            "Наші сівалки, як нові так і бу, володіють високими технічними характеристиками і найвищими стандатами якості.<br>" +
+            "Пропонуємо усі види сівалок:" +
+            " <ul><li>бурякова,</li> <li>кукурудзяна,</li><li>зернова</li><li" +
+            "  <li>тощо</li></ul>\n" +
+            "\n" +
+            "Невід’ємні показники технічної доскональності.\n" +
+            "Представлені в асортименті сівалки виготовляються передовими агро-брендами Європи.\n" +
+            "<br>" +
+            "Ми гарантуємо:\n" +
+            "<ul><li>Технічна справність техніки;</li>" +
+            "<li>Довговічність експлуатації;</li>" +
+            "<li>Ефективність.</li>" +
+            "</ul>" +
+            "Покупка високоефективних сівалок – доступний, вигідний вибір з подальшим співробітництвом з «TrackTop».\n" +
+            "\n" +
+            " "
+        );
+    }
+
     function callback(err,data) {
         if(data.error) console.log(data.error);
         data.data.forEach(function(item){
