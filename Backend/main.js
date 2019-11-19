@@ -10,6 +10,12 @@ function configureEndpoints(app) {
 
     db.connect();
 
+    app.all('/', function(req, res, next) {
+        res.header("Access-Control-Allow-Origin", "*");
+        res.header("Access-Control-Allow-Headers", "X-Requested-With");
+        next();
+    });
+
     //Налаштування URL за якими буде відповідати сервер
     app.post('/api/addtechnic/', api.addTehnic);
     app.post('/api/addreview/', api.addReview);
