@@ -1,4 +1,7 @@
-var API_URL = "http://tracktop.com.ua:5050";
+var values = require('./values.js');
+
+var API_URL = values.url+":5050";
+
 
 function backendGet(url, callback, data) {
     $.ajax({
