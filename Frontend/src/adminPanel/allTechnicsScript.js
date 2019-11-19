@@ -250,13 +250,14 @@ function productBuildTableRow(id) {
     return ret;
 }
 
-function filterSelection(nameRow) {
-    var input =  document.getElementsByClassName("search")[0];
+function filterSelect(i) {
+    var input =  document.getElementsByClassName("mysearch")[0];
     filter = input.value.toUpperCase();
     var list;
     let count = 0;
-    if(nameRow==1) nameRow="rowTechnic";
-    if(nameRow==2) nameRow="rowEquipment";
+    let nameRow;
+    if(i==1) nameRow="rowTechnic";
+    if(i==2) nameRow="rowEquipment";
     list = document.getElementsByClassName(nameRow);
     // console.log(list);
     for(let i =0 ; i< list.length;i++) {
@@ -406,9 +407,12 @@ addEquipmentToDB = function () {
 
 function technicFormClear() {
     $("#mark-choice").val("");
+    $('#mark-choice').prop("disabled", true);
     $("#description").val("");
     $("#model-choice").val("");
+    $('#model-choice').prop("disabled", true);
     $("#price-input-technic").val("");
     $("#year-technic-input").val("");
+    $('#type_technics').val("Тип");
    // delete photoes if needed
 }

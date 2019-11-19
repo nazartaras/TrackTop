@@ -15,7 +15,10 @@ function configureEndpoints(app) {
     db.connect();
 
     //Налаштування URL за якими буде відповідати сервер
-    app.post('/api/addtechnic/',api.addTehnic);
+
+    app.post('/api/addtechnic/', api.addTehnic);
+    app.post('/api/addreview/', api.addReview);
+
     app.post('/api/addequipment/', api.addEquipment);
     app.post('/api/addequipmentsmodels/', api.addEquipmentsModels);
     app.post('/api/addclient/', api.addClient);
@@ -32,17 +35,22 @@ function configureEndpoints(app) {
     app.get('/api/getmodelsbytypemark', api.get_models_by_type_mark);
     app.get('/api/getid', api.get_id);
     app.get('/api/getmodels', api.get_models);
+    app.get('/api/getreview', api.get_review);
+    app.get('/api/getreviews', api.get_reviews);
 
     app.post('/api/signin',  api.sign_in);
 
     app.get('/api/gettechnics', api.get_technics);
     app.post('/api/gettechnics', api.get_technics_by_tp);
+    app.post('/api/gettechnicsbyid', api.get_technic_by_id);
+
 
     // app.post('/api/gettechnicsmodelim', api.get_technics_im_by_tp_model);
     app.post('/api/gettechnicsmodelim', api.get_technics_im_by_id);
     app.post('/api/getequipmentim', api.get_equipment_im_by_id);
     app.post('/api/upload_user_photo', api.upload_user_photo);
     app.post('/api/update_user', api.update_user);
+    app.post('/api/update_review', api.update_review);
 
 
     //Сторінки
@@ -53,6 +61,7 @@ function configureEndpoints(app) {
     app.get('/equipments',isAuth, attachCurrentUser, roleRequired.requiredRole('admin'), pages.equipments);
     app.get('/equipment', pages.equipment);
     app.get('/about', pages.about);
+    app.get('/reviews', pages.reviews);
 
     //Якщо не підійшов жоден url, тоді повертаємо файли з папки www
     app.use(express.static(path.join(__dirname, '../Frontend/www')));

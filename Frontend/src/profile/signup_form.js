@@ -3,6 +3,10 @@ var model_message = document.getElementById('messageModal');
 function openSignUpForm() {
     modal.style.display='block';
 }
+var Templates = require('../Templates');
+
+var $reviews =   $('#reviews');
+
 
 exports.initializeLogin = function(){
     $('#signup').click(function() {
@@ -277,5 +281,137 @@ Notify = function(text, callback, close_callback, style) {
         remove_notice()
     });
 
+
+}
+
+sendReview = function (i) {
+
+    let status = localStorage.getItem("status");
+
+    if(status) {
+
+        let id;
+        var phone = localStorage.getItem("phone");
+        var name = $('#reviewModal input[name=name]')[0].value;
+
+        var text = $('#reviewModal textarea[name=message]')[0].value;
+
+        var recommend = $('#reviewModal input[name=Like]:checked').val();
+        let review = {
+            text_review : text,
+            show:true,
+            client_id:id,
+            recommend:recommend
+        }
+
+        function callback(error,data){
+            console.log(data);
+            if(data.error) {
+                console.log(data.error);
+            }
+            else if(!(data.data[0]==null)){
+                review.client_id = data.data[0].id;
+                require("../API").addReview(review, function (err, data) {
+                    if (data.error) console.log(data.error);
+                    else {
+                        console.log("success");
+                        // console.log("data.data = "+data.data.insertId);
+                    }
+                });
+            }
+            else if(!(data==null)){
+                review.client_id = data.data.id;
+                require("../API").addReview(review, function (err, data) {
+                    if (data.error) console.log(data.error);
+                    else {
+                        console.log("success");
+                        // console.log("data.data = "+data.data.insertId);
+                    }
+                });
+            }
+        }
+
+        require("../API").getClientbyPhone(phone,callback);
+
+        // document.getElementById("phone").mask('+380 (99) 999-99-99');
+        // e.preventDefault();
+        const {TelegramClient} = require('messaging-api-telegram');
+
+// get accessToken from telegram [@BotFather](https://telegram.me/BotFather)
+        const client = TelegramClient.connect('884221604:AAEVBWl5ETesASuZ0XjXZs3DBMG0YwovKZM');
+//event.preventDefault();
+
+
+        // model_message.style.display = "none";
+        $('#reviewModal').modal('toggle');
+        let message = "Користувач " + name + " залишив відгук :\n" + text ;
+        // let curr =  localStorage.getItem('currTechnic');
+
+
+        client.sendMessage("-327577485", message, {
+            disable_web_page_preview: true,
+            disable_notification: false,
+        });
+        Notify("Дякуємо за відгук!!!",null,null,'success');
+        // console.log("fsdf");
+    }
+    else {
+        alert("Зареєструйтесь, щоб залишити відгук");
+    }
+}
+
+openReviewModal = function () {
+    $('#reviewModal').modal('show');
+    let status = localStorage.getItem("status");
+    if(status) {
+        let name = localStorage.getItem("name");
+        let surname = localStorage.getItem("surname");
+        $("#username_reviewForm").val(name+" "+ surname);
+        $("#username_reviewForm").attr("disabled", true);
+    }
+}
+
+$(function(){
+    if(document.location.href == "http://localhost:5050/reviews")
+        initializeReviews();
+});
+
+//
+// showAllReviews = function () {
+//     function callback(err,data) {
+//         data.data.forEach(function(item){
+//             if(item.show)
+//
+//         });
+//
+//     }
+//     require("../API").getReviews(callback);
+// }
+
+function showReviews(list) {
+
+    $reviews.html("");
+
+    function showOne(type) {
+        var html_code = Templates.oneReview({item: type});
+
+        var $node = $(html_code);
+        $reviews.append($node);
+    }
+
+    list.forEach(showOne);
+}
+
+initializeReviews = function(){
+
+    var l=[];
+
+    require("../API").getReviews(function (err,data) {
+        if(data.error) console.log(data.error);
+        data.data.forEach(function(item){
+            l.push(item)
+        });
+        showReviews(l);
+    });
 
 }

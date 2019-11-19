@@ -22,6 +22,10 @@ exports.insert_tehnic = function(tehnic,callback){
     connection.query("INSERT INTO tracktop.technics SET ?", tehnic, callback);
 }
 
+exports.insert_review = function(review,callback){
+    connection.query("INSERT INTO tracktop.reviews SET ?", review, callback);
+}
+
 exports.insert_equipment = function(equipment,callback){
     connection.query("INSERT INTO tracktop.equipments SET ?", equipment, callback);
 }
@@ -105,6 +109,14 @@ exports.get_types_of_technics = function(callback){
 
 exports.get_marks_of_technics = function(callback){
     connection.query("SELECT * FROM tracktop.marks_of_technics",callback);
+}
+
+exports.get_reviews = function(callback){
+    connection.query("SELECT text_review, reviews.show, reviews.recommend, photo_location, clients.name, clients.surname  FROM tracktop.reviews inner join tracktop.clients on clients.id=client_id",callback);
+}
+
+exports.get_review = function(id,callback){
+    connection.query("SELECT text_review, reviews.show, reviews.recommend, photo_location, clients.name, clients.surname  FROM tracktop.reviews inner join tracktop.clients on clients.id=client_id where client_id = '" + id+"'",callback);
 }
 
 ////
@@ -213,6 +225,10 @@ exports.get_equipment_by_id = function(id,callback){
     connection.query("SELECT * FROM tracktop.equipments where id = " + id,callback);
 }
 
+exports.get_equipments_by_model = function(model,callback) {
+    connection.query("SELECT * FROM tracktop.models inner join equipments_models on models.id = equipments_models.model_id inner join equipments on equipments.id = equipments_models.equipment_id where"+
+    "model = \'" + model + "\'", callback);
+}
 // delete operations
 
 exports.delete_technics = function(id,callback){
@@ -234,6 +250,10 @@ exports.delete_equipments = function(id,callback){
 }
 exports.delete_client = function(id,callback){
     connection.query("DELETE FROM tracktop.clients WHERE tracktop.clients.id = "+ id,callback);
+}
+
+exports.delete_review = function(id,callback){
+    connection.query("DELETE FROM tracktop.reviews WHERE review_id = "+ id,callback);
 }
 
 exports.delete_provider = function(id,callback){
@@ -276,4 +296,8 @@ exports.update_type_of_technic = function(id,type,callback){
 
 exports.update_technic = function(id,technic,callback){
     connection.query("UPDATE tracktop.technics SET ?"+ technic + "WHERE id = "+ id,callback);
+}
+
+exports.update_review = function(id,review,callback){
+    connection.query("UPDATE tracktop.reviews SET ?"+ review + "WHERE id = "+ id,callback);
 }

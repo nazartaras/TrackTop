@@ -21,7 +21,8 @@
 
     <!-- Another variation with a button -->
     <span class="input-group  col1">
-            <input class="form-control search" placeholder="Пошук" type="text" onkeyup="filterSelection(1)">
+            <input class="form-control mysearch" placeholder="Пошук" type="text" onkeyup="
+            filterSelect(1)">
             <div class="input-group-append">
                 <button class="btn btn-secondary" type="button" >
                     <i class="fa fa-search"></i>
@@ -137,10 +138,10 @@
              </span>
 
             <div class="signup-btn-container">
-                <button class="signup btn small btn-ok" id="add-btn" onclick="addTechnicToDB()">ДОДАТИ</button>
-                <button class="btn btn-primary btn-small btn-cancel" data-dismiss="modal"
-                        onclick="document.getElementById('addTechnicModel').style.display='none'" type="button">
-                    СКАСУВАТИ
+                <button class="btn btn-primary btn-small" id="add-btn" onclick="addTechnicToDB()">ДОДАТИ</button>
+                <button class="btn btn-danger btn-small" data-dismiss="modal"
+                        onclick="document.getElementById('addTechnicModel').style.display='none'">
+                    Скасувати
                 </button>
             </div>
         </div>

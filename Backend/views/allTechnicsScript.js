@@ -20,8 +20,9 @@ $( window ).on( "load", function() {
 });
 
 function filterSelection(nameRow) {
-    var input =  document.getElementsByClassName("search")[0];
+    var input =  document.getElementsByClassName("mysearch")[0];
     filter = input.value.toUpperCase();
+    console.log(filter);
     var list;
     let count = 0;
     if(nameRow==1) nameRow="rowTechnic";
