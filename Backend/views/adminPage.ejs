@@ -7,6 +7,19 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700" rel="stylesheet">
 
+
+
+    <link href="assets/less/all.less" rel="stylesheet/less" type="text/css"/>
+    <!-- LESS JavaScript компілятор -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.5.3/less.min.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+
     <!-- CSS Reset -->
     <link rel="stylesheet" href="assets/less/adminPanel/normalize.css">
 
@@ -22,36 +35,20 @@
 </head>
 
 <body>
-<div class="navbar">
-    <div class="row">
-        <div class="column column-30 col-site-title"><a href="#" class="site-title float-left">Medialoot</a></div>
-        <div class="column column-40 col-search"><a href="#" class="search-btn fa fa-search"></a>
-            <input type="text" name="" value="" placeholder="Search..." />
-        </div>
-        <div class="column column-30">
-            <div class="user-section"><a href="#">
-                    <img src="http://via.placeholder.com/50x50" alt="profile photo" class="circle float-left profile-photo" width="50" height="auto">
-                    <div class="username">
-                        <h4>Jane Donovan</h4>
-                        <p>Administrator</p>
-                    </div>
-                </a></div>
-        </div>
-    </div>
-</div>
 <div class="row">
     <div id="sidebar" class="column">
         <h5>Navigation</h5>
         <ul>
-            <li><a class='technic_menu' href="#"><em class="fa fa-pencil-square-o"></em> Техніка</a></li>
-            <li><a href="#charts"><img src="assets/images/technic-ic.png" alt=""> Запчастини</a></li>
-            <li><a href="#widgets"><em class="fa fa-pencil-square-o"></em> Типи техніки</a></li>
-            <li><a href="#forms"><em class="fa fa-pencil-square-o"></em> Марки</a></li>
-            <li><a href="#alerts"><em class="fa fa-pencil-square-o"></em> Моделі</a></li>
-            <li><a href="#buttons"><em class="fa fa-clone"></em> Статистика</a></li>
+            <li><a class='technic_menu' href="#">Техніка</a></li>
+            <li><a href="#charts">Запчастини</a></li>
+            <li><a href="#widgets">Типи техніки</a></li>
+            <li><a href="#forms">Марки</a></li>
+            <li><a href="#alerts"> Моделі</a></li>
+            <li><a href="#buttons">Статистика</a></li>
         </ul>
     </div>
     <section id="main-content" class="column column-offset-20">
+        <% if(currPage == '0') {%>
         <div class="row grid-responsive">
             <div class="column page-heading">
                 <div class="large-card">
@@ -336,9 +333,23 @@
                 <div class="column">100%</div>
             </div>
         </div>
+        <%}%>
+        <% if(currPage == '1') {%>
+            <% include common/admin-panel/equipments.ejs %>
+        <%}%>
+        <% if(currPage == '2') {%>
+            <% include common/left_panel.ejs %>
+        <%}%>
+        <% if(currPage == '3') {%>
+            <% include common/left_panel.ejs %>
+        <%}%>
     </section>
 </div>
+<!-- jQuery JavaScript -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"> </script>
 
-
+<!--Bootsrap JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script src="/assets/js/adminPanel.js"></script>
 </body>
 </html>

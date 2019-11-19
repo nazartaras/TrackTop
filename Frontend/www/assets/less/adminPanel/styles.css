@@ -253,7 +253,6 @@ select:focus {
   background: #fff;
   padding: 10px 30px !important;
   box-shadow: 3px 0px 8px rgba(0, 0, 0, 0.05);
-  margin-top: 80px;
   height: 100%; }
   #sidebar h1, #sidebar h2, #sidebar h3, #sidebar h4, #sidebar h5, #sidebar h6 {
     color: #333;
@@ -280,7 +279,6 @@ select:focus {
 #main-content {
   width: 80% !important;
   padding: 20px 3.5rem !important;
-  margin-top: 95px;
   margin-right: 12px; }
   #main-content .page-heading {
     margin-bottom: 20px; }

@@ -1,0 +1,154 @@
+<h2 class="header_table">Запчастини</h2>
+<div class="main">
+
+    <!-- Another variation with a button -->
+    <span class="input-group  col1">
+            <input type="text" class="form-control mysearch" placeholder="Пошук" onkeyup="filterSelect(2)"/>
+            <div class="input-group-append">
+                <button class="btn btn-secondary" type="button" onclick="openAddEquipmentModel()">
+                    <i class="fa fa-search"></i>
+                </button>
+            </div>
+        </span>
+
+    <span class="col2">
+        <button class="btn btn-secondary" type="button" onclick="openAddEquipmentModel()">
+            <i class="fa fa-plus"></i>
+        </button>
+        </span>
+</div>
+
+<div class=" myTable table-responsive-md" id="allEquipments">
+    <table class="table  table-striped table-hover table-bordered">
+        <thead class="thead-dark">
+        <tr>
+            <th>#</th>
+            <th>Назва</th>
+            <th>Ціна</th>
+            <th>Код</th>
+            <th>Кількість</th>
+            <th id="">Редагувати</th>
+            <th>Видалити</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="rowEquipment">
+            <td id="id">1</td>
+            <td id="name">Вал</td>
+            <td id="price">1200</td>
+            <td id="code">1232312</td>
+            <td id="amount">5</td>
+            <td class="edit-btn">
+                <button class=""><img src="../../res/images/edit.png"></button>
+            </td>
+            <td class="delete-btn">
+                <button class=""><img src="../../res/images/delete.png"></button>
+            </td>
+
+        </tr>
+        </tbody>
+    </table>
+</div>
+</div>
+
+
+<div id="addEquipmentModel" class="modal">
+
+    <form class="modal-content" onsubmit='return false'>
+        <div class="header-signup">
+            <div class="left">
+                <span class="text-uppercase">Додати запчастину</span>
+            </div>
+            <div class="right">
+                <div data-dismiss="modal" onclick="document.getElementById('addEquipmentModel').style.display='none'"
+                     class="fa fa-remove popup-close link" title="Закрити"></div>
+            </div>
+        </div>
+        <div class="container">
+            <span class="form-group">
+                <span class="name-type">Назва</span>
+     <div class="ds">
+                 <input id="name-equipment" type="text" placeholder="Назва" class="form-control form-item" required>
+     </div>
+                <span class="name-type right-type">Код</span>
+     <div class="ds">
+                 <input id="equipment-code" type="text" placeholder="Код" class="form-control form-item">
+     </div>
+<br>
+<div class="name-type">Ціна</div>
+               <div class="ds">
+                   <input class="form-control form-item" class="price-input" min="1" name="price-input"
+                          placeholder="Ціна" required type="number">
+
+                <div class="currency">
+                <select class="form-control form-item ds" id="currency-choice">
+        <option>$</option>
+        <option>&euro;</option>
+        <option>грн</option>
+      </select>
+                    </div>
+                    </div>
+
+                <!--    <label for="sel1">Тип</label>-->
+                <div class="name-type right-type">Стан</div>
+                <div class="state">
+      <select class="form-control form-item" id="state-choice" name="sellist1">
+          <option selected disabled>Стан</option>
+        <option>Новий</option>
+        <option>Б\у</option>
+      </select>
+                    </div>
+                <div class="name-type right-type">К-сть</div>
+                <div class="amount-input">
+                <input id="equipment-amount" type="number" placeholder="Кількість" class="form-control form-item"
+                       min="0" required>
+                    <!--                <label for="mark-choice">Модель</label>-->
+                </div>
+
+                <br>
+                <div>Підходить до:</div>
+                <span class="name-type">Категорія</span>
+                     <div class="ds"> <select class="form-control form-item" id="type_technics" name="sellist1"
+                                              onchange="getMarks()">
+<!--          <option selected disabled>Тип</option>-->
+                        <option selected disabled>Тип</option>
+                          <option>Тип</option>
+                     </select>
+         </div>
+                <span class="name-type  right-type">Марка</span>
+                <div class="ds">
+<input class="form-control form-item" id="mark-choice" list="marks" placeholder="Марка" disabled
+       onchange="getModels()"/>
+</div>
+<datalist id="marks">
+    <option disabled selected value="Марка"/>
+</datalist>
+                <br>
+                <div class="name-type ">Модель</div>
+                <div class="ds">
+<input class="form-control form-item" id="model-choice" list="models" placeholder="Модель" disabled/>
+</div>
+<datalist id="models">
+    <option disabled selected value="Модель"/>
+</datalist>
+
+                <div class="form-group">
+                <label for="description">Опис</label>
+                <textarea id="description" class="form-control" name="description" rows="6"></textarea>
+            </div>
+
+             </span>
+
+
+            <div class="signup-btn-container">
+                <button id="signup_btn" class="btn btn-primary btn-small" onclick="addEquipmentToDB()">Додати</button>
+                <button type="button" data-dismiss="modal" class="btn btn-danger btn-small"
+                        onclick="document.getElementById('addEquipmentModel').style.display='none'">
+                    Скасувати
+                </button>
+            </div>
+        </div>
+    </form>
+
+</div>

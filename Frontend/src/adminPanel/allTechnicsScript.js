@@ -3,17 +3,17 @@ openAddTechnicModel = function () {
     $("#add-btn").text("Додати");
 
     technicFormClear();
-    // to do
+    // todo:
     // get all types of technics, loop through and add options text = type, value=type
 
-    // function callback(err,data) {
-    //
-    //     data.data.forEach(function(item){
-    //         $('#type_technics').append(new Option(item.name, item.name));
-    //     });
-    //
-    // }
-    // require("../API").getTypes(callback);
+    function callback(err,data) {
+
+        data.data.forEach(function(item){
+            $('#type_technics').append(new Option(item.name, item.name));
+        });
+
+    }
+    require("../API").getTypes(callback);
 
 
     // get all marks, loop through
