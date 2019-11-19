@@ -1,3 +1,5 @@
+var values = require('../values.js');
+var API_URL = values.url;
 
 function  initialize() {
     var tech = JSON.parse(localStorage.getItem('currTechnic'));
@@ -36,7 +38,7 @@ function  initialize() {
 
 $(function(){
     $('#logo').click(function () {
-        document.location.href = "http://tracktop.com.ua:5050/";
+        document.location.href = API_URL;
     })
 
     require('../basket').initialiseBasket();
@@ -70,6 +72,6 @@ $(function(){
     initialize();
 
     $('.edit-profile').click(function(){
-        document.location.href = "http://tracktop.com.ua:5050/profile";
+        document.location.href = API_URL+"/profile";
     })
 });

@@ -9,8 +9,11 @@ $(function(){
     var $location_post_office_value = $('#location_post_office_value')[0];
     var $post_office_number_value = $('#post_office_number_value')[0];
 
+    var values = require('../values.js');
+    var API_URL = values.url;
+
     $('#logo').click(function () {
-        document.location.href = "http://tracktop.com.ua:5050/";
+        document.location.href = API_URL;
     })
 
     $('#login').click(function() {
@@ -26,7 +29,7 @@ $(function(){
     })
 
     $('.edit-profile').click(function(){
-        document.location.href = "http://tracktop.com.ua:5050/profile";
+        document.location.href = API_URL+"/profile";
     })
 
     require('../basket').initialiseBasket();
@@ -36,13 +39,13 @@ $(function(){
         require('./user_form').deleteInfoFromLocalStorage();
         require('./user_form').isLogged();
         $('#user_info').css("display", "none");
-        if(document.location.href == "http://tracktop.com.ua:5050/profile") {
-            document.location.href = "http://tracktop.com.ua:5050";
+        if(document.location.href == API_URL+"/profile") {
+            document.location.href = API_URL;
         }
     })
 
     $('.toMainPageBtn').click(function() {
-            document.location.href = "http://tracktop.com.ua:5050";
+            document.location.href = API_URL;
     })
 
     $('#photo_input').change(function (event) {
@@ -59,7 +62,7 @@ $(function(){
                 },function(err){
                     if (err) console.log(err);
                     else {
-                        $('#user_photo').attr("src", "http://tracktop.com.ua:5050/images/users_photos/"+event.target.files[0].name);
+                        $('#user_photo').attr("src", API_URL+"/images/users_photos/"+event.target.files[0].name);
                     }
                 })
             }
