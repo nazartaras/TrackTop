@@ -50,6 +50,10 @@ exports.addTehnic = function(tehnic, callback) {
     backendPost("/api/addtechnic/", tehnic, callback);
 };
 
+exports.addReview = function(review, callback) {
+    backendPost("/api/addreview/", review, callback);
+};
+
 exports.addEquipment = function(equipment, callback) {
     backendPost("/api/addequipment/", equipment, callback);
 };
@@ -99,6 +103,14 @@ exports.getMarks = function(callback) {
 
 exports.getId = function(table_name, name,callback) {
     backendGet("/api/getid/", callback,{table_name :table_name, name:name});
+};
+
+exports.getReview = function(id,callback) {
+    backendGet("/api/getreview/", callback,{id :id});
+};
+
+exports.getReviews = function(callback) {
+    backendGet("/api/getreviews/", callback,);
 };
 
 exports.getModelsbyTypeMark = function(type,mark,callback) {
@@ -151,4 +163,8 @@ exports.uploadUserPhoto = function(photo,callback){
 
 exports.updateClient = function(id,info,callback) {
     backendPost("/api/update_user",{id: id, info: info},callback);
+}
+
+exports.updateReview = function(id,info,callback) {
+    backendPost("/api/update_review",{id: id, info: info},callback);
 }

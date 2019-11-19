@@ -96,3 +96,8 @@ exports.about = (req, res) => {
         pageTitle: 'Про нас'
     })
 }
+
+exports.reviews = (req, res) => {
+    res.render('reviews', {
+    })
+}

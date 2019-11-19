@@ -117,7 +117,7 @@ function initialiseCart() {
     $(".orderButton").click(function () {
         if(Cart.length!=0){
 
-            var status = localStorage.getItem("status");
+            let status = localStorage.getItem("status");
             if(status) {
                 var id = localStorage.getItem("id");
                 var name = localStorage.getItem("name");

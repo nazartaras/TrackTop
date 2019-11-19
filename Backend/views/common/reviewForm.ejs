@@ -1,0 +1,37 @@
+<div id="reviewModal" class="modal">
+
+    <form class="modal-content" >
+        <div class="header-message">
+            <div class="left">
+                <span>Залишіть відгук</span>
+            </div>
+            <div class="right">
+                <div data-dismiss="modal" onclick="document.getElementById('reviewModal').style.display='none'"
+                     class="fa fa-remove popup-close link" title="Закрити"></div>
+            </div>
+        </div>
+
+        <form>
+        <div class="container">
+
+            <input id="username_reviewForm" type="text" placeholder="Ваше ім'я" name="name"
+                   class="form-control form-item" required>
+
+
+            <div class="form-group">
+                <label class="message-title" for="message">Ваш відгук</label>
+                    <textarea id="review" class="form-control message-textarea" required name="message" rows="6" autofocus></textarea>
+            </div>
+
+            <fieldset>
+                <input type="radio" name="Like" value="1"> <i class="fas fa-thumbs-up icons"></i> Рекомендую
+                <input type="radio" name="Like" value="0"> <i class="fas fa-thumbs-down icons"></i> Не рекомендую
+            </fieldset>
+
+            <div class="message-btn-container">
+                <button id="messageModal" type="button" class="btn small message-btn-ok" onclick="sendReview()">Надіслати</button>
+            </div>
+        </div>
+        </form>
+    </form>
+</div>

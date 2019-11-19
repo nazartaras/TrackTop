@@ -23,6 +23,31 @@ exports.addTehnic = function(req, res) {
 
 };
 
+exports.addReview = function(req, res) {
+    var db = require('./db');
+    var info = req.body;
+
+    function callback(error,data){
+        if(error) {
+            console.log("Error! ", error.sqlMessage);
+            res.send({
+                success: true,
+                error: error.sqlMessage
+            });
+        }
+        else {
+            console.log("Success! ", data);
+            res.send({
+                success: true,
+                data: data
+            });
+        }
+    }
+
+    db.insert_review(info,callback);
+
+};
+
 exports.addEquipment = function(req, res) {
     var db = require('./db');
     var info = req.body;
@@ -317,6 +342,28 @@ exports.get_models = function(req,res) {
     db.get_models(callback);
 }
 
+exports.get_reviews = function(req,res) {
+    var db = require('./db');
+    function callback(error,data){
+        if(error) {
+            console.log("Error! ", error.sqlMessage);
+            res.send({
+                success: true,
+                error: error.sqlMessage
+            });
+        }
+        else {
+            console.log("Success! ", data);
+            res.send({
+                success: true,
+                data: data
+            });
+        }
+    }
+
+    db.get_reviews(callback);
+}
+
 exports.get_id = function(req,res) {
     var db = require('./db');
     function callback(error,data){
@@ -544,6 +591,28 @@ exports.get_equipment_im_by_id = function (req,res) {
     db.get_equipment_im_by_id(req.body.id, callback);
 }
 
+exports.get_review = function (req,res) {
+    var db = require('./db');
+
+    function callback(error,data){
+        if(error) {
+            console.log("Error! ", error.sqlMessage);
+            res.send({
+                success: true,
+                error: error.sqlMessage
+            });
+        }
+        else {
+            console.log("Success! ", data);
+            res.send({
+                success: true,
+                data: data
+            });
+        }
+    }
+    db.get_review(req.body.id, callback);
+}
+
 exports.get_user_information = function (req,res) {
     var db = require('./db');
     var info = req.query;
@@ -675,5 +744,29 @@ exports.update_user = function(req,res){
                 db.update_client(data[0].id,info.info,callback);
         }
     });
+
+}
+
+exports.update_review = function(req,res){
+    var db = require('./db');
+    var info = req.body;
+
+    function callback(error,data){
+        if(error) {
+            console.log("Error! ", error.sqlMessage);
+            res.send({
+                success: true,
+                error: error.sqlMessage
+            });
+        }
+        else {
+            console.log("Success! ", data);
+            res.send({
+                success: true
+            });
+        }
+    }
+
+    db.update_review(info.id,info.info,callback);
 
 }

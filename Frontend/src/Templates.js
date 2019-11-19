@@ -9,3 +9,4 @@ exports.technicInOrder = ejs.compile(fs.readFileSync('./Frontend/templates/techn
 exports.equipmentInOrder = ejs.compile(fs.readFileSync('./Frontend/templates/equipment_in_order.ejs', "utf8"));
 exports.oneImage = ejs.compile(fs.readFileSync('./Frontend/templates/one_image.ejs', "utf8"));
 exports.equipmentInList = ejs.compile(fs.readFileSync('./Frontend/templates/equipment_in_list.ejs', "utf8"));
+exports.oneReview = ejs.compile(fs.readFileSync('./Frontend/templates/one_review.ejs', "utf8"));

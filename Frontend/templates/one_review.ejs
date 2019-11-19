@@ -1,0 +1,13 @@
+<div class="oneReview">
+    <div class="column column1"><img class="photo_reviewer"  src="http://localhost:5050/images/users_photos/<%= item.photo_location%>"></div>
+    <div class="name_recommend column column2">
+        <div class="name"><%= item.name%> <%= item.surname%></div>
+        <% if(item.recommend) { %>
+            <div class="recommend"><i class="fas fa-thumbs-up icons"></i> Рекомендую</div>
+        <% } else {%>
+            <div class="recommend"><i class="fas fa-thumbs-down icons"></i> Не рекомендую</div>
+        <% } %>
+
+    </div>
+    <div class="text_review column column3"><%=item.text_review%></div>
+</div>
