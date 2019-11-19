@@ -58,10 +58,12 @@ function configureEndpoints(app) {
     app.get('/profile', pages.profile);
     app.get('/technics', pages.technics);
     app.get('/technic', pages.technic);
-    app.get('/equipments',isAuth, attachCurrentUser, roleRequired.requiredRole('admin'), pages.equipments);
+    app.get('/equipments', pages.equipments);
     app.get('/equipment', pages.equipment);
     app.get('/about', pages.about);
     app.get('/reviews', pages.reviews);
+
+    app.get('/admin-panel', /*isAuth, attachCurrentUser, roleRequired.requiredRole('admin'),*/ pages.adminPanel);
 
     //Якщо не підійшов жоден url, тоді повертаємо файли з папки www
     app.use(express.static(path.join(__dirname, '../Frontend/www')));

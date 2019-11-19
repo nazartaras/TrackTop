@@ -101,3 +101,10 @@ exports.reviews = (req, res) => {
     res.render('reviews', {
     })
 }
+
+exports.adminPanel = (req, res) => {
+    res.render('adminPage', {
+        pageTitle: 'admin panel',
+        currPage: '1'
+    })
+}
