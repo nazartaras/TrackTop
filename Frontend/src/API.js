@@ -1,6 +1,6 @@
 var values = require('./values.js');
 
-var API_URL = values.url+":5050";
+var API_URL = values.url;
 
 
 
