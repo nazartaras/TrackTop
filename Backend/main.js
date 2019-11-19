@@ -3,6 +3,10 @@ var path = require('path');
 var morgan = require('morgan');
 var bodyParser = require('body-parser');
 
+var isAuth = require('./authentification/isAuth.js');
+var roleRequired = require('./authentification/RoleRequired.js');
+var attachCurrentUser = require('./authentification/attachCurrentUser.js');
+
 function configureEndpoints(app) {
     var pages = require('./pages');
     var api = require('./api');
@@ -17,8 +21,10 @@ function configureEndpoints(app) {
     });
 
     //Налаштування URL за якими буде відповідати сервер
+
     app.post('/api/addtechnic/', api.addTehnic);
     app.post('/api/addreview/', api.addReview);
+
     app.post('/api/addequipment/', api.addEquipment);
     app.post('/api/addequipmentsmodels/', api.addEquipmentsModels);
     app.post('/api/addclient/', api.addClient);
@@ -58,7 +64,7 @@ function configureEndpoints(app) {
     app.get('/profile', pages.profile);
     app.get('/technics', pages.technics);
     app.get('/technic', pages.technic);
-    app.get('/equipments', pages.equipments);
+    app.get('/equipments',isAuth, attachCurrentUser, roleRequired.requiredRole('admin'), pages.equipments);
     app.get('/equipment', pages.equipment);
     app.get('/about', pages.about);
     app.get('/reviews', pages.reviews);
