@@ -1,3 +1,5 @@
+var authService = require('./authentification/AuthService');
+
 exports.addTehnic = function(req, res) {
     var db = require('./db');
     var info = req.body;
@@ -248,18 +250,20 @@ exports.sign_in = function(req, res) {
             // console.log("PasswH ", require('./hash').md5(info.password));
             // console.log("Passw ", data[0].hash);
 
-            if(!(data[0]==null) && require('./hash').md5(info.password) === data[0].hash)
-                 res.send({
-                     success: true,
-                     data: {
-                         id: require('./hash').md5(""+data[0].id),
-                         surname: data[0].surname,
-                         name: data[0].name,
-                         settelment: data[0].settelment,
-                         phone_number: data[0].phone_number,
-                         photo_location: data[0].photo_location
-                     }
-                 });
+            if(!(data[0]==null) && require('./hash').md5(info.password) === data[0].hash){
+                res.send({
+                    success: true,
+                    data: {
+                        // token: authService.generateToken(data[0]),
+                        id: require('./hash').md5(""+data[0].id),
+                        surname: data[0].surname,
+                        name: data[0].name,
+                        settelment: data[0].settelment,
+                        phone_number: data[0].phone_number,
+                        photo_location: data[0].photo_location
+                    }
+                });
+            }
             else
                 res.send({
                     success: true,

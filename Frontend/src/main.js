@@ -1,3 +1,6 @@
+var values = require('./values.js');
+var API_URL = values.url;
+
 $(function(){
     //This code will execute when the page is ready
     // $('.testSql').click(function(){
@@ -15,7 +18,7 @@ $(function(){
     //     });
     // });
     $('#logo').click(function () {
-        document.location.href = "http://tracktop.com.ua:5050/";
+        document.location.href = API_URL;
     })
 
     require('./basket').initialiseBasket();
@@ -33,7 +36,7 @@ $(function(){
     })
 
     $('.edit-profile').click(function(){
-        document.location.href = "http://tracktop.com.ua:5050/profile";
+        document.location.href = API_URL+"/profile";
     })
 
     // added

@@ -1,7 +1,8 @@
 var Templates = require('../Templates');
 
 var $types =   $('.typesOfTechnic');
-
+var values = require('../values.js');
+var API_URL = values.url;
 
 function showTypes(list) {
 
@@ -16,10 +17,10 @@ function showTypes(list) {
 
         $node.click(function () {
             if(type.name=="Запчастини")
-            document.location.href = "http://tracktop.com.ua:5050/equipments";
+            document.location.href = API_URL+"/equipments";
             else {
                 localStorage.setItem('currentTypeOfTechnics', typ);
-                document.location.href = "http://tracktop.com.ua:5050/technics?type=" + typ;
+                document.location.href = API_URL+"/technics?type=" + typ;
             }
         });
 
