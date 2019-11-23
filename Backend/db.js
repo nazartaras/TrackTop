@@ -180,10 +180,11 @@ exports.get_technics_by_model = function(model,callback){
 }
 
 exports.get_models_by_type_mark = function(type,mark,callback){
-    if(type!=null && mark !=null)
+    if (mark==null || mark.toString().length==0)   connection.query("SELECT Distinct * FROM tracktop.models WHERE tracktop.models.technic_type = '" + type +"'",callback);
+    else if (type!=null && mark !=null)
     connection.query("SELECT Distinct model FROM tracktop.models WHERE tracktop.models.technic_type = '" + type +"' AND tracktop.models.technic_mark = '"+ mark+"'",callback);
-    else if (mark==null)     connection.query("SELECT Distinct * FROM tracktop.models WHERE tracktop.models.technic_type = '" + type +"'",callback);
-
+    console.log("mark = " + mark);
+    console.log("mark len = " + mark.toString().length);
 }
 
 exports.get_models = function(callback){
@@ -242,6 +243,10 @@ exports.delete_types_of_technics = function(id,callback){
 exports.delete_marks_of_technics = function(id,callback){
     connection.query("DELETE FROM tracktop.marks_of_technics WHERE tracktop.marks_of_technics.id = "+ id,callback);
 }
+
+// exports.delete_user_photo = function(userId,callback){
+//     connection.query("UPDATE tracktop.clients SET photo_location = 'avatar.png' WHERE  id = "+ userId,callback);
+// }
 
 ///
 

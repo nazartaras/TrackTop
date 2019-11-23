@@ -774,3 +774,78 @@ exports.update_review = function(req,res){
     db.update_review(info.id,info.info,callback);
 
 }
+
+exports.update_technic = function(req,res){
+    var db = require('./db');
+    var info = req.body;
+
+    function callback(error,data){
+        if(error) {
+            console.log("Error! ", error.sqlMessage);
+            res.send({
+                success: true,
+                error: error.sqlMessage
+            });
+        }
+        else {
+            console.log("Success! ", data);
+            res.send({
+                success: true
+            });
+        }
+    }
+
+    db.update_technic(info.id,info.info,callback);
+
+}
+
+
+exports.delete_technic_by_id = function(req,res){
+    var db = require('./db');
+    var info = req.body;
+
+    function callback(error,data){
+        if(error) {
+            console.log("Error! ", error.sqlMessage);
+            res.send({
+                success: true,
+                error: error.sqlMessage
+            });
+        }
+        else {
+            console.log("Success! ", data);
+            res.send({
+                success: true
+            });
+        }
+    }
+
+    // ..todo delete images
+    db.delete_technics(info.id,callback);
+
+}
+
+exports.delete_equipments_by_id = function(req,res){
+    var db = require('./db');
+    var info = req.body;
+
+    function callback(error,data){
+        if(error) {
+            console.log("Error! ", error.sqlMessage);
+            res.send({
+                success: true,
+                error: error.sqlMessage
+            });
+        }
+        else {
+            console.log("Success! ", data);
+            res.send({
+                success: true
+            });
+        }
+    }
+
+    // ..todo delete images
+    db.delete_equipments(info.id,callback);
+
+}

@@ -172,3 +172,19 @@ exports.updateClient = function(id,info,callback) {
 exports.updateReview = function(id,info,callback) {
     backendPost("/api/update_review",{id: id, info: info},callback);
 }
+
+exports.updateTechnic = function(id,info,callback) {
+    backendPost("/api/update_technic",{id: id, info: info},callback);
+}
+
+exports.deleteTechnicsByID = function(id,callback) {
+    backendPost("/api/delete_technic_by_id",{id: id},callback);
+}
+
+// exports.deleteUserPhotoDB = function(id,callback) {
+//     backendPost("/api/delete_user_photo_db",{id: id},callback);
+// }
+
+exports.deleteEquipmentsByID = function(id,callback) {
+    backendPost("/api/delete_equipments_by_id",{id: id},callback);
+}

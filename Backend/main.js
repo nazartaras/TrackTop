@@ -58,7 +58,9 @@ function configureEndpoints(app) {
     app.post('/api/upload_user_photo', api.upload_user_photo);
     app.post('/api/update_user', api.update_user);
     app.post('/api/update_review', api.update_review);
-
+    app.post('/api/update_technic', api.update_technic);
+    app.post('/api/delete_technic_by_id', api.delete_technic_by_id);
+    app.post('/api/delete_equipments_by_id', api.delete_equipments_by_id);
 
     //Сторінки
     app.get('/', pages.mainPage);

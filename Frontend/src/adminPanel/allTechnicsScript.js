@@ -1,14 +1,21 @@
+var multipleEquipmentOpen = false;
+var container_num = 1;
+//multiple = new MultipleSelect();
 openAddTechnicModel = function () {
+
     $('#addTechnicModel').modal('show');
     $("#add-btn").text("Додати");
 
     technicFormClear();
     // todo:
     // get all types of technics, loop through and add options text = type, value=type
-
+    $('#type_technics').children().remove();
+    $('#marks').children().remove();
+    $('#type_technics').append('<option selected value="Тип" disabled>Тип</option>');
     function callback(err,data) {
 
         data.data.forEach(function(item){
+            //console.log("type = "+ item);
             $('#type_technics').append(new Option(item.name, item.name));
         });
 
@@ -17,13 +24,14 @@ openAddTechnicModel = function () {
 
 
     // get all marks, loop through
-    // function callback(err,data) {
-    //     data.data.forEach(function(item){
-    //         $('#marks').append(new Option(item.name, item.name));
-    //     });
-    //
-    // }
-    // require("../API").getMarks(callback);
+    function callback2(err,data) {
+        data.data.forEach(function(item){
+            //console.log("mark = " + item);
+            $('#marks').append(new Option(item.name, item.name));
+        });
+
+    }
+    require("../API").getMarks(callback2);
 
 
 }
@@ -40,14 +48,14 @@ getModels = function() {
 
         if (type != "" && mark != "") {
 
-            // function callback(err, data) {
-            //$('#models').children().remove();
-            //     data.data.forEach(function (item) {
-            //         $('#models').append(new Option(item.model, item.model));
-            //     });
-            // }
-            //
-            // require("../API").getModelsbyTypeMark(type, mark, callback);
+            function callback(err, data) {
+            $('#models').children().remove();
+                data.data.forEach(function (item) {
+                    $('#models').append(new Option(item.model, item.model));
+                });
+            }
+
+            require("../API").getModelsbyTypeMark(type, mark, callback);
             // not to use
             // $('#models').children().remove();
             // $('#models').append(new Option("consul", "consul"));
@@ -62,13 +70,45 @@ openEditTechnicModal = function(cell) {
     var cols = row.children("td");
     var id  = $(cols[0]).text();
     console.log(id);
+    var s = $(cols[1]).text();
     //children("button")[0]).data("id");
-    $("#type_technics").val($(cols[1]).text());
+    //$("#type_technics").val($(cols[1]).text());
+    $("#type_technics").append(new Option(s, s,true,true));
+    $('#type_technics').prop("disabled", true);
     $("#mark-choice").val($(cols[2]).text());
     $("#model-choice").val($(cols[3]).text());
+    $("#mark-choice").prop("disabled", true);
+    $("#model-choice").prop("disabled", true);
     $("#price-input-technic").val($(cols[4]).text());
+
+    function callback(err,data) {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            $("#description").val(data.data[0].description);
+            $("#year-technic-input").val(data.data[0].production_date);
+            let cur = data.data[0].currency;
+            if(cur == "долар")  $("#currency-choice").val("$");
+            if(cur == "євро")  $("#currency-choice").val("€");
+            if(cur == "гривня")  $("#currency-choice").val("грн");
+        }
+    }
+    require("../API").getTechnicsById(id,callback);
+    function callback1(err,data) {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            data.data.forEach(function(item){
+               // ..todo  add photos to modal
+            });
+        }
+    }
+    require("../API").getTechnicsImagesById(id,callback1);
     // Change Update Button Text
     $("#add-btn").text("Оновити");
+
 }
 
 deleteTechnic = function(cell) {
@@ -76,13 +116,19 @@ deleteTechnic = function(cell) {
     var row = $(cell).parents("tr");
     var cols = row.children("td");
     var id  = $(cols[0]).text();
-    console.log(id);
+    //console.log(id);
     var conf =confirm ("Ви впевнені, що хочете видалити?");
     if(conf) {
         // set attribute to "sold" or delete from db
-        $(cell).parents("tr").remove();
-
-        alert("Видалено");
+        function callback(err,data) {
+            if( err) {
+                Notify("Помилка! Не вдалось видалити.",null,null,'success');
+            }
+            else {
+                $(cell).parents("tr").remove();
+            }
+        }
+        require("../API").deleteTechnicsByID(id,callback)
     }
 
 }
@@ -96,69 +142,91 @@ deleteEquipment = function(cell) {
     var conf =confirm ("Ви впевнені, що хочете видалити?");
     if(conf) {
         // set attribute to "sold" or delete from db
-        $(cell).parents("tr").remove();
-
-        alert("Видалено");
+        function callback(err,data) {
+            if( err) {
+                //Notify("Помилка! Не вдалось видалити.",null,null,'success');
+            }
+            else {
+                $(cell).parents("tr").remove();
+            }
+        }
+        require("../API").deleteEquipmentsByID(id,callback)
     }
 
 }
 
 getMarks = function() {
-    var selectedType = $('#type_technics').children("option:selected").val();
-    $('#mark-choice').prop("disabled", false);
+    let selectedType = $('#type_technics').children("option:selected").val();
     console.log(selectedType);
-    let marks = new Array();
-
+    $('#mark-choice').prop("disabled", false);
+    $('#marks').children().remove();
+    $('#marks').append('<option selected value="Марка" disabled>Марка</option>');
     function callback(err,data) {
-        data.data.forEach(function(item){
-            if(!marks.includes(item.technic_mark)) {
-                marks.push(item.technic_mark);
-                //console.log(item.technic_mark);
+        if(err) console.log(err);
+         else {
+             console.log(data);
+            data.data.forEach(function (item) {
+                if (! $('#marks').find("option[value='" + item.technic_mark + "']").length)
                 $('#marks').append(new Option(item.technic_mark, item.technic_mark));
-            }
-
-        });
-
+                console.log(item.technic_mark);
+                // if(!marks.includes(item.technic_mark)) {
+                //     marks.push(item.technic_mark);
+                //     //console.log(item.technic_mark);
+                //     $('#marks').append(new Option(item.technic_mark, item.technic_mark));
+                // }
+            });
+        }
     }
     require("../API").getModelsbyTypeMark(selectedType,null,callback);
+}
+
+//multiple-select-container-1
+
+showModels = function() {
+    let selectedType = $('#type_technics').children("option:selected").val();
+    let selectedMark = $('#mark-choice').val();
+    $('#model-choice').prop("disabled", false);
+    //let multipleSelect =
+    if(multipleEquipmentOpen) {
+        $('#model-choice').children().remove();
+        $('#multiple-select-container-'+container_num).remove();
+        container_num++;
+    }
+    function callback(err,data) {
+        if(err) console.log(err);
+        else {
+            console.log(data);
+            data.data.forEach(function (item) {
+                if (! $('#model-choice').find("option[value='" + item.model + "']").length)
+                      $('#model-choice').append(new Option(item.model, item.model));
+                    console.log(item.model);
+            });
+            $('#model-choice').prop("multiple", true);
+            if(!multipleEquipmentOpen) {
+                multipleEquipmentOpen = true;
+            }
+            new MultipleSelect('#model-choice');
+        }
+    }
+    require("../API").getModelsbyTypeMark(selectedType,selectedMark,callback);
 }
 
 openAddEquipmentModel = function () {
     $('#addEquipmentModel').modal('show');
     $("#add-btn").text("Додати");
+
+    $('#type_technics').children().remove();
+    $('#type_technics').append('<option selected value="Тип" disabled>Тип</option>');
+    function callback1(err,data) {
+        data.data.forEach(function(item){
+            if (! $('#type_technics').find("option[value='" + item.technic_type + "']").length)
+            $('#type_technics').append(new Option(item.technic_type, item.technic_type));
+        });
+    }
+    require("../API").getModels(callback1);
     // to do
     // get all types of technics, loop through and add options text = type, value=type
 
-    let marks = new Array(),all = new Array();
-    let types = new Array(), models = new Array();
-    let unique ;
-    function callback(err,data) {
-        console.log(data.data);
-        all=data.data;
-        data.data.forEach(function(item){
-            if(!types.includes(item.technic_type)) {
-                types.push(item.technic_type);
-                //console.log(item.technic_type);
-                $('#type_technics').append(new Option(item.technic_type, item.technic_type));
-            }
-
-        });
-    }
-    require("../API").getModels(callback);
-
-
-    //let type =
-
- //   get all marks, loop through
-    function callback(err,data) {
-        data.data.forEach(function(item){
-            $('#marks').append(new Option(item.name, item.name));
-        });
-
-    }
-    require("../API").getModelsbyTypeMark(type,null,callback);
-
-    // get all models
 }
 
 openEditEquipmentModal = function(cell) {
@@ -178,28 +246,34 @@ openEditEquipmentModal = function(cell) {
 }
 
 $(function(){
-    console.log( "window loaded" );
-
-    for(var i=0;i<100;i++) {
-        $("#allTechnics tbody").append(
-            "<tr class='rowTechnic'>" +
-            "<td class=\"id\">"+i+"</td>" +
-            "<td class=\"type\">"+"Комбайни"+"</td>" +
-            " <td class=\"mark\">"+"claas"+"</td>" +
-            " <td class=\"model\">"+"mercator 50"+"</td>" +
-            " <td class=\"price\">"+"9000"+"</td>" +
-            " <td class=\"edit-btn\"><button class=\"btn btn-secondary\" onclick='openEditTechnicModal(this)'><i class=\"fa fa-edit\"></i></button></td>" +
-            "<td class=\"delete-btn\"><button class=\"btn btn-secondary\" onclick='deleteTechnic(this)'><i class=\"fa fa-remove\"></i></button></td>" +
-            "</tr>"
-        );
-    }
+    //
+    // for(var i=0;i<100;i++) {
+    //     $("#allTechnics tbody").append(
+    //         "<tr class='rowTechnic'>" +
+    //         "<td class=\"id\">"+i+"</td>" +
+    //         "<td class=\"type\">"+"Комбайни"+"</td>" +
+    //         " <td class=\"mark\">"+"claas"+"</td>" +
+    //         " <td class=\"model\">"+"mercator 50"+"</td>" +
+    //         " <td class=\"price\">"+"9000"+"</td>" +
+    //         " <td class=\"edit-btn\"><button class=\"btn btn-secondary\" onclick='openEditTechnicModal(this)'><i class=\"fa fa-edit\"></i></button></td>" +
+    //         "<td class=\"delete-btn\"><button class=\"btn btn-secondary\" onclick='deleteTechnic(this)'><i class=\"fa fa-remove\"></i></button></td>" +
+    //         "</tr>"
+    //     );
+    // }
     //alert( "ready!" );
     function callback(err,data) {
-       console.log(data);
-        console.log(err);
-       console.log(data.data);
         data.data.forEach(function(item){
-           console.log(1);
+            $("#allTechnics tbody").append(
+                "<tr class='rowTechnic'>" +
+                "<td class=\"id\">"+item.id+"</td>" +
+                "<td class=\"type\">"+item.types_of_technics_name+"</td>" +
+                " <td class=\"mark\">"+item.marks_of_technics_name+"</td>" +
+                " <td class=\"model\">"+item.model+"</td>" +
+                " <td class=\"price\">"+item.price+"</td>" +
+                " <td class=\"edit-btn\"><button class=\"btn btn-secondary\" onclick='openEditTechnicModal(this)'><i class=\"fa fa-edit\"></i></button></td>" +
+                "<td class=\"delete-btn\"><button class=\"btn btn-secondary\" onclick='deleteTechnic(this)'><i class=\"fa fa-remove\"></i></button></td>" +
+                "</tr>"
+            );
         });
 
     }
@@ -209,30 +283,37 @@ $(function(){
 $(function(){
     console.log( "window loaded" );
 
-    for(var i=0;i<100;i++) {
-        $("#allEquipments tbody").append(
-            "<tr class='rowEquipment'>" +
-            "<td class=\"id\">"+i+"</td>" +
-            "<td class=\"name\">"+"Комбайн"+"</td>" +
-            " <td class=\"price\">"+"45"+"</td>" +
-            " <td class=\"code\">"+"KM342342i"+"</td>" +
-            " <td class=\"amount\">"+"9000"+"</td>" +
-            " <td class=\"edit-btn\"><button class=\"btn btn-secondary\" onclick='openEditEquipmentModal(this)'><i class=\"fa fa-edit\"></i></button></td>" +
-            "<td class=\"delete-btn\"><button class=\"btn btn-secondary\" onclick='deleteEquipment(this)'><i class=\"fa fa-remove\"></i></button></td>" +
-            "</tr>"
-        );
-    }
+    // for(var i=0;i<100;i++) {
+    //     $("#allEquipments tbody").append(
+    //         "<tr class='rowEquipment'>" +
+    //         "<td class=\"id\">"+i+"</td>" +
+    //         "<td class=\"name\">"+"Комбайн"+"</td>" +
+    //         " <td class=\"price\">"+"45"+"</td>" +
+    //         " <td class=\"code\">"+"KM342342i"+"</td>" +
+    //         " <td class=\"amount\">"+"9000"+"</td>" +
+    //         " <td class=\"edit-btn\"><button class=\"btn btn-secondary\" onclick='openEditEquipmentModal(this)'><i class=\"fa fa-edit\"></i></button></td>" +
+    //         "<td class=\"delete-btn\"><button class=\"btn btn-secondary\" onclick='deleteEquipment(this)'><i class=\"fa fa-remove\"></i></button></td>" +
+    //         "</tr>"
+    //     );
+    // }
     //alert( "ready!" );
     function callback(err,data) {
-        console.log(data);
-        console.log(err);
-        console.log(data.data);
         data.data.forEach(function(item){
-            console.log(1);
+            $("#allEquipments tbody").append(
+                "<tr class='rowEquipment'>" +
+                "<td class=\"id\">"+item.id+"</td>" +
+                "<td class=\"name\">"+item.name+"</td>" +
+                " <td class=\"price\">"+item.price+"</td>" +
+                " <td class=\"code\">"+item.vendor_code+"</td>" +
+                " <td class=\"amount\">"+item.amount+"</td>" +
+                " <td class=\"edit-btn\"><button class=\"btn btn-secondary\" onclick='openEditEquipmentModal(this)'><i class=\"fa fa-edit\"></i></button></td>" +
+                "<td class=\"delete-btn\"><button class=\"btn btn-secondary\" onclick='deleteEquipment(this)'><i class=\"fa fa-remove\"></i></button></td>" +
+                "</tr>"
+            );
         });
 
     }
-    require("../API").getTechnics(callback);
+    require("../API").getEquipments(callback);
 });
 
 function productBuildTableRow(id) {
@@ -284,60 +365,125 @@ addTechnicToDB = function () {
     var currency = $('#currency-choice').children("option:selected").val();
     var year = $("input[type=number][name=year-input]").val();
     var description = $("textarea[name=description]").val();
-    console.log(selectedType);
-    console.log(mark);
-    console.log(model);
-    console.log(price);
-    console.log(currency);
-    console.log(year);
-    console.log(description);
+    // ..todo photos
+    let add_update = $("#add-btn").text();
+    // console.log(selectedType);
+    // console.log(mark);
+    // console.log(model);
+    // console.log(price);
+    // console.log(currency);
+    // console.log(year);
+    // console.log(description);
     let technic = {
-        mark_id : null,
-        type_id : null,
-        model : model,
-        amount : 1,
-        price : price,
-        production_date : year,
-        currency:"долар",
-        description:description
+        mark_id: null,
+        type_id: null,
+        model: model,
+        amount: 1,
+        price: price,
+        production_date: year,
+        currency: "долар",
+        description: description
     }
-    if(currency=='грн') technic.currency="гривня";
-    if(currency=='€') technic.currency="євро";
-   // if(currency=='грн') technic.currency="гривня";
+    if (currency == 'грн') technic.currency = "гривня";
+    if (currency == '€') technic.currency = "євро";
 
-    function callback1(err,data) {
+    if(add_update=="Додати") {
 
-        if(data.error) console.log(data.error);
-        else {
-            technic.type_id= (data.data[0].id);
-            function callback2(err,data) {
-                if(data.error) console.log(data.error);
-                if(data.data.length <1) {
-                    function callback4(err,data) {
-                       // console.log(data.data.insertId);
-                        technic.mark_id= data.data.insertId;
-                        function callback(err,data) {
-                            if(data.error) console.log(data.error);
-                            else console.log("success");
-                        }
-                        require("../API").addTehnic(technic,callback);
-                    }
-                    require("../API").addMarkTechnic({name : mark},callback4);
-                }
+        if (checkInputTechnic()) {
+
+            function callback1(err, data) {
+
+                if (data.error) console.log(data.error);
                 else {
-                    technic.mark_id = data.data[0].id;
+                    technic.type_id = (data.data[0].id);
 
-                    function callback(err,data) {
-                        if(data.error) console.log(data.error);
-                        else console.log("success");
+                    function callback2(err, data) {
+                        if (data.error) console.log(data.error);
+                        if (data.data.length < 1) {
+                            function callback4(err, data) {
+                                // console.log(data.data.insertId);
+                                technic.mark_id = data.data.insertId;
+
+                                function callback(err, data) {
+                                    if (data.error) console.log(data.error);
+                                    else {
+                                        console.log("success");
+                                    }
+                                }
+
+                                require("../API").addTehnic(technic, callback);
+                            }
+
+                            require("../API").addMarkTechnic({name: mark}, callback4);
+                        } else {
+                            technic.mark_id = data.data[0].id;
+
+                            function callback(err, data) {
+                                if (data.error) console.log(data.error);
+                                $('#addTechnicModel').modal('toggle');
+                            }
+
+                            require("../API").addTehnic(technic, callback);
+                        }
                     }
-                    require("../API").addTehnic(technic,callback);
+
+                    require("../API").getId("marks_of_technics", mark, callback2);
                 }
             }
-            require("../API").getId("marks_of_technics",mark, callback2);
+
+            require("../API").getId("types_of_technics", selectedType, callback1);
+        } else {
+            alert("Невірні дані !!!");
         }
     }
-    require("../API").getId("types_of_technics",selectedType, callback1);
+    else {
+
+        var row = $(cell).parents("tr");
+        var cols = row.children("td");
+        var id  = $(cols[0]).text();
+        technic.id = id;
+
+        function callback(err,data) {
+            if( err) {
+                console.log(err);
+                // Notify("Помилка! Не вдалось видалити.",null,null,'success');
+            }
+            else {
+                technic.mark_id = data.data[0].mark_id;
+                technic.type_id = data.data[0].type_id;
+                function callback5(err,data1) {
+                    if( err) {
+                        console.log(err);
+                        // Notify("Помилка! Не вдалось видалити.",null,null,'success');
+                    }
+                    else {
+                        $('#addTechnicModel').modal('toggle');
+                        //console.log("data = "+ data);
+                        alert("Товар оновлено!");
+                        // Notify("Товар успішно оновлено!",null,null,'success');
+                    }
+                }
+                require("../API").updateTechnic(id,technic,callback5)
+
+            }
+        }
+
+        require("../API").getTechnicsById(id,callback)
+    }
+
+}
+
+function checkInputTechnic() {
+    let selectedType = $('#type_technics').children("option:selected").val();
+    let mark = $("#mark-choice").val();
+    let model = $("#model-choice").val();
+    let price = $("input[type=number][name=price-input]").val();
+    //let currency = $('#currency-choice').children("option:selected").val();
+    let year = $("input[type=number][name=year-input]").val();
+    //let description = $("textarea[name=description]").val();
+
+    if(selectedType.toString().trim() =="" || mark.toString().trim()=="" || model.toString().trim()=="" || price.toString().trim()=="" || year.toString().trim()=="") return false;
+    else  return true;
 }
 
 addEquipmentToDB = function () {
@@ -350,14 +496,14 @@ addEquipmentToDB = function () {
     var description = $("textarea[name=description]").val();
     var selectedType = $('#type_technics').children("option:selected").val();
     var mark = $("#mark-choice").val();
-    var model = $("#model-choice").val();
-    console.log(name);
-    console.log(code);
-    console.log(price);
-    console.log(currency);
-    console.log(state);
-    console.log(description);
-    console.log(amount);
+    var models = $("#model-choice").val();
+    // console.log(name);
+    // console.log(code);
+    // console.log(price);
+    // console.log(currency);
+    // console.log(state);
+    // console.log(description);
+    // console.log(amount);
 
     var equipment = {
         name : name,
@@ -373,26 +519,26 @@ addEquipmentToDB = function () {
         let insertedid = data.data.insertId;
         // console.log(data.data.insertId);
         let model_id = null;
-        function callback2(err,data) {
+        function callback2(err,data1) {
             let equipmentmodel;
-            data.data.forEach(function (item) {
-                if(item.model==model) {
-                    model_id= item.id;
-                    equipmentmodel = {
-                        equipment_id:insertedid,
-                        model_id: model_id
+            models.forEach(function (item_model) {
+                data1.data.forEach(function (item) {
+                    if(item.model==item_model) {
+                        model_id= item.id;
+                        equipmentmodel = {
+                            equipment_id:insertedid,
+                            model_id: model_id
+                        }
+                        function callback3(err,data) {
+                            if(err) console.log(err);
+                            else {
+                                console.log("Success");
+                            }
+                        }
+                        require("../API").addEquipmentsModels(equipmentmodel,callback3);
                     }
-                }
+                })
             })
-            //console.log(equipmentmodel);
-
-            require("../API").addEquipmentsModels(equipmentmodel,callback3);
-            function callback3(err,data) {
-                if(err) console.log(err);
-                else {
-                    console.log("Success");
-                }
-            }
 
         }
         require("../API").getModels(callback2);
@@ -400,6 +546,7 @@ addEquipmentToDB = function () {
     }
     require("../API").addEquipment(equipment,callback);
 
+    $('#addEquipmentModel').modal('toggle');
     // $("#allEquipments tbody").append(
     //     productBuildTableRow(102));
 }
@@ -414,5 +561,6 @@ function technicFormClear() {
     $("#price-input-technic").val("");
     $("#year-technic-input").val("");
     $('#type_technics').val("Тип");
+    $('#type_technics').prop("disabled", false);
    // delete photoes if needed
 }

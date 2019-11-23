@@ -33,23 +33,8 @@
         </tr>
         </thead>
         <tbody>
-        <tr class="rowEquipment">
-            <td id="id">1</td>
-            <td id="name">Вал</td>
-            <td id="price">1200</td>
-            <td id="code">1232312</td>
-            <td id="amount">5</td>
-            <td class="edit-btn">
-                <button class=""><img src="../../res/images/edit.png"></button>
-            </td>
-            <td class="delete-btn">
-                <button class=""><img src="../../res/images/delete.png"></button>
-            </td>
-
-        </tr>
         </tbody>
     </table>
-</div>
 </div>
 
 
@@ -69,20 +54,20 @@
             <span class="form-group">
                 <span class="name-type">Назва</span>
      <div class="ds">
-                 <input id="name-equipment" type="text" placeholder="Назва" class="form-control form-item" required>
+                 <input id="name-equipment" type="text" placeholder="Назва" class="form-control form-item admin-panel-input" required>
      </div>
                 <span class="name-type right-type">Код</span>
      <div class="ds">
-                 <input id="equipment-code" type="text" placeholder="Код" class="form-control form-item">
+                 <input id="equipment-code" type="text" placeholder="Код" class="form-control form-item admin-panel-input">
      </div>
 <br>
 <div class="name-type">Ціна</div>
                <div class="ds">
-                   <input class="form-control form-item" class="price-input" min="1" name="price-input"
+                   <input class="form-control form-item admin-panel-input" id="price-input" min="1" name="price-input"
                           placeholder="Ціна" required type="number">
 
                 <div class="currency">
-                <select class="form-control form-item ds" id="currency-choice">
+                <select class="form-control form-item ds admin-panel-input" id="currency-choice">
         <option>$</option>
         <option>&euro;</option>
         <option>грн</option>
@@ -93,15 +78,14 @@
                 <!--    <label for="sel1">Тип</label>-->
                 <div class="name-type right-type">Стан</div>
                 <div class="state">
-      <select class="form-control form-item" id="state-choice" name="sellist1">
-          <option selected disabled>Стан</option>
-        <option>Новий</option>
-        <option>Б\у</option>
+      <select class="form-control form-item admin-panel-input" id="state-choice" name="sellist1">
+        <option selected>Новий</option>
+        <option>б/у</option>
       </select>
                     </div>
                 <div class="name-type right-type">К-сть</div>
                 <div class="amount-input">
-                <input id="equipment-amount" type="number" placeholder="Кількість" class="form-control form-item"
+                <input id="equipment-amount" type="number" placeholder="Кількість" class="form-control form-item admin-panel-input"
                        min="0" required>
                     <!--                <label for="mark-choice">Модель</label>-->
                 </div>
@@ -109,34 +93,32 @@
                 <br>
                 <div>Підходить до:</div>
                 <span class="name-type">Категорія</span>
-                     <div class="ds"> <select class="form-control form-item" id="type_technics" name="sellist1"
+                     <div class="ds"> <select class="form-control form-item admin-panel-input" id="type_technics" name="sellist1"
                                               onchange="getMarks()">
 <!--          <option selected disabled>Тип</option>-->
                         <option selected disabled>Тип</option>
-                          <option>Тип</option>
                      </select>
          </div>
                 <span class="name-type  right-type">Марка</span>
                 <div class="ds">
-<input class="form-control form-item" id="mark-choice" list="marks" placeholder="Марка" disabled
-       onchange="getModels()"/>
+<input class="form-control form-item admin-panel-input" id="mark-choice" list="marks" placeholder="Марка" disabled onchange="showModels()"/>
+<!--       onchange="getModels()"-->
+
 </div>
-<datalist id="marks">
-    <option disabled selected value="Марка"/>
-</datalist>
-                <br>
-                <div class="name-type ">Модель</div>
-                <div class="ds">
-<input class="form-control form-item" id="model-choice" list="models" placeholder="Модель" disabled/>
-</div>
-<datalist id="models">
-    <option disabled selected value="Модель"/>
-</datalist>
+                <datalist id="marks">
+                <option disabled selected value="Марка"/>
+                 </datalist>
 
                 <div class="form-group">
+                    <div class="name-type">Модель</div>
+                    <div class="ds ds-models">
+                <select class="form-control form-item admin-panel-input" id="model-choice" placeholder="Модель" disabled ></select>
+                    </div>
+                                <div class="">
                 <label for="description">Опис</label>
-                <textarea id="description" class="form-control" name="description" rows="6"></textarea>
+                <textarea class="form-control" id="description" name="description" rows="6"></textarea>
             </div>
+                </div>
 
              </span>
 
