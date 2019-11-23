@@ -41,7 +41,7 @@
 #menuToggle {
   display            : none;
   position           : relative;
-  top                : 40px;
+  top                : 0px;
   left               : 10px;
   z-index            : 1;
   -webkit-user-select: none;
@@ -98,21 +98,21 @@
 }
 
 #menu {
-  min-width: 350px;
+  min-width: 100vw;
   display               : flex;
   flex-direction        : column;
   position              : absolute;
-  top                   : 0px;
+  top                   : 60px;
   width                 : 60%;
-  margin                : -60px 0 0 -100px;
+  margin                : -60px 0 0 -67px;
   padding               : 50px;
-  padding-top           : 100px;
+  padding-top           : 30px;
   background            : #f1f1f1;
   list-style-type       : none;
   -webkit-font-smoothing: antialiased;
   transform-origin      : 0% 0%;
   transform             : translate(-100%, 0);
-  transition            : transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0);
+  transition            : transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.2);
 }
 
 #menu li:hover {

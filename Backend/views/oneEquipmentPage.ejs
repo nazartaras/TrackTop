@@ -4,7 +4,6 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title>Запчастини: <%= equipment.name %></title>
-
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
             new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -12,6 +11,7 @@
             'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
         })(window,document,'script','dataLayer','GTM-KS45HK4');</script>
     <!-- End Google Tag Manager -->
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
     <!-- Bootsrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 
@@ -42,7 +42,7 @@
             <%= equipment.name %>
         </div>
 
-        <div class="equipments">
+        <div class="equipments_page">
             <div class="slider">
                 <div class="slider__wrapper">
 
@@ -54,11 +54,11 @@
 
         <!-- !-->
 
-        <div class="btn_row"> <button class="order_equipment">
-                <img src="assets/images/cart_btn.png" alt="" class="orderTechnicImg">
-                Замовити</button>
-            <button class="write_technic" onclick="openMessageModal();">
-                <img src="assets/images/letter_btn.png" alt="" class="openMessageBtn">Написати</button> </div>
+        <div class="btn_row"> <button class="btn btn-primary order_equipment">
+            <i class="fas fa-cart-plus"></i>
+            Замовити</button>
+        <button class="btn btn-secondary" onclick="openMessageModal();">
+            <i class="	fas fa-envelope"></i>Написати</button> </div>
 
 
         <div class="information">
