@@ -572,6 +572,28 @@ exports.get_technic_by_id = function (req,res) {
     db.get_technics_by_id(req.body.id, callback);
 }
 
+exports.get_equipment_by_id = function (req,res) {
+    var db = require('./db');
+
+    function callback(error,data){
+        if(error) {
+            console.log("Error! ", error.sqlMessage);
+            res.send({
+                success: true,
+                error: error.sqlMessage
+            });
+        }
+        else {
+            console.log("Success! ", data);
+            res.send({
+                success: true,
+                data: data
+            });
+        }
+    }
+    db.get_equipment_by_id(req.body.id, callback);
+}
+
 
 exports.get_equipment_im_by_id = function (req,res) {
     var db = require('./db');
@@ -800,6 +822,30 @@ exports.update_technic = function(req,res){
 }
 
 
+exports.update_equipment = function(req,res){
+    var db = require('./db');
+    var info = req.body;
+
+    function callback(error,data){
+        if(error) {
+            console.log("Error! ", error.sqlMessage);
+            res.send({
+                success: true,
+                error: error.sqlMessage
+            });
+        }
+        else {
+            console.log("Success! ", data);
+            res.send({
+                success: true
+            });
+        }
+    }
+
+    db.update_equipments(info.id,info.info,callback);
+    console.log("id =  " + info.id + " info = " + info.info);
+}
+
 exports.delete_technic_by_id = function(req,res){
     var db = require('./db');
     var info = req.body;
@@ -848,4 +894,26 @@ exports.delete_equipments_by_id = function(req,res){
     // ..todo delete images
     db.delete_equipments(info.id,callback);
 
+}
+
+exports.delete_equipments_models_by_id = function(req,res){
+    var db = require('./db');
+    var info = req.body;
+
+    function callback(error,data){
+        if(error) {
+            console.log("Error! ", error.sqlMessage);
+            res.send({
+                success: true,
+                error: error.sqlMessage
+            });
+        }
+        else {
+            console.log("Success! ", data);
+            res.send({
+                success: true
+            });
+        }
+    }
+    db.delete_equipments_models(info.id,callback);
 }

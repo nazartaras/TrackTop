@@ -50,6 +50,7 @@ function configureEndpoints(app) {
     app.get('/api/gettechnics', api.get_technics);
     app.post('/api/gettechnics', api.get_technics_by_tp);
     app.post('/api/gettechnicsbyid', api.get_technic_by_id);
+    app.post('/api/getequipmentsbyid', api.get_equipment_by_id);
 
 
     // app.post('/api/gettechnicsmodelim', api.get_technics_im_by_tp_model);
@@ -59,8 +60,11 @@ function configureEndpoints(app) {
     app.post('/api/update_user', api.update_user);
     app.post('/api/update_review', api.update_review);
     app.post('/api/update_technic', api.update_technic);
+    app.post('/api/update_equipment', api.update_equipment);
     app.post('/api/delete_technic_by_id', api.delete_technic_by_id);
     app.post('/api/delete_equipments_by_id', api.delete_equipments_by_id);
+    app.post('/api/delete_equipments_models_by_id', api.delete_equipments_models_by_id);
+
 
     //Сторінки
     app.get('/', pages.mainPage);

@@ -223,7 +223,7 @@ exports.get_equipments = function(callback){
 }
 
 exports.get_equipment_by_id = function(id,callback){
-    connection.query("SELECT * FROM tracktop.equipments where id = " + id,callback);
+    connection.query("SELECT * FROM tracktop.models inner join tracktop.equipments_models on models.id = equipments_models.model_id inner join tracktop.equipments on equipments.id = equipments_models.equipment_id where equipment_id = " + id,callback);
 }
 
 exports.get_equipments_by_model = function(model,callback) {
@@ -253,6 +253,11 @@ exports.delete_marks_of_technics = function(id,callback){
 exports.delete_equipments = function(id,callback){
     connection.query("DELETE FROM tracktop.equipments WHERE tracktop.equipments.id = "+ id,callback);
 }
+
+exports.delete_equipments_models = function(id,callback){
+    connection.query("DELETE FROM tracktop.equipments_models WHERE tracktop.equipments_models.equipment_id = "+ id,callback);
+}
+
 exports.delete_client = function(id,callback){
     connection.query("DELETE FROM tracktop.clients WHERE tracktop.clients.id = "+ id,callback);
 }
@@ -284,11 +289,11 @@ exports.update_client = function(id,client,callback){
 }
 
 exports.update_client_by_phone = function(phone,client,callback){
-    connection.query("UPDATE tracktop.clients SET ? "+ client + "WHERE phone_number = "+ phone,callback);
+    connection.query("UPDATE tracktop.clients SET ? "+ client + " WHERE phone_number = "+ phone,callback);
 }
 
 exports.update_equipments = function(id,equipment,callback){
-    connection.query("UPDATE tracktop.equipments SET ? "+ equipment + "WHERE id = "+ id,callback);
+    connection.query("UPDATE tracktop.equipments SET name = 'newname' WHERE id = "+ id,callback);
 }
 
 exports.update_mark_of_technic = function(id,mark,callback){

@@ -7,7 +7,7 @@ function  initialize() {
     function callback(err,data) {
         if(data.error) console.log(data.error);
         data.data.forEach(function(item){
-            dataset.push(item.file_name)
+            dataset.push("technics/"+item.file_name)
         });
         require('../pagesScripts/slider').initialize(dataset);
     }
@@ -27,7 +27,7 @@ function  initialize() {
             title: tech.mark+' '+tech.model,
             price: tech.price,
             currency: tech.currency,
-            icon: tech.main_photo_location,
+            icon: "technics/"+tech.main_photo_location,
             quantity: tech.amount,
             isTech : true
         });

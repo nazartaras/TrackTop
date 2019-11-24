@@ -29,7 +29,7 @@ function  initialize() {
             title: equipment.name,
             price: equipment.price,
             currency: equipment.currency,
-            icon: equipment.main_photo_location,
+            icon: "equipments/"+equipment.main_photo_location,
             quantity: equipment.amount,
             isTech : false
         });

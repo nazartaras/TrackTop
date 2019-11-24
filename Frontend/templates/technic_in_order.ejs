@@ -1,13 +1,20 @@
 <div class="myOrder">
 
-    <img class="imgInOrder" src="/images/<%=technic.icon%>">
     <p class="centerAlign">
         <span class="order-title"><%= technic.title%> </span>
     </p>
     <div class="image-control">
         <div style="display: flex; flex-direction: column;">
             <div class="orderCharacteristics">
-                <span class="price"><%=technic.price %> <%= technic.currency %></span>
+                <span class="price"><%=technic.price %> <% if(technic.currency.toString() == "гривня") { %>
+                        грн
+                    <%}%>
+                    <% if(technic.currency.toString() == "долар") { %>
+                        $
+                    <%}%>
+                    <% if(technic.currency.toString() == "євро") { %>
+                        €
+                    <%}%></span>
             </div>
             <div class="price-box">
                 <div class="minus btn btn-xs btn-danger btn-circle">

@@ -69,7 +69,7 @@ openEditTechnicModal = function(cell) {
     var row = $(cell).parents("tr");
     var cols = row.children("td");
     var id  = $(cols[0]).text();
-    console.log(id);
+    //console.log(id);
     var s = $(cols[1]).text();
     //children("button")[0]).data("id");
     //$("#type_technics").val($(cols[1]).text());
@@ -142,33 +142,42 @@ deleteEquipment = function(cell) {
     var conf =confirm ("Ви впевнені, що хочете видалити?");
     if(conf) {
         // set attribute to "sold" or delete from db
-        function callback(err,data) {
+        function callback2(err,data) {
             if( err) {
                 //Notify("Помилка! Не вдалось видалити.",null,null,'success');
             }
             else {
-                $(cell).parents("tr").remove();
+                function callback(err,data) {
+                    if(err) console.log.err;
+                    else {
+                        $(cell).parents("tr").remove();
+                    }
+                }
+                require("../API").deleteEquipmentsByID(id,callback)
+
             }
         }
-        require("../API").deleteEquipmentsByID(id,callback)
+        require("../API").deleteEquipmentsModelsByID(id,callback2)
+
+
     }
 
 }
 
 getMarks = function() {
     let selectedType = $('#type_technics').children("option:selected").val();
-    console.log(selectedType);
+    //console.log(selectedType);
     $('#mark-choice').prop("disabled", false);
-    $('#marks').children().remove();
-    $('#marks').append('<option selected value="Марка" disabled>Марка</option>');
+    $('#mark-choice').children().remove();
+    $('#mark-choice').append('<option selected value="Марка" disabled>Марка</option>');
     function callback(err,data) {
         if(err) console.log(err);
          else {
-             console.log(data);
+             //console.log(data);
             data.data.forEach(function (item) {
-                if (! $('#marks').find("option[value='" + item.technic_mark + "']").length)
-                $('#marks').append(new Option(item.technic_mark, item.technic_mark));
-                console.log(item.technic_mark);
+                if (! $('#mark-choice').find("option[value='" + item.technic_mark + "']").length)
+                $('#mark-choice').append(new Option(item.technic_mark, item.technic_mark));
+                //console.log(item.technic_mark);
                 // if(!marks.includes(item.technic_mark)) {
                 //     marks.push(item.technic_mark);
                 //     //console.log(item.technic_mark);
@@ -187,19 +196,21 @@ showModels = function() {
     let selectedMark = $('#mark-choice').val();
     $('#model-choice').prop("disabled", false);
     //let multipleSelect =
+
     if(multipleEquipmentOpen) {
         $('#model-choice').children().remove();
+        console.log(container_num);
         $('#multiple-select-container-'+container_num).remove();
         container_num++;
     }
     function callback(err,data) {
         if(err) console.log(err);
         else {
-            console.log(data);
+            //console.log(data);
             data.data.forEach(function (item) {
                 if (! $('#model-choice').find("option[value='" + item.model + "']").length)
                       $('#model-choice').append(new Option(item.model, item.model));
-                    console.log(item.model);
+                    //console.log(item.model);
             });
             $('#model-choice').prop("multiple", true);
             if(!multipleEquipmentOpen) {
@@ -214,10 +225,13 @@ showModels = function() {
 openAddEquipmentModel = function () {
     $('#addEquipmentModel').modal('show');
     $("#add-btn").text("Додати");
+    // $('#multiple-select-container-'+container_num).css("display", "none");
+    equipmentFormClear();
 
     $('#type_technics').children().remove();
     $('#type_technics').append('<option selected value="Тип" disabled>Тип</option>');
     function callback1(err,data) {
+        if (err) console.log(err);
         data.data.forEach(function(item){
             if (! $('#type_technics').find("option[value='" + item.technic_type + "']").length)
             $('#type_technics').append(new Option(item.technic_type, item.technic_type));
@@ -236,13 +250,75 @@ openEditEquipmentModal = function(cell) {
     var cols = row.children("td");
     var id  = $(cols[0]).text();
     console.log(id);
+    localStorage.setItem("currEquipmentId",id);
     //children("button")[0]).data("id");
     $("#name-equipment").val($(cols[1]).text());
     $("#price-input").val($(cols[2]).text());
     $("#equipment-code").val($(cols[3]).text());
     $("#equipment-amount").val($(cols[4]).text());
+    $('#model-choice').children().remove();
+    $('#multiple-select-container-'+(container_num-1)).remove();
+    $('#multiple-select-container-'+(container_num)).remove();
+
+    function callback1(err,data) {
+        if(err) console.log(err);
+        data.data.forEach(function(item){
+            if (! $('#type_technics').find("option[value='" + item.technic_type + "']").length)
+                $('#type_technics').append(new Option(item.technic_type, item.technic_type));
+        });
+    }
+    require("../API").getModels(callback1);
+
+    function callback(err,data) {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            //стан валюта
+            $("#description").val(data.data[0].description);
+            $("#state-choice").val(data.data[0].state);
+            let cur = data.data[0].currency;
+            if(cur == "долар")  $("#currency-choice").val("$");
+            if(cur == "євро")  $("#currency-choice").val("€");
+            if(cur == "гривня")  $("#currency-choice").val("грн");
+            $("#type_technics").val(data.data[0].technic_type);
+            $('#mark-choice').prop("disabled", false);
+            $('#model-choice').prop("disabled", false);
+
+            $("#mark-choice").append(new Option(data.data[0].technic_mark, data.data[0].technic_mark,true,true));
+            let models_selected = [] ;
+            data.data.forEach(function (item) {
+                models_selected.push(item.model);
+            })
+            function callback3(err, data3) {
+                if (err) {
+                    console.log(err);
+                }
+                $('#model-choice').prop("multiple",true);
+                data3.data.forEach(function (item3) {
+                    if(models_selected.includes(item3.model)) {
+                        $('#model-choice').append(new Option(item3.model, item3.model,true,true));
+                        console.log("contains");
+                    }
+
+                    else {
+                        $('#model-choice').append(new Option(item3.model, item3.model,false,true));
+                        console.log("not contains");
+                    }
+                });
+                new MultipleSelect('#model-choice');
+                console.log(container_num);
+                multipleEquipmentOpen = true;
+                container_num++;
+            }
+
+            require("../API").getModelsbyTypeMark(data.data[0].technic_type, data.data[0].technic_mark, callback3);
+        }
+    }
+    require("../API").getEquipmentsById(id,callback);
     // Change Update Button Text
     $("#add-btn").text("Оновити");
+
 }
 
 $(function(){
@@ -486,6 +562,19 @@ function checkInputTechnic() {
     else  return true;
 }
 
+function checkInputEquipment() {
+    var name = $('#name-equipment').val();
+    var price = $("input[type=number][name=price-input]").val();
+    var amount = $("#equipment-amount").val();
+    var selectedType = $('#type_technics').children("option:selected").val();
+    var mark = $("#mark-choice").val();
+    var models = $("#model-choice").val();
+    if(mark=="Марка") return  false;
+    if(models==null) return  false;
+    if(name.toString().trim() =="" || price.toString().trim()=="" || amount.toString().trim()=="" || selectedType.toString().trim()=="Тип" || mark.toString().trim()=="" || models.length==0) return false;
+    else  return true;
+}
+
 addEquipmentToDB = function () {
     var name = $('#name-equipment').val();
     var code = $("#equipment-code").val();
@@ -504,49 +593,101 @@ addEquipmentToDB = function () {
     // console.log(state);
     // console.log(description);
     // console.log(amount);
+    let add_update_btn = $("#add-btn").text();
 
-    var equipment = {
+    let equipment = {
         name : name,
         amount:amount,
         price:price,
         vendor_code:code,
-        currency:"гривня",
+        currency:"долар",
         state:state,
         description:description
     };
+    if(currency=="€") equipment.currency="євро";
+    if(currency=="грн") equipment.currency="гривня";
 
-    function callback(err,data) {
-        let insertedid = data.data.insertId;
-        // console.log(data.data.insertId);
-        let model_id = null;
-        function callback2(err,data1) {
-            let equipmentmodel;
-            models.forEach(function (item_model) {
-                data1.data.forEach(function (item) {
-                    if(item.model==item_model) {
-                        model_id= item.id;
-                        equipmentmodel = {
-                            equipment_id:insertedid,
-                            model_id: model_id
-                        }
-                        function callback3(err,data) {
-                            if(err) console.log(err);
+    if(add_update_btn=="Додати") {
+
+        if (checkInputEquipment()) {
+
+            function callback(err, data) {
+                let insertedid = data.data.insertId;
+                // console.log(data.data.insertId);
+                let model_id = null;
+
+                function callback2(err, data1) {
+                    if (err) console.log(err);
+                    else {
+                        let equipmentmodel;
+                        models.forEach(function (item_model) {
+                            data1.data.forEach(function (item) {
+                                if (item.model == item_model) {
+                                    model_id = item.id;
+                                    equipmentmodel = {
+                                        equipment_id: insertedid,
+                                        model_id: model_id
+                                    }
+
+                                    function callback3(err, data) {
+                                        if (err) console.log(err);
+                                        else {
+                                            $('#addEquipmentModel').modal('hide');
+                                        }
+                                    }
+
+                                    require("../API").addEquipmentsModels(equipmentmodel, callback3);
+                                }
+                            })
+                        })
+                        $('#addEquipmentModel').modal('hide');
+                    }
+
+                }
+
+                require("../API").getModels(callback2);
+
+            }
+
+            require("../API").addEquipment(equipment, callback);
+
+        } else {
+            alert("Невірні дані!!!")
+        }
+    }
+    else // update equipment
+        {
+        let curId = localStorage.getItem("currEquipmentId");
+        console.log(curId);
+            if (checkInputEquipment()) {
+
+                // function callback5(err, data5) {
+                //     if (err) console.log(err);
+                //     else {
+                //         let eq = data5.data[0];
+                //         eq.name = equipment.name;
+                //         eq.amount = equipment.amount;
+                //         eq.currency = equipment.currency;
+                //         eq.price = equipment.price;
+                //         eq.vendor_code = equipment.vendor_code;
+                //         eq.description = equipment.description;
+                //         eq.state = equipment.state;
+                //         console.log(eq);
+                        function callback6(err, data6) {
+                            if (err) console.log(err);
                             else {
-                                console.log("Success");
+                                $('#addEquipmentModel').modal('hide');
                             }
                         }
-                        require("../API").addEquipmentsModels(equipmentmodel,callback3);
-                    }
-                })
-            })
+                        require("../API").updateEquipment(65,{name : "newname"}, callback6);
+                //    }
+                // }
+                // require("../API").getEquipmentsById(curId, callback5);
 
-        }
-        require("../API").getModels(callback2);
-
+            }
     }
-    require("../API").addEquipment(equipment,callback);
 
-    $('#addEquipmentModel').modal('toggle');
+
     // $("#allEquipments tbody").append(
     //     productBuildTableRow(102));
 }
@@ -563,4 +704,14 @@ function technicFormClear() {
     $('#type_technics').val("Тип");
     $('#type_technics').prop("disabled", false);
    // delete photoes if needed
+}
+
+function equipmentFormClear() {
+    $("#mark-choice").val("");
+    $('#mark-choice').prop("disabled", true);
+    $("#description").val("");
+    $("#model-choice").children().remove();
+    $('#model-choice').prop("disabled", true);
+    //multipleEquipmentOpen = true;
+    $('#multiple-select-container-'+(container_num-1)).remove();
 }

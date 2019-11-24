@@ -155,6 +155,14 @@ exports.getTechnicsById = function(id,callback) {
     backendPost("/api/gettechnicsbyid/", {id: id}, callback);
 };
 
+exports.getEquipmentsById = function(id,callback) {
+    backendPost("/api/getequipmentsbyid/", {id: id}, callback);
+};
+
+exports.getEquipmentsByModal = function(modal,callback) {
+    backendPost("/api/getequipmentsbymodal/", {modal: modal}, callback);
+};
+
 exports.getEquipmentImagesById = function(id,callback) {
     backendPost("/api/getequipmentim/", {id: id}, callback);
 };
@@ -177,6 +185,10 @@ exports.updateTechnic = function(id,info,callback) {
     backendPost("/api/update_technic",{id: id, info: info},callback);
 }
 
+exports.updateEquipment = function(id,info,callback) {
+    backendPost("/api/update_equipment",{id: id, info: info},callback);
+}
+
 exports.deleteTechnicsByID = function(id,callback) {
     backendPost("/api/delete_technic_by_id",{id: id},callback);
 }
@@ -187,4 +199,8 @@ exports.deleteTechnicsByID = function(id,callback) {
 
 exports.deleteEquipmentsByID = function(id,callback) {
     backendPost("/api/delete_equipments_by_id",{id: id},callback);
+}
+
+exports.deleteEquipmentsModelsByID = function(id,callback) {
+    backendPost("/api/delete_equipments_models_by_id",{id: id},callback);
 }
