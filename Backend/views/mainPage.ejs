@@ -8,8 +8,12 @@
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
-
         gtag('config', 'UA-154016757-1');
+
+        let phone = localStorage.getItem("phone");
+        if (phone) {
+            gtag('set', {'user_id': phone});
+        }
     </script>
     <meta charset="UTF-8">
     <meta name="google-site-verification" content="WTsPikkSktRNvY6TqAearGzU2N3_ze-ZykpPpf41YA8" />
