@@ -11,11 +11,19 @@ exports.profile = function(req, res) {
 };
 
 exports.technics = function(req, res) {
+    if (req.query.type)
     res.render('technicsPage', {
-        pageTitle: 'Техніка',
+        pageTitle: 'Купити ' + req.query.type + " Львівська область | купити бу " + req.query.type +" | TrackTop",
         types: req.query.type,
         mark: req.query.mark
     });
+    else {
+        res.render('technicsPage', {
+            pageTitle: 'Купити ' + req.query.mark + " Львівська область | TrackTop",
+            types: req.query.type,
+            mark: req.query.mark
+        });
+    }
 };
 
 exports.technic = function(req, res) {
@@ -41,7 +49,7 @@ exports.technic = function(req, res) {
                // console.log(data[0]+"\n");
 
                 res.render('oneTechnicPage', {
-                    pageTitle: type + ': ' + mark + ' ' + model,
+                    pageTitle: "купити " + type + ' ' + mark + ' ' + model + " Львівська обасть | TrackTop" ,
                     name: mark + ' ' + model,
                     technic: data[0]
                 });
@@ -84,7 +92,7 @@ exports.equipment = function(req, res) {
 exports.equipments = function(req, res) {
 
     res.render('technicsPage', {
-        pageTitle: 'Запчастини',
+        pageTitle: 'Запчастини до сг техніки Львіська область | TrackTop',
         types: null,
         mark: null
     });
@@ -93,7 +101,7 @@ exports.equipments = function(req, res) {
 
 exports.about = (req, res) => {
     res.render('about', {
-        pageTitle: 'Про нас'
+        pageTitle: 'Про компанію TrackTop'
     })
 }
 
