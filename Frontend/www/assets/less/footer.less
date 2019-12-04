@@ -2,14 +2,14 @@
   margin-top: 30px;
   overflow: hidden;
   background-color: #f1f1f1;
-  height: @heightFooter;
   vertical-align: center;
   padding: 20px 0 50px;
   line-height: 22px;
 
   .about-cart {
-    width: 400px;
+    max-width: 600px;
     margin: auto;
+    text-align: center;
   }
 
   h4 {
@@ -19,17 +19,11 @@
   }
 
   .contacts-block {
+    margin-left: 20px;
+    margin-top: 10px;
     display: inline-block;
-    float: right;
-    max-width: 60%;
+    vertical-align: top;
     font-size: 13px;
-  }
-
-  .about-us-block {
-    display: inline-block;
-    float: left;
-    max-width: 39%;
-
     a, a:visited {
       color: #4c4c4c;
     }
@@ -44,4 +38,8 @@
     margin-left: 5px;
   }
 
+  .social-items{
+    font-size: 24px;
+    margin: 14px 3px 14px 0;
+  }
 }
