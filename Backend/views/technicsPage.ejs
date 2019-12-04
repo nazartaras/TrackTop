@@ -11,7 +11,15 @@
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
 
-        gtag('config', 'UA-154016757-1');
+        let phone = localStorage.getItem("phone");
+        if (phone) {
+            gtag('config', 'UA-154016757-1',{'user_id':phone});
+            gtag('set', {'user_id': phone});
+        }
+        else {
+            gtag('config', 'UA-154016757-1');
+        }
+        gtag('event', 'page_view', { 'send_to': 'UA-154016757-1' });
     </script>
     <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KS45HK4"

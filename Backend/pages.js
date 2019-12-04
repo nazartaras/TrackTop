@@ -1,6 +1,6 @@
 exports.mainPage = function(req, res) {
     res.render('mainPage', {
-        pageTitle: ''
+        pageTitle: 'Інтернет-магазин сг техніки Львівська область | TrackTop'
     });
 };
 
