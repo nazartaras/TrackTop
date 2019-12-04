@@ -679,7 +679,7 @@ addEquipmentToDB = function () {
                                 $('#addEquipmentModel').modal('hide');
                             }
                         }
-                        require("../API").updateEquipment(65,{name : "newname"}, callback6);
+                        require("../API").updateEquipment(curId,{name : "newname2", amount : 5}, callback6);
                 //    }
                 // }
                 // require("../API").getEquipmentsById(curId, callback5);
