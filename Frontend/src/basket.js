@@ -120,6 +120,10 @@ function initialiseCart() {
             let status = localStorage.getItem("status");
             if(status) {
                 var id = localStorage.getItem("id");
+                gtag('event', 'click', {
+                    'event_category': 'button',
+                    'event_label': 'buy'
+                });
                 var name = localStorage.getItem("name");
                 var surname = localStorage.getItem("surname");
                 var phone = localStorage.getItem("phone");
