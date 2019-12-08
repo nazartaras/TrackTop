@@ -6,6 +6,7 @@ var bodyParser = require('body-parser');
 var isAuth = require('./authentification/isAuth.js');
 var roleRequired = require('./authentification/RoleRequired.js');
 var attachCurrentUser = require('./authentification/attachCurrentUser.js');
+var robots = require('express-robots-txt')
 
 function configureEndpoints(app) {
     var pages = require('./pages');
