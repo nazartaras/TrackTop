@@ -16,6 +16,7 @@
     "express": "^4.16.2",
     "express-jwt": "^5.3.1",
     "express-robots-txt": "^0.4.1",
+    "express-simple-sitemap": "^1.2.2",
     "grunt": "^0.4.5",
     "grunt-browserify": "^4.0.1",
     "grunt-contrib-watch": "^0.6.1",
@@ -26,6 +27,7 @@
     "multiple-select-js": "latest",
     "mysql": "^2.16.0",
     "password-hash": "^1.2.2",
-    "sitemap": "^5.1.0"
+    "sitemap": "^5.1.0",
+    "zlib": "^1.0.5"
   }
 }

@@ -6,7 +6,11 @@ var bodyParser = require('body-parser');
 var isAuth = require('./authentification/isAuth.js');
 var roleRequired = require('./authentification/RoleRequired.js');
 var attachCurrentUser = require('./authentification/attachCurrentUser.js');
-var robots = require('express-robots-txt')
+var robots = require('express-robots-txt');
+//const sitemap = require('express-simple-sitemap');
+const { SitemapStream, streamToPromise } = require('sitemap')
+const { createGzip } = require('zlib')
+let sitemap
 
 function configureEndpoints(app) {
     var pages = require('./pages');
@@ -76,6 +80,40 @@ function configureEndpoints(app) {
     app.get('/equipment', pages.equipment);
     app.get('/about', pages.about);
     app.get('/reviews', pages.reviews);
+    // app.use(sitemap({
+    //     sitemapUrl: '/sitemap.xml', // optional, default value is '/sitemap.xml'
+    // }));
+
+    app.get('/sitemap.xml', function(req, res) {
+        res.header('Content-Type', 'application/xml');
+        res.header('Content-Encoding', 'gzip');
+        // if we have a cached entry send it
+        if (sitemap) {
+            res.send(sitemap)
+            return
+        }
+        try {
+            const smStream = new SitemapStream({ hostname: 'http://tracktop.com.ua/' })
+            const pipeline = smStream.pipe(createGzip());
+
+            smStream.write({ url: '/technics?type=Комбайни',  changefreq: 'daily', priority: 0.8 })
+            smStream.write({ url: '/technics?type=Сівалки',  changefreq: 'daily', priority: 0.8 })
+            smStream.write({ url: '/technics?type=Трактори',  changefreq: 'daily', priority: 0.8 })
+            smStream.write({ url: '/technics?type=Преси-підбирачі',  changefreq: 'daily', priority: 0.8 })
+            smStream.write({ url: '/technics?type=Плуги',  changefreq: 'daily', priority: 0.8 })
+            smStream.write({ url: '/equipments',  changefreq: 'daily', priority: 0.8 })
+            smStream.write({ url: '/about',  changefreq: 'monthly',  priority: 0.6 })
+            smStream.end()
+
+            // cache the response
+            streamToPromise(pipeline).then(sm => sitemap = sm)
+            // stream the response
+            pipeline.pipe(res).on('error', (e) => {throw e})
+        } catch (e) {
+            console.error(e)
+            res.status(500).end()
+        }
+    })
 
     app.get('/admin-panel', /*isAuth, attachCurrentUser, roleRequired.requiredRole('admin'),*/ pages.adminPanel);
 
