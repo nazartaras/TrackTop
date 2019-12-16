@@ -14,14 +14,21 @@ exports.addTehnic = function(req, res) {
         }
         else {
             console.log("Success! ", data);
-            res.send({
-                success: true,
-                data: data
-            });
+            function callback(error,data){
+                if(error) {
+                    console.log("Error! ", error.sqlMessage);
+                    res.send({
+                        success: true,
+                        error: error.sqlMessage
+                    });
+                }
+            }
+            db.insert_technic_photos(info.photos,data.insertId, callback);
+
         }
     }
 
-    db.insert_tehnic(info,callback);
+    db.insert_tehnic(info.technic,callback);
 
 };
 
@@ -667,7 +674,20 @@ var fs = require("fs"),
     multiparty = require('multiparty');
 
 exports.upload_user_photo = function (req,res) {
+    upload_photo(req,res,'users_photos');
 
+}
+exports.upload_technic_photo = function (req,res) {
+    upload_photo(req,res,'technics');
+
+}
+exports.upload_equipment_photo = function (req,res) {
+    upload_photo(req,res,'equipments');
+
+}
+
+
+function upload_photo(req,res,path){
     var form = new multiparty.Form();
     var uploadFile = {uploadPath: '', type: '', size: 0};
     var maxSize = 2 * 1024 * 1024; //2MB
@@ -707,7 +727,7 @@ exports.upload_user_photo = function (req,res) {
         //читаем его тип
         uploadFile.type = part.headers['content-type'];
         //путь для сохранения файла
-        uploadFile.path = './Backend/res/images/users_photos/' + part.filename;
+        uploadFile.path = './Backend/res/images/'+path+'/' + part.filename;
 
         //проверяем размер файла, он не должен быть больше максимального размера
         if(uploadFile.size > maxSize) {

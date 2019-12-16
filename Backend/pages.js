@@ -118,6 +118,6 @@ exports.reviews = (req, res) => {
 exports.adminPanel = (req, res) => {
     res.render('adminPage', {
         pageTitle: 'admin panel',
-        currPage: "1"
+        currPage:  req.query.page || "0"
     })
 }

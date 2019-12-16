@@ -21,6 +21,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.5.3/less.min.js"></script>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
 
+    <link href="assets/libs/file-uploader/styles.imageuploader.css" rel="stylesheet">
+
+
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
@@ -53,8 +56,8 @@
     <div id="sidebar" class="column">
         <h5>Navigation</h5>
         <ul>
-            <li><a class='technic_menu' >Техніка</a></li>
-            <li><a class="equipments_menu">Запчастини</a></li>
+            <li><a id='technic_menu'>Техніка</a></li>
+            <li><a id="equipments_menu">Запчастини</a></li>
 <!--            <li><a href="#widgets">Типи техніки</a></li>-->
 <!--            <li><a href="#forms">Марки</a></li>-->
 <!--            <li><a href="#alerts"> Моделі</a></li>-->
@@ -352,10 +355,7 @@
             <% include common/admin-panel/technics.ejs %>
         <%}%>
         <% if(currPage == '2') {%>
-            <% include common/left_panel.ejs %>
-        <%}%>
-        <% if(currPage == '3') {%>
-            <% include common/left_panel.ejs %>
+            <% include common/admin-panel/equipments.ejs %>
         <%}%>
     </section>
 </div>
@@ -364,6 +364,10 @@
 
 <!--Bootsrap JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<script src="/assets/libs/file-uploader/jquery.imageuploader.js"></script>
+
 <script src="/assets/js/adminPanel.js"></script>
+<!--<script src="../../node_modules/blueimp-file-upload/js/jquery.fileupload.js"></script>-->
 </body>
 </html>

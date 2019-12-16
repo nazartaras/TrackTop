@@ -267,6 +267,7 @@ select:focus {
       margin: 0;
       padding: 0; }
       #sidebar ul li a {
+        cursor: pointer;
         display: block;
         padding: 10px 20px;
         color: #888; }
@@ -538,4 +539,17 @@ ul .technic_menu {
   background-image: url('../images/ic_search.png');
   background-position: 8px 1px;
   background-repeat: no-repeat;
+}
+
+.uploader__submit-button{
+  height: 60px;
+}
+
+
+.modal-content {
+  height: 90%!important;
+}
+
+.scroll {
+  overflow-y: auto;
 }

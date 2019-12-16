@@ -173,6 +173,18 @@ exports.uploadUserPhoto = function(photo,callback){
     backendPostFiles("/api/upload_user_photo/", data, callback);
 };
 
+exports.uploadTechnicPhoto = function(photo,callback){
+    var data = new FormData();
+    data.append('uploadFile', photo);
+    backendPostFiles("/api/upload_technic_photo/", data, callback);
+};
+exports.uploadEquipmentPhoto = function(photo,callback){
+    var data = new FormData();
+    data.append('uploadFile', photo);
+    backendPostFiles("/api/upload_equipment_photo/", data, callback);
+};
+
+
 exports.updateClient = function(id,info,callback) {
     backendPost("/api/update_user",{id: id, info: info},callback);
 }
