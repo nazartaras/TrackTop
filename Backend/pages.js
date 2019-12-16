@@ -31,7 +31,7 @@ exports.technic = function(req, res) {
     var mark = req.query.mark;
     var type = req.query.type;
 
-    console.log("model"+ model + "mark = " + mark + "type" + type);
+    // console.log("model"+ model + "mark = " + mark + "type" + type);
 
 
     require('./db').get_technic_by_type_model_mark(type,mark,model, function (error,data) {
@@ -51,11 +51,11 @@ exports.technic = function(req, res) {
                     else if(type=="Преси-підбирачі")type="Прес-підбирач";
                     else if(type=="Штабелери електричні")type="Штабелер електричний";
                     else if(type=="Рокли")type="Рокла";
-                    else type = type.substring(0,type.length-1)
+                    else type = type.substring(0,type.length-1);
                 res.render('oneTechnicPage', {
                     pageTitle: "купити " + type + ' ' + mark + ' ' + model + " Львівська обасть | TrackTop" ,
                     name: mark + ' ' + model,
-                    type:type,
+                    // type:type,
                     technic: data[0]
                 });
             }
