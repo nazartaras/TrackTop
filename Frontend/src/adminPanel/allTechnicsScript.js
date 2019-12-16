@@ -769,7 +769,6 @@ $(function(){
         dropZone: $(this),
         fileTypeWhiteList: ['jpg', 'png', 'jpeg', 'gif', 'pdf'],
         badFileTypeMessage: 'Sorry, we\'re unable to accept this type of file.',
-        ajaxUrl: '/ajax/upload',
         testMode: false
     };
     $('#fileUploadForm').uploader(options);
