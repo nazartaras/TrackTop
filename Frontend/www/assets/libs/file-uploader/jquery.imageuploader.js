@@ -173,8 +173,8 @@
             }
 
             function cleanName (name) {
-                name = name.replace(/\s+/gi, '-'); // Replace white space with dash
-                return name.replace(/[^a-zA-Z0-9.\-]/gi, ''); // Strip any special characters
+                //name = name.replace(/\s+/gi, '-'); // Replace white space with dash
+                return name;//name.replace(/[^a-zA-Z0-9.\-]/gi, ''); // Strip any special characters
             }
 
             function uploadSubmitHandler () {
