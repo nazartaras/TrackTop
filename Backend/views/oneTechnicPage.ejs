@@ -41,7 +41,7 @@
     <!-- LESS JavaScript компілятор -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.5.3/less.min.js"></script>
     <!--style for text-->
-<!--    <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">-->
+    <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
     <!--font awesome-->
 <!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">-->
     <!-- Facebook Pixel Code -->
@@ -76,10 +76,14 @@
     <% include common/message.ejs %>
 
     <div id="main" class="container-fluid">
+        <h1>
+            <div class="header-technic">
+                <div class="type"><%= type %></div>
         <div class='type_header'>
             <%= name %>
         </div>
-
+            </div>
+        </h1>
         <div>
             <div class="slider">
                 <div class="slider__wrapper">
