@@ -47,9 +47,14 @@ exports.technic = function(req, res) {
 
             if(data.length>0) {
                // console.log(data[0]+"\n");
-
+                if(type=="Сівалки") type="Сівалка";
+                if(type=="Преси-підбирачі")type="Прес-підбирач";
+                if(type=="Штабелери електричні")type="Штабелер електричний";
+                if(type=="Рокли")type="Рокла";
+                else type = type.substring(0,type.length-1)
                 res.render('oneTechnicPage', {
                     pageTitle: "купити " + type + ' ' + mark + ' ' + model + " Львівська обасть | TrackTop" ,
+                    type:type,
                     name: mark + ' ' + model,
                     technic: data[0]
                 });
