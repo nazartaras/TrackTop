@@ -465,7 +465,8 @@ addTechnicToDB = function () {
         price: price,
         production_date: year,
         currency: "долар",
-        description: description
+        description: description,
+        main_photo_location: getPhotos().length > 0 ? getPhotos()[0].val : "default_technic"
     }
     if (currency == 'грн') technic.currency = "гривня";
     if (currency == '€') technic.currency = "євро";
