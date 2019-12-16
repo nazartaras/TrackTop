@@ -790,7 +790,8 @@ $(function(){
     });
 
     $('#fileinput0').change(function (event) {
-        require('../API').uploadTechnicPhoto(event.target.files[0],function(err,data){
+        for(var i=0;i<event.target.files.length;i++)
+        require('../API').uploadTechnicPhoto(event.target.files[i],function(err,data){
             if(err || data.error)
                 console.log(err||data.error);
 
@@ -798,7 +799,8 @@ $(function(){
     })
 
     $('#secondaryfileinput0').change(function (event) {
-        require('../API').uploadTechnicPhoto(event.target.files[0],function(err,data){
+        for(var i=0;i<event.target.files.length;i++)
+        require('../API').uploadTechnicPhoto(event.target.files[i],function(err,data){
             if(err || data.error)
                 console.log(err||data.error);
 
