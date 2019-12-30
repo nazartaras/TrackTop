@@ -52,7 +52,7 @@
                      onclick="document.getElementById('addTechnicModel').style.display='none'" title="Закрити"></div>
             </div>
         </div>
-        <div class="container">
+        <div class="container scroll">
 
             <span class="form-group">
 <!--    <label for="sel1">Тип</label>-->
@@ -105,13 +105,13 @@
                 <textarea class="form-control" id="description" name="description" rows="6"></textarea>
             </div>
 
-               <div class="uploader__box js-uploader__box l-center-box">
-  <form action="your/nonjs/fallback/" method="POST">
+               <div id="fileUploadForm" class="uploader__box js-uploader__box l-center-box">
+  <form id="fileUploadForm" >
       <div class="uploader__contents">
           <label class="button button--secondary" for="fileinput">Додати фото</label>
           <input id="fileinput" class="uploader__file-input" type="file" multiple value="Select Files">
       </div>
-      <input class="button button--big-bottom" type="submit" value="Upload Selected Files">
+      <input class="uploadButton button button--big-bottom" type="submit" value="Upload Selected Files">
   </form>
 </div>
              </span>

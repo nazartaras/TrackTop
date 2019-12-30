@@ -1,9 +1,15 @@
 var multipleEquipmentOpen = false;
 var container_num = 1;
+
+var values = require('../values.js');
+var API_URL = values.url;
+var file_uploader = require('blueimp-file-upload');
+
 //multiple = new MultipleSelect();
 openAddTechnicModel = function () {
 
-    $('#addTechnicModel').modal('show');
+    document.getElementById('addTechnicModel').style.display='block';
+    // $('#addTechnicModel').style.display='block';
     $("#add-btn").text("Додати");
 
     technicFormClear();
@@ -223,7 +229,8 @@ showModels = function() {
 }
 
 openAddEquipmentModel = function () {
-    $('#addEquipmentModel').modal('show');
+    document.getElementById('addEquipmentModel').style.display='block';
+    // $('#addEquipmentModel').modal('show');
     $("#add-btn").text("Додати");
     // $('#multiple-select-container-'+container_num).css("display", "none");
     equipmentFormClear();
@@ -458,7 +465,8 @@ addTechnicToDB = function () {
         price: price,
         production_date: year,
         currency: "долар",
-        description: description
+        description: description,
+        main_photo_location: getPhotos().length > 0 ? getPhotos()[0].val : "default_technic"
     }
     if (currency == 'грн') technic.currency = "гривня";
     if (currency == '€') technic.currency = "євро";
@@ -487,7 +495,7 @@ addTechnicToDB = function () {
                                     }
                                 }
 
-                                require("../API").addTehnic(technic, callback);
+                                require("../API").addTehnic({technic:technic, photos: getPhotos()}, callback);
                             }
 
                             require("../API").addMarkTechnic({name: mark}, callback4);
@@ -499,7 +507,7 @@ addTechnicToDB = function () {
                                 $('#addTechnicModel').modal('toggle');
                             }
 
-                            require("../API").addTehnic(technic, callback);
+                            require("../API").addTehnic({technic:technic, photos: getPhotos()}, callback);
                         }
                     }
 
@@ -715,3 +723,89 @@ function equipmentFormClear() {
     //multipleEquipmentOpen = true;
     $('#multiple-select-container-'+(container_num-1)).remove();
 }
+
+
+function openTab(value){
+    document.location.href = API_URL+"/admin-panel?page="+value;
+}
+
+function uploadPhoto(){
+    require('../API').uploadPhotos($('#fileinput')[0].files,function(err,data){
+        if(err || data.error){}
+        else {
+            require('../API').uploadPhotos(id,{
+                photo_location: event.target.files[0].name,
+                phone_number: $phone_value.value
+            },function(err){
+                if (err) console.log(err);
+            })
+        }
+    })
+}
+/*не корректный */
+function getPhotos(){
+    var arrCheck = [];
+    $('.uploader__file-list li .uploader__file-list__text').each(function(idx, item) {
+        var ert = {
+            val: $(this, item).text()
+        };
+        arrCheck.push(ert);
+    });
+    return arrCheck;
+}
+
+$(function(){
+    $('#technic_menu').click(function(){
+        openTab(1);
+    });
+    $('#equipments_menu').click(function(){
+        openTab(2);
+    });
+    var options = {
+        submitButtonCopy: 'Upload Selected Files',
+        instructionsCopy: 'Drag and Drop, or',
+        furtherInstructionsCopy: 'Your can also drop more files, or',
+        selectButtonCopy: 'Select Files',
+        secondarySelectButtonCopy: 'Select More Files',
+        dropZone: $(this),
+        fileTypeWhiteList: ['jpg', 'png', 'jpeg', 'gif', 'pdf'],
+        badFileTypeMessage: 'Sorry, we\'re unable to accept this type of file.',
+        testMode: false
+    };
+    $('#fileUploadForm').uploader(options);
+
+    $('.uploadButton').click(function(){
+        addTechnicToDB();
+        /*require('../API').uploadPhotos($('#fileinput')[0].files,function(err,data){
+            if(err || data.error){}
+            else {
+                require('../API').uClient(id,{
+                    photo_location: event.target.files[0].name,
+                    phone_number: $phone_value.value
+                },function(err){
+                    if (err) console.log(err);
+                })
+            }
+        })*/
+    });
+
+    $('#fileinput0').change(function (event) {
+        for(var i=0;i<event.target.files.length;i++)
+        require('../API').uploadTechnicPhoto(event.target.files[i],function(err,data){
+            if(err || data.error)
+                console.log(err||data.error);
+
+        })
+    })
+
+    $('#secondaryfileinput0').change(function (event) {
+        for(var i=0;i<event.target.files.length;i++)
+        require('../API').uploadTechnicPhoto(event.target.files[i],function(err,data){
+            if(err || data.error)
+                console.log(err||data.error);
+
+        })
+    })
+
+
+});
